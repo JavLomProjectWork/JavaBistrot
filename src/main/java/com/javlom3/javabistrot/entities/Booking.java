@@ -2,6 +2,7 @@ package com.javlom3.javabistrot.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -41,6 +42,7 @@ public class Booking {
     private Integer numberOfGuests;
 
     @Column(nullable = false)
+    @Future(message = "Can't insert expired booking.")
     private LocalDateTime bookingDateTime;
 
     @ManyToMany
