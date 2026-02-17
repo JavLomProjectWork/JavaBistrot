@@ -1,0 +1,5 @@
+DTO: rimuovi campi che espongono entità JPA (List<User>, List<Booking>). Usa solo ID (es. List<Long> assignedWaiterIds, Long userId).
+DTO: rimuovi password da UserDTO (usa un DTO separato per input password).
+Mapper: aggiorna BookingMapper per mappare assignedWaiters tramite ID (richiede lookup in service).
+Mapper: evita getBookings() in UserMapper.toDto() per non innescare lazy loading.
+Repository: ok così, nessuna modifica necessaria.

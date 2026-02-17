@@ -8,7 +8,6 @@ public class UserMapper {
     public User toEntity(UserDTO dto) {
         User entity = new User();
         entity.setUsername(dto.username());
-        entity.setPassword(dto.password());
         entity.setRole(dto.role());
         return entity;
     }
@@ -17,9 +16,7 @@ public class UserMapper {
         return new UserDTO(
            entity.getId(),
            entity.getUsername(),
-           entity.getPassword(),
-           entity.getRole(),
-           entity.getBookings() 
+              entity.getRole()
         );
     }
 
