@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "bookings")
@@ -29,7 +29,7 @@ public class Booking {
     private String customerName;
 
     @Column(nullable = false)
-    @Email(message = "Insert valid email adress.")
+    @Email(message = "Insert valid email address.")
     private String email;
 
     @Pattern(regexp = "^\\+?[0-9.]{7,15}$", message = "Invalid phone number")
@@ -51,7 +51,7 @@ public class Booking {
         joinColumns = @JoinColumn(name = "booking_id"),
         inverseJoinColumns = @JoinColumn(name = "waiter_id")
     )
-    private List<User> assignedWaiters; 
+    private Set<User> assignedWaiters; 
 
     @Column(length = 500)
     private String notes;

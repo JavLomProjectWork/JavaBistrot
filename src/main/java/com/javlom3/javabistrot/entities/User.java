@@ -1,7 +1,7 @@
 package com.javlom3.javabistrot.entities;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,7 +41,7 @@ public class User implements UserDetails{
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "assignedWaiters")
-    private List<Booking> bookings;
+    private Set<Booking> bookings;
     
     private Boolean active;
 

@@ -1,6 +1,6 @@
 package com.javlom3.javabistrot.mapper;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -23,12 +23,12 @@ public class BookingMapper {
     }
     
     public BookingDTO toDto(Booking entity) {
-        List<Long> assignedWaiterIds = null;
+        Set<Long> assignedWaiterIds = null;
         if (entity.getAssignedWaiters() != null) {
             assignedWaiterIds = entity.getAssignedWaiters()
                 .stream()
                 .map(User::getId)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
         }
 
         return new BookingDTO(

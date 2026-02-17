@@ -1,7 +1,7 @@
 package com.javlom3.javabistrot.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 public record BookingDTO(
     Long id,
@@ -10,6 +10,6 @@ public record BookingDTO(
     String phoneNumber,
     Integer numberOfGuests,
     LocalDateTime bookingDateTime,
-    List<Long> assignedWaiterIds,
+    Set<Long> assignedWaiterIds,
     String notes 
 ) {}
