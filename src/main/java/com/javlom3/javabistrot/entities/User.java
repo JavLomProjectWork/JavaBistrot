@@ -38,6 +38,8 @@ public class User implements UserDetails{
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "assignedWaiters")
     private List<Booking> bookings;
+    
+    private Boolean active;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return java.util.List.of(new org.springframework.security.core.authority.SimpleGrantedAuthority("ROLE_" + role));
