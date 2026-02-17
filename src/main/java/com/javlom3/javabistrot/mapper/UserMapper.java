@@ -1,8 +1,11 @@
 package com.javlom3.javabistrot.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.javlom3.javabistrot.dto.UserDTO;
 import com.javlom3.javabistrot.entities.User;
 
+@Component
 public class UserMapper {
     
     public User toEntity(UserDTO dto) {

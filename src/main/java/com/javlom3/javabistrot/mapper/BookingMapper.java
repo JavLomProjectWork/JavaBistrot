@@ -1,12 +1,15 @@
 package com.javlom3.javabistrot.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
 import com.javlom3.javabistrot.dto.BookingDTO;
 import com.javlom3.javabistrot.entities.Booking;
 import com.javlom3.javabistrot.entities.User;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+@Component
 public class BookingMapper {
     public Booking toEntity(BookingDTO dto) {
         Booking entity = new Booking();
