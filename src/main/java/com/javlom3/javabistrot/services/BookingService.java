@@ -114,12 +114,11 @@ public class BookingService {
 	}
 
 	@Transactional
-	public boolean deleteBooking(Long id) {
+	public void deleteBooking(Long id) {
 		if (!bookingRepo.existsById(id)) {
-			return false;
-		}
-		bookingRepo.deleteById(id);
-		return true;
+            throw new IllegalArgumentException("Prenotazione con id " + id + " non trovata");
+        }
+        bookingRepo.deleteById(id);
 	}
 
 	private Set<User> resolveWaiters(Set<Long> waiterIds) {

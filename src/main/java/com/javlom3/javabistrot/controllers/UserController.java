@@ -1,7 +1,6 @@
 package com.javlom3.javabistrot.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +34,7 @@ public class UserController {
         return "redirect:/test";
     }
 
-    @DeleteMapping("/removeuser")
+    @PostMapping("/removeuser")
     public String deleteUser(@RequestParam Long id) {
         userService.deleteUser(id);
         log.info("Utente con id {} eliminato", id);
