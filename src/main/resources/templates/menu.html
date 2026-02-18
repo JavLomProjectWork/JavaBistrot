@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Menu</title>
+        <link rel="stylesheet" th:href="@{/css/menu.css}">
+    </head>
+
+    <body>
+        <header th:replace="fragments/header :: header"></header>
+
+        <h1> Nebbia e Zafferano </h1>
+
+        <section class="antipasti">
+            <h2>Antipasti</h2>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <h3>Antipasto 1</h3>
+                        <img src="https://via.placeholder.com/150" alt="Antipasto 1">
+                        </div>
+                        <div class="card-back">
+                            <p>Descrizione del piatto 1</p>
+                            <span class="price">€12</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <h3>Antipasto 2</h3>
+                        <img src="https://via.placeholder.com/150" alt="Antipasto 2">
+                        </div>
+                        <div class="card-back">
+                            <p>Descrizione del piatto 2</p>
+                            <span class="price">€12</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <h3>Antipasto 3</h3>
+                        <img src="https://via.placeholder.com/150" alt="Antipasto 3">
+                        </div>
+                        <div class="card-back">
+                            <p>Descrizione del piatto 3</p>
+                            <span class="price">€12</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <h3>Antipasto 4</h3>
+                        <img src="https://via.placeholder.com/150" alt="Antipasto 4">
+                        </div>
+                        <div class="card-back">
+                            <p>Descrizione del piatto 4</p>
+                            <span class="price">€12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="fragments/footer :: footer"></footer>
+    </body>
+</html>
