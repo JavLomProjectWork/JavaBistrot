@@ -3,15 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>Menu</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
     </head>
 
     <body>
-        <header th:replace="fragments/header :: header"></header>
+        <header th:replace="~{fragments/header :: header}"></header>
 
-        <h1> Nebbia e Zafferano </h1>
+        <main class="menu-page">
+            <h1> Nebbia e Zafferano </h1>
 
-        <section class="antipasti">
+            <section class="antipasti">
             <h2>Antipasti</h2>
             <div class="card-container">
                 <div class="card">
@@ -226,7 +228,8 @@
                 </div>
             </div>
         </section>
+        </main>
 
-        <footer th:replace="fragments/footer :: footer"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
 </html>

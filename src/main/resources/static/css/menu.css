@@ -55,6 +55,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #333;
 }
 
 .card-back {
@@ -66,5 +67,33 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+/* Stili pagina menu */
+.menu-page {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.menu-page h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.menu-page h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin: 30px 0 20px;
+    color: #D4AF37;
+}
+
+.menu-page section {
+    padding: 20px;
 }
 
