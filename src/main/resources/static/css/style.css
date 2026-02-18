@@ -1,0 +1,207 @@
+/*header {
+    background-color: #333 !important;
+    height: 100px;
+}
+.logo {
+    color: #ec1c24; 
+}*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+/* STILE HEADER / NAVBAR */
+header {
+    position: fixed; /* Rimane in alto mentre scorri */
+    width: 100%;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.7); /* Sfondo nero semitrasparente */
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Logo a sinistra, menu a destra */
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #ec1c24; /* Rosso ispirato al template */
+}
+
+/* STILE SEZIONE HOME (HERO) */
+.home {
+    height: 100vh; /* Copre il 100% dell'altezza dello schermo */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('../img/sfondo.webp'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.home-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 70px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.home-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* BOTTONE */
+.btn-main {
+    text-decoration: none;
+    background-color: white;
+    color: #333;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-main:hover {
+    background-color: #ec1c24;
+    color: white;
+}
+
+/* STILE SEZIONE WELCOME */
+.welcome {
+    padding: 100px 10%; /* Tanto spazio sopra e sotto */
+    background-color: #fff;
+    color: #333;
+}
+
+.container-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.welcome-text {
+    flex: 1; /* Prende metà spazio */
+}
+
+.welcome-text .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #D4AF37; /* Oro zafferano */
+    display: block;
+    margin-bottom: 10px;
+}
+
+.welcome-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+.welcome-text p {
+    font-size: 30px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* BOTTONE SECONDARIO */
+.btn-secondary {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #D4AF37; /* Linea dorata sotto */
+    padding-bottom: 5px;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    color: #D4AF37;
+}
+
+/* STILE IMMAGINE */
+.welcome-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.img-wrapper {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 177px;
+    overflow: hidden;
+    box-shadow: 20px 0px 0px #f3d3d3; /* Effetto cornice moderna */
+}
+
+.img-wrapper img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.img-wrapper:hover img {
+    transform: scale(1.1); /* Zoom leggero quando passi sopra */
+}
+
+/* STILE SEZIONE INTRO */
+.section-intro{
+    height: 100vh; /* Copre il 100% dell'altezza dello schermo */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('../img/place.webp'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
