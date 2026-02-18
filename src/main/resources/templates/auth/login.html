@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+    <main class="page">
+        <div class="login-container">
+            <h1 class="login-title">JavaBistrot</h1>
+            <p class="login-subtitle">Accedi al sistema di gestione</p>
+
+            <!-- Messaggio di errore -->
+            <div th:if="${errorMessage}" class="alert alert-error">
+                <span th:text="${errorMessage}">Errore</span>
+            </div>
+
+            <!-- Messaggio di logout -->
+            <div th:if="${logoutMessage}" class="alert alert-success">
+                <span th:text="${logoutMessage}">Logout effettuato</span>
+            </div>
+
+            <form th:action="@{/auth/login}" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autofocus 
+                           placeholder="Inserisci username" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Inserisci password" />
+                </div>
+
+                <button type="submit" class="btn">Accedi</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

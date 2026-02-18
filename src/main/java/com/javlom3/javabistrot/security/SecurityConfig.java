@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                 // risorse accessibili a tutti
-                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 
                 // Pagine pubbliche del ristorante
                 .requestMatchers("/", "/home", "/menu", "/prenota").permitAll()
