@@ -1,6 +1,15 @@
+body {
+    background-color: #f8f5f0;
+}
+
+.card-front,
+.card-back {
+    background-color: #ffffff;
+}
+
 .card {
-    width: 200px;
-    height: 250px;
+    width: 300px;
+    height: 420px; 
     perspective: 1000px;
 }
 
@@ -8,7 +17,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s;
+    transition: transform 0.6s ease;
     transform-style: preserve-3d;
 }
 
@@ -18,24 +27,20 @@
 
 .card-front img {
     width: 100%;
-    height: 200px;         
+    height: 220px;          
     object-fit: cover;     
     border-radius: 10px;
     margin-top: 10px;
-    transition: transform 0.3s ease;
-
 }
 
 .card-front {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+       align-items: center;
 }
 
 .card-front h3 {
     text-align: center;
-    padding: 10px;
+    font-size: 18px;
+    min-height: 50px; /* stesso spazio titolo */
 }
 
 .card:hover .card-front img {
@@ -47,24 +52,56 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    border-radius: 15px;
     backface-visibility: hidden;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    background: white;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .card-back {
     transform: rotateY(180deg);
+    justify-content: space-between; /* forza prezzo in basso */
+    text-align: center;
+}
+
+.card-back p {
+    flex-grow: 1;  /* occupa spazio centrale */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: auto;
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+    margin-bottom: 40px;
+
+}
+
+section {
+    padding: 80px 20px;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 32px;
+}
+
+footer {
+    margin-top: 80px;
+    position: relative;
 }
 
