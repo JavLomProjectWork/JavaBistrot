@@ -3,29 +3,24 @@ package com.javlom3.javabistrot.controllers;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.javlom3.javabistrot.dto.BookingDTO;
 import com.javlom3.javabistrot.services.BookingService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
-
-
-
-
-@Controller
+@RestController
 @Slf4j
 @RequestMapping("api/bookings")
-public class BookingController {
+public class BookingRESTController {
     
     private final BookingService bookingService;
 
-    public BookingController(BookingService bookingService){
+    public BookingRESTController(BookingService bookingService){
         this.bookingService = bookingService;
     }
 

@@ -1,9 +1,9 @@
 package com.javlom3.javabistrot.controllers;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.javlom3.javabistrot.dto.UserDTO;
 import com.javlom3.javabistrot.entities.Role;
@@ -11,14 +11,14 @@ import com.javlom3.javabistrot.services.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@RestController
 @RequestMapping("api/users")
 @Slf4j
-public class UserController {
+public class UserRESTController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserRESTController(UserService userService) {
         this.userService = userService;
     }
 
