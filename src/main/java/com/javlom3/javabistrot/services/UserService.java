@@ -28,6 +28,11 @@ public class UserService {
 
     @Transactional
     public Optional<UserDTO> createUser(UserDTO userDTO, String password) {
+        // Verifica se l'username esiste già
+        if (userRepo.findByUsername(userDTO.username()).isPresent()) {
+            throw new IllegalArgumentException("Username " + userDTO.username() + " già in uso");
+        }
+        
         User newUser = userMapper.toEntity(userDTO);
         newUser.setActive(userDTO.active());
         newUser.setPassword(passwordEncoder.encode(password));
@@ -39,7 +44,7 @@ public class UserService {
     
 
     @Transactional
-    public Optional<UserDTO> updateUser(Long id, UserDTO userDTO) {
+    public Optional<UserDTO> updateUser(Long id, UserDTO userDTO, String password) {
         return userRepo.findById(id).map(existing -> {
             if (userDTO.username() != null) {
                 existing.setUsername(userDTO.username());
@@ -49,6 +54,9 @@ public class UserService {
             }
             if (userDTO.active() != null) {
                 existing.setActive(userDTO.active());
+            }
+            if (password != null) {
+                existing.setPassword(passwordEncoder.encode(password));
             }
             User updatedUser = userRepo.save(existing);
             return userMapper.toDto(updatedUser);
@@ -70,6 +78,14 @@ public class UserService {
         return userRepo.findByUsername(username)
             .filter(user -> passwordEncoder.matches(password, user.getPassword()))
             .map(userMapper::toDto);
+    }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        if (!userRepo.existsById(id)) {
+            throw new IllegalArgumentException("Utente con id " + id + " non trovato");
+        }
+        userRepo.deleteById(id);
     }
 
 
