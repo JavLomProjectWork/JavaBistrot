@@ -1,6 +1,5 @@
 package com.javlom3.javabistrot.controllers;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/staff")
-@PreAuthorize("hasRole('MAITRE')")
 @Slf4j
 public class UserController {
 
