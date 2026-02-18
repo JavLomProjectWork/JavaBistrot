@@ -2,14 +2,12 @@ package com.javlom3.javabistrot.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -30,9 +28,14 @@ public class SecurityConfig {
                 
                 // Gestione staff - solo MAITRE
                 .requestMatchers("/api/users/**").hasRole("MAITRE")
+                .requestMatchers("/staff/**").hasRole("MAITRE")
+                
+                // Gestione prenotazioni - assegnazione camerieri solo MAITRE
+                .requestMatchers("/bookings/assign-waiter", "/bookings/remove-waiter").hasRole("MAITRE")
                 
                 // Gestione prenotazioni (escluso addbooking) - WAITER e MAITRE
                 .requestMatchers("/api/bookings/**").hasAnyRole("WAITER", "MAITRE")
+                .requestMatchers("/bookings/**").hasAnyRole("WAITER", "MAITRE")
                 
                 // Tutto il resto richiede autenticazione
                 .anyRequest().authenticated()

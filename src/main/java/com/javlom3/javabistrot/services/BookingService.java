@@ -134,6 +134,13 @@ public class BookingService {
             .map(bookingMapper::toDto)
             .toList();
     }
+
+    public int countGuestsByDay(LocalDate date) {
+        return bookingRepo.findByBookingDateTimeBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX))
+            .stream()
+            .mapToInt(Booking::getNumberOfGuests)
+            .sum();
+    }
     
     public List<BookingDTO> getByCustomerName(String name) {
         return bookingRepo.findByCustomerNameContainingIgnoreCase(name)
