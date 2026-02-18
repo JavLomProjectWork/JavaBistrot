@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+    <main class="page">
+        <div class="dashboard-container">
+            <h1>Dashboard</h1>
+            <p>Benvenuto in JavaBistrot</p>
+
+            <div class="user-info">
+                <p><strong>Username:</strong> <span th:text="${user.username}">username</span></p>
+                <p>
+                    <strong>Ruolo:</strong> 
+                    <span th:if="${user.role.name() == 'MAITRE'}" class="role-badge role-maitre">MAITRE</span>
+                    <span th:if="${user.role.name() == 'WAITER'}" class="role-badge role-waiter">WAITER</span>
+                </p>
+                <p><strong>Stato:</strong> 
+                    <span th:if="${user.active}" style="color: green;">Attivo</span>
+                    <span th:unless="${user.active}" style="color: red;">Non attivo</span>
+                </p>
+            </div>
+
+            <h3 class="section-title">Gestione Prenotazioni</h3>
+            <div class="nav-links">
+                <a th:href="@{/test}">Pagina di Test</a>
+            </div>
+
+            <!-- Solo per MAITRE -->
+            <div sec:authorize="hasRole('MAITRE')">
+                <h3 class="section-title">Gestione Utenti</h3>
+                <div class="nav-links">
+                    <a th:href="@{/staff}">Gestione Staff</a>
+                </div>
+            </div>
+
+            <form th:action="@{/auth/logout}" method="post">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

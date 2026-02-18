@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+    <nav th:replace="~{fragments/common :: publicNav('menu')}" />
+
+    <header class="menu-header">
+        <h1>Il Nostro Menu</h1>
+        <p>Scopri i sapori autentici della cucina italiana</p>
+    </header>
+
+    <main class="menu-container">
+        <!-- Antipasti -->
+        <section class="menu-section">
+            <h2>Antipasti</h2>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Bruschetta Classica</div>
+                    <div class="menu-item-description">Pane tostato con pomodori freschi, basilico e olio extra vergine d'oliva</div>
+                </div>
+                <div class="menu-item-price">€8</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Carpaccio di Manzo</div>
+                    <div class="menu-item-description">Fettine di manzo crudo con rucola, scaglie di parmigiano e limone</div>
+                </div>
+                <div class="menu-item-price">€14</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Burrata con Pomodorini</div>
+                    <div class="menu-item-description">Burrata fresca pugliese con pomodorini confit e pesto di basilico</div>
+                </div>
+                <div class="menu-item-price">€12</div>
+            </div>
+        </section>
+
+        <!-- Primi -->
+        <section class="menu-section">
+            <h2>Primi Piatti</h2>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Spaghetti alla Carbonara</div>
+                    <div class="menu-item-description">Pasta fresca con guanciale croccante, tuorlo d'uovo e pecorino romano</div>
+                </div>
+                <div class="menu-item-price">€16</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Risotto ai Funghi Porcini</div>
+                    <div class="menu-item-description">Riso Carnaroli mantecato con funghi porcini freschi e tartufo</div>
+                </div>
+                <div class="menu-item-price">€18</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Tagliatelle al Ragù</div>
+                    <div class="menu-item-description">Pasta all'uovo fatta in casa con ragù bolognese tradizionale</div>
+                </div>
+                <div class="menu-item-price">€15</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Ravioli Ricotta e Spinaci</div>
+                    <div class="menu-item-description">Pasta ripiena con burro e salvia, spolverata di parmigiano</div>
+                </div>
+                <div class="menu-item-price">€14</div>
+            </div>
+        </section>
+
+        <!-- Secondi -->
+        <section class="menu-section">
+            <h2>Secondi Piatti</h2>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Tagliata di Manzo</div>
+                    <div class="menu-item-description">Controfiletto alla griglia con rucola e scaglie di grana</div>
+                </div>
+                <div class="menu-item-price">€24</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Branzino al Forno</div>
+                    <div class="menu-item-description">Branzino intero con patate, olive taggiasche e pomodorini</div>
+                </div>
+                <div class="menu-item-price">€22</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Ossobuco alla Milanese</div>
+                    <div class="menu-item-description">Stinco di vitello brasato con gremolata e risotto giallo</div>
+                </div>
+                <div class="menu-item-price">€26</div>
+            </div>
+        </section>
+
+        <!-- Dolci -->
+        <section class="menu-section">
+            <h2>Dolci</h2>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Tiramisù</div>
+                    <div class="menu-item-description">Il classico dolce italiano con mascarpone, caffè e cacao</div>
+                </div>
+                <div class="menu-item-price">€8</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Panna Cotta</div>
+                    <div class="menu-item-description">Crema cotta alla vaniglia con coulis di frutti di bosco</div>
+                </div>
+                <div class="menu-item-price">€7</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-info">
+                    <div class="menu-item-name">Cannoli Siciliani</div>
+                    <div class="menu-item-description">Cialde croccanti ripiene di ricotta, gocce di cioccolato e pistacchio</div>
+                </div>
+                <div class="menu-item-price">€9</div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h3>Ti abbiamo convinto?</h3>
+            <p>Prenota subito il tuo tavolo e vieni a gustare i nostri piatti!</p>
+            <a th:href="@{/prenota}">Prenota Ora</a>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/common :: publicFooter}" />
+</body>
+</html>

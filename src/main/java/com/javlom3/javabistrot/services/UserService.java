@@ -3,6 +3,9 @@ package com.javlom3.javabistrot.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +17,7 @@ import com.javlom3.javabistrot.repositories.UserRepo;
 import jakarta.transaction.Transactional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo;
     private final UserMapper userMapper;
@@ -24,6 +27,13 @@ public class UserService {
         this.userRepo = userRepo;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepo.findByUsername(username)
+                .filter(user -> Boolean.TRUE.equals(user.getActive()))
+                .orElseThrow(() -> new UsernameNotFoundException("Utente non trovato o non attivo: " + username));
     }
 
     @Transactional
@@ -88,8 +98,19 @@ public class UserService {
         userRepo.deleteById(id);
     }
 
+    @Transactional
+    public List<UserDTO> getWaiters() {
+        return userRepo.findByRole(com.javlom3.javabistrot.entities.Role.WAITER)
+            .stream()
+            .map(userMapper::toDto)
+            .toList();
+    }
 
-
-
-
+    @Transactional
+    public List<UserDTO> getMaitres() {
+        return userRepo.findByRole(com.javlom3.javabistrot.entities.Role.MAITRE)
+            .stream()
+            .map(userMapper::toDto)
+            .toList();
+    }
 }

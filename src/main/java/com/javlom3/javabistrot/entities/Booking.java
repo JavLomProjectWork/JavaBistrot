@@ -32,7 +32,7 @@ public class Booking {
     @Email(message = "Insert valid email address.")
     private String email;
 
-    @Pattern(regexp = "^\\+?[0-9.]{7,15}$", message = "Invalid phone number")
+    @Pattern(regexp = "^\\+?[0-9\\s\\-.]{7,20}$", message = "Invalid phone number")
     @Column(nullable = false, length = 20)
     private String phoneNumber;
 

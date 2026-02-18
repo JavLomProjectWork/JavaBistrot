@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Staff - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+    <main class="page">
+        <div class="staff-container">
+            <a th:href="@{/dashboard}" class="back-link">&larr; Torna alla Dashboard</a>
+            
+            <h1>Gestione Staff</h1>
+            <p>Aggiungi, rimuovi o modifica lo staff del ristorante</p>
+
+            <!-- Messaggi flash -->
+            <div th:if="${successMessage}" class="alert alert-success">
+                <span th:text="${successMessage}">Successo</span>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-error">
+                <span th:text="${errorMessage}">Errore</span>
+            </div>
+
+            <!-- Form per aggiungere staff -->
+            <div class="section">
+                <h3 class="section-title">Aggiungi Nuovo Membro Staff</h3>
+                <form th:action="@{/staff/add}" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" required 
+                                   placeholder="Nome utente" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required 
+                                   placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Ruolo</label>
+                            <select id="role" name="role" required>
+                                <option th:each="role : ${roles}" th:value="${role}" th:text="${role}">Ruolo</option>
+                            </select>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="active" name="active" value="true" checked />
+                            <label for="active">Attivo</label>
+                        </div>
+                        <button type="submit" class="btn-add">Aggiungi</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Lista waiter esistenti -->
+            <div class="section">
+                <h3 class="section-title">Camerieri Registrati</h3>
+                
+                <div th:if="${#lists.isEmpty(waiters)}" class="empty-message">
+                    <p>Nessun cameriere registrato</p>
+                </div>
+
+                <div class="waiter-list" th:unless="${#lists.isEmpty(waiters)}">
+                    <div th:each="waiter : ${waiters}" class="waiter-item">
+                        <div class="waiter-info">
+                            <span class="waiter-name" th:text="${waiter.username}">Username</span>
+                            <span class="status-badge role-badge-waiter">WAITER</span>
+                            <span th:if="${waiter.active}" class="status-badge status-active">Attivo</span>
+                            <span th:unless="${waiter.active}" class="status-badge status-inactive">Non Attivo</span>
+                        </div>
+                        <div class="waiter-actions">
+                            <!-- Toggle stato -->
+                            <form th:action="@{/staff/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${waiter.id}" />
+                                <input type="hidden" name="active" th:value="${!waiter.active}" />
+                                <button type="submit" 
+                                        th:class="${waiter.active} ? 'btn-toggle btn-deactivate' : 'btn-toggle btn-activate'"
+                                        th:text="${waiter.active} ? 'Disattiva' : 'Attiva'">
+                                    Toggle
+                                </button>
+                            </form>
+                            <!-- Rimuovi -->
+                            <form th:action="@{/staff/remove}" method="post" style="display: inline;"
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo cameriere?');">
+                                <input type="hidden" name="id" th:value="${waiter.id}" />
+                                <button type="submit" class="btn-remove">Elimina</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista maitre esistenti -->
+            <div class="section">
+                <h3 class="section-title">Maitre Registrati</h3>
+                
+                <div th:if="${#lists.isEmpty(maitres)}" class="empty-message">
+                    <p>Nessun maitre registrato</p>
+                </div>
+
+                <div class="waiter-list" th:unless="${#lists.isEmpty(maitres)}">
+                    <div th:each="maitre : ${maitres}" class="waiter-item">
+                        <div class="waiter-info">
+                            <span class="waiter-name" th:text="${maitre.username}">Username</span>
+                            <span class="status-badge role-badge-maitre">MAITRE</span>
+                            <span th:if="${maitre.active}" class="status-badge status-active">Attivo</span>
+                            <span th:unless="${maitre.active}" class="status-badge status-inactive">Non Attivo</span>
+                        </div>
+                        <div class="waiter-actions">
+                            <!-- Toggle stato -->
+                            <form th:action="@{/staff/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${maitre.id}" />
+                                <input type="hidden" name="active" th:value="${!maitre.active}" />
+                                <button type="submit" 
+                                        th:class="${maitre.active} ? 'btn-toggle btn-deactivate' : 'btn-toggle btn-activate'"
+                                        th:text="${maitre.active} ? 'Disattiva' : 'Attiva'">
+                                    Toggle
+                                </button>
+                            </form>
+                            <!-- Rimuovi -->
+                            <form th:action="@{/staff/remove}" method="post" style="display: inline;"
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo maitre?');">
+                                <input type="hidden" name="id" th:value="${maitre.id}" />
+                                <button type="submit" class="btn-remove">Elimina</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

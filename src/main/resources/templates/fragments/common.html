@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+<!-- Navbar pubblica - usa th:classappend per la pagina attiva -->
+<nav th:fragment="publicNav(activePage)" class="nav-public">
+    <a th:href="@{/home}" th:classappend="${activePage == 'home'} ? 'active'">Home</a>
+    <a th:href="@{/menu}" th:classappend="${activePage == 'menu'} ? 'active'">Menu</a>
+    <a th:href="@{/prenota}" th:classappend="${activePage == 'prenota'} ? 'active'">Prenota</a>
+    <a th:href="@{/auth/login}">Area Staff</a>
+</nav>
+
+<!-- Footer pubblico -->
+<footer th:fragment="publicFooter">
+    <p>&copy; 2026 JavaBistrot. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

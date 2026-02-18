@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaBistrot - Ristorante</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+</head>
+<body>
+    <nav th:replace="~{fragments/common :: publicNav('home')}" />
+
+    <section class="hero">
+        <h1>JavaBistrot</h1>
+        <p class="tagline">
+            Un'esperienza culinaria unica nel cuore della città. 
+            Cucina italiana tradizionale con un tocco di modernità.
+        </p>
+        <div class="cta-buttons">
+            <a th:href="@{/prenota}" class="cta-primary">Prenota un Tavolo</a>
+            <a th:href="@{/menu}" class="cta-secondary">Scopri il Menu</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon">🍝</div>
+            <h3>Cucina Autentica</h3>
+            <p>Ingredienti freschi e ricette della tradizione italiana rivisitate con creatività.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🍷</div>
+            <h3>Selezione Vini</h3>
+            <p>Una cantina con oltre 100 etichette italiane ed internazionali.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">✨</div>
+            <h3>Atmosfera Elegante</h3>
+            <p>Un ambiente raffinato e accogliente per ogni occasione speciale.</p>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>Vieni a Trovarci</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <h4>Indirizzo</h4>
+                <p>Via Roma 123<br>00100 Roma, Italia</p>
+            </div>
+            <div class="info-item">
+                <h4>Orari</h4>
+                <p>Lun-Ven: 12:00-15:00, 19:00-23:00<br>Sab-Dom: 12:00-23:00</p>
+            </div>
+            <div class="info-item">
+                <h4>Contatti</h4>
+                <p>Tel: +39 06 1234567<br>info@javabistrot.it</p>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{fragments/common :: publicFooter}" />
+</body>
+</html>
