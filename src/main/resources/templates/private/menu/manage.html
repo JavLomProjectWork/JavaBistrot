@@ -12,6 +12,8 @@
 <body>
     <main class="page-private">
         <div class="manage-container">
+            <a th:href="@{/dashboard}" class="btn-back">← Dashboard</a>
+            
             <h1 class="manage-title">Gestione Menu</h1>
             <p class="manage-subtitle">Aggiungi, modifica o rimuovi i piatti del menu</p>
 
@@ -66,9 +68,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="dish : ${antipasti}">
-                        <td data-label="Nome" th:text="${dish.name}">Nome piatto</td>
-                        <td data-label="Descrizione" th:text="${dish.description}">Descrizione</td>
-                        <td data-label="Prezzo" class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
                         <td class="actions">
                             <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
                                 <input type="hidden" name="id" th:value="${dish.id}">
@@ -90,7 +92,7 @@
 
             <!-- Sezione Primi -->
             <h3 class="section-title">Primi Piatti</h3>
-            <table class="data-table" th:if="${!primi.isEmpty()}">
+            <table class="dishes-table" th:if="${!primi.isEmpty()}">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -101,9 +103,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="dish : ${primi}">
-                        <td data-label="Nome" th:text="${dish.name}">Nome piatto</td>
-                        <td data-label="Descrizione" th:text="${dish.description}">Descrizione</td>
-                        <td data-label="Prezzo" class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
                         <td class="actions">
                             <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
                                 <input type="hidden" name="id" th:value="${dish.id}">
@@ -125,7 +127,7 @@
 
             <!-- Sezione Secondi -->
             <h3 class="section-title">Secondi Piatti</h3>
-            <table class="data-table" th:if="${!secondi.isEmpty()}">
+            <table class="dishes-table" th:if="${!secondi.isEmpty()}">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -136,9 +138,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="dish : ${secondi}">
-                        <td data-label="Nome" th:text="${dish.name}">Nome piatto</td>
-                        <td data-label="Descrizione" th:text="${dish.description}">Descrizione</td>
-                        <td data-label="Prezzo" class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
                         <td class="actions">
                             <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
                                 <input type="hidden" name="id" th:value="${dish.id}">
@@ -160,7 +162,7 @@
 
             <!-- Sezione Dolci -->
             <h3 class="section-title">Dolci</h3>
-            <table class="data-table" th:if="${!dolci.isEmpty()}">
+            <table class="dishes-table" th:if="${!dolci.isEmpty()}">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -171,9 +173,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="dish : ${dolci}">
-                        <td data-label="Nome" th:text="${dish.name}">Nome piatto</td>
-                        <td data-label="Descrizione" th:text="${dish.description}">Descrizione</td>
-                        <td data-label="Prezzo" class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
                         <td class="actions">
                             <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
                                 <input type="hidden" name="id" th:value="${dish.id}">
@@ -209,7 +211,7 @@
                     <tbody>
                         <tr th:each="dish : ${hiddenDishes}">
                             <td data-label="Nome" th:text="${dish.name}">Nome piatto</td>
-                            <td><span class="dish-type-badge" th:text="${dish.type}">TIPO</span></td>
+                            <td data-label="Tipo"><span class="dish-type-badge" th:text="${dish.type}">TIPO</span></td>
                             <td data-label="Descrizione" th:text="${dish.description}">Descrizione</td>
                             <td data-label="Prezzo" class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
                             <td class="actions">
@@ -228,8 +230,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <a th:href="@{/dashboard}" class="btn-back">← Torna alla Dashboard</a>
         </div>
     </main>
 </body>

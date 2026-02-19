@@ -12,6 +12,8 @@
 <body>
     <main class="page-private">
         <div class="manage-container">
+            <a th:href="@{/dashboard}" class="btn-back">← Dashboard</a>
+            
             <h1 class="manage-title">Gestione Personale</h1>
             <p class="manage-subtitle">Aggiungi, modifica o rimuovi camerieri e maître</p>
 
@@ -147,8 +149,6 @@
             <div th:if="${maitres.isEmpty()}" class="empty-message">
                 <p>Nessun maître presente oltre a te.</p>
             </div>
-
-            <a th:href="@{/dashboard}" class="btn-back">← Torna alla Dashboard</a>
         </div>
     </main>
 </body>
