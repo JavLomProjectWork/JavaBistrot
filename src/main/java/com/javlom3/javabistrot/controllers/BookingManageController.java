@@ -67,7 +67,7 @@ public class BookingManageController {
                 .toList());
         }
         
-        return "bookings/manage";
+        return "private/bookings/manage";
     }
 
     @PostMapping("/update-notes")

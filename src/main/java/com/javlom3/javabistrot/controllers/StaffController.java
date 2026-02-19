@@ -26,7 +26,7 @@ public class StaffController {
     public String manageStaff(Model model) {
         model.addAttribute("waiters", userService.getWaiters());
         model.addAttribute("maitres", userService.getMaitres());
-        return "staff/manage";
+        return "private/staff/manage";
     }
 
     @PostMapping("/add")

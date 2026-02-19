@@ -32,7 +32,7 @@ public class MenuManageController {
         model.addAttribute("dolci", dishService.getActiveDishesByType(DishType.DOLCE));
         model.addAttribute("hiddenDishes", dishService.getInactiveDishes());
         model.addAttribute("dishTypes", DishType.values());
-        return "menu/manage";
+        return "private/menu/manage";
     }
 
     @PostMapping("/add")

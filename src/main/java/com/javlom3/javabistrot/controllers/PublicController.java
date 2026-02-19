@@ -40,19 +40,19 @@ public class PublicController {
         model.addAttribute("primi", dishService.getActiveDishesByType(DishType.PRIMO));
         model.addAttribute("secondi", dishService.getActiveDishesByType(DishType.SECONDO));
         model.addAttribute("dolci", dishService.getActiveDishesByType(DishType.DOLCE));
-        return "menu";
+        return "public/menu";
     }
 
     @GetMapping("/home")
     public String getHome(Model model) {
         model.addAttribute("activePage", "home");
-        return "home";
+        return "public/home";
     }
     
     @GetMapping("/prenota")
     public String getPrenota(Model model) {
         model.addAttribute("activePage", "prenota");
-        return "prenota";
+        return "public/prenota";
     }
     
     @PostMapping("/prenota")

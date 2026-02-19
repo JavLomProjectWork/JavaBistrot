@@ -24,7 +24,7 @@ public class LoginController {
             model.addAttribute("logoutMessage", "Logout effettuato con successo");
         }
         
-        return "auth/login";
+        return "private/auth/login";
     }
 
     @GetMapping("/dashboard")
@@ -39,7 +39,7 @@ public class LoginController {
         model.addAttribute("username", username);
         model.addAttribute("role", role);
         
-        return "dashboard";
+        return "private/dashboard";
     }
 }
 
