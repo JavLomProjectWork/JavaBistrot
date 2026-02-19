@@ -1,4 +1,9 @@
 USE javabistrot;
+
+-- Utente MAITRE admin (password: admin)
+INSERT INTO users (username, password, role, active) VALUES
+('admin', '$2a$12$Wz8lNt.Rv/HgopBS9IOLquizQEXmKGYkrSTrC4heXB/TXzMTtfQgy', 'MAITRE', true);
+
 INSERT INTO dishes (name, description, price, type, active) VALUES
 ('Vitello Tonnato Classico', 'Fettine sottili di vitello con salsa tonnata cremosa, capperi croccanti e polvere di limone', 12.00, 'ANTIPASTO', true),
 ('Tartare di Manzo al Profumo di Senape Antica', 'Battuta al coltello con tuorlo marinato e pane croccante', 12.00, 'ANTIPASTO', true),
@@ -17,4 +22,3 @@ INSERT INTO dishes (name, description, price, type, active) VALUES
 ('Panna cotta alla vaniglia con coulis di fragole', 'Delicata panna cotta artigianale con salsa fresca alle fragole', 7.00, 'DOLCE', true),
 ('Mousse al cioccolato fondente', 'Morbida mousse al 70% di cacao con scaglie di cioccolato fondente', 8.00, 'DOLCE', true);
 
-DROP TABLE dishes;
