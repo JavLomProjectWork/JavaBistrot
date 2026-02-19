@@ -1,99 +1,115 @@
-.card {
-    width: 200px;
-    height: 250px;
-    perspective: 1000px;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front img {
-    width: 100%;
-    height: 200px;         
-    object-fit: cover;     
-    border-radius: 10px;
-    margin-top: 10px;
-    transition: transform 0.3s ease;
-
-}
-
-.card-front {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.card-front h3 {
-    text-align: center;
-    padding: 10px;
-}
-
-.card:hover .card-front img {
-    transform: scale(1.05);
-}
-
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-}
-
-.card-back {
-    transform: rotateY(180deg);
-}
-
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
 /* Stili pagina menu */
 .menu-page {
-    padding-top: 100px;
-    padding-bottom: 60px;
+    padding-top: 120px;
+    padding-bottom: 80px;
     min-height: 100vh;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.menu-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
 .menu-page h1 {
     text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    margin-bottom: 40px;
+    font-size: 52px;
+    margin-bottom: 10px;
     color: white;
+    letter-spacing: 3px;
 }
 
-.menu-page h2 {
+.menu-subtitle {
     text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    margin: 30px 0 20px;
+    font-style: italic;
+    font-size: 20px;
     color: #D4AF37;
+    margin-bottom: 50px;
 }
 
-.menu-page section {
-    padding: 20px;
+.menu-section {
+    margin-bottom: 50px;
 }
 
+.menu-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #D4AF37;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.dish-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dish-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dish-item:last-child {
+    border-bottom: none;
+}
+
+.dish-info {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.dish-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+}
+
+.dish-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+    min-width: 20px;
+}
+
+.dish-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #D4AF37;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.dish-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .menu-page h1 {
+        font-size: 36px;
+    }
+    
+    .menu-container {
+        padding: 0 20px;
+    }
+    
+    .dish-name {
+        font-size: 16px;
+    }
+    
+    .dish-description {
+        font-size: 13px;
+    }
+}

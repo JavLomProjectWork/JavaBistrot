@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javlom3.javabistrot.dto.BookingDTO;
+import com.javlom3.javabistrot.entities.DishType;
 import com.javlom3.javabistrot.services.BookingService;
+import com.javlom3.javabistrot.services.DishService;
 
 @Controller
 public class PublicController {
     
     private final BookingService bookingService;
+    private final DishService dishService;
     
-    public PublicController(BookingService bookingService) {
+    public PublicController(BookingService bookingService, DishService dishService) {
         this.bookingService = bookingService;
+        this.dishService = dishService;
     }
     
     @GetMapping("/")
@@ -32,6 +36,10 @@ public class PublicController {
     @GetMapping("/menu")
     public String getMenu(Model model) {
         model.addAttribute("activePage", "menu");
+        model.addAttribute("antipasti", dishService.getDishesByType(DishType.ANTIPASTO));
+        model.addAttribute("primi", dishService.getDishesByType(DishType.PRIMO));
+        model.addAttribute("secondi", dishService.getDishesByType(DishType.SECONDO));
+        model.addAttribute("dolci", dishService.getDishesByType(DishType.DOLCE));
         return "menu";
     }
 

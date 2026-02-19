@@ -11,223 +11,66 @@
         <header th:replace="~{fragments/header :: header}"></header>
 
         <main class="menu-page">
-            <h1> Nebbia e Zafferano </h1>
+            <div class="menu-container">
+                <h1>Nebbia e Zafferano</h1>
+                <p class="menu-subtitle">Il nostro menu</p>
 
-            <section class="antipasti">
-            <h2>Antipasti</h2>
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Vitello Tonnato Classico</h3>
-                        <img src="/img/Vitello tonnato.jpeg" alt="Antipasto 1">
-                        </div>
-                        <div class="card-back">
-                            <p>Fettine sottili di vitello con salsa tonnata cremosa, capperi croccanti e polvere di limone</p>
-                            <span class="price">€12</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Tartare di Manzo al Profumo di Senape Antica</h3>
-                        <img src="/img/Tartare.jpeg" alt="Antipasto 2">
-                        </div>
-                        <div class="card-back">
-                            <p>Battuta al coltello con tuorlo marinato e pane croccante</p>
-                            <span class="price">€12</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Polentina Croccante con Gorgonzola DOP e Noci</h3>
-                        <img src="/img/Polenta.jpeg" alt="Antipasto 3">
-                        </div>
-                        <div class="card-back">
-                            <p>Cubetti dorati serviti con crema calda di gorgonzola</p>
-                            <span class="price">€12</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Carpaccio di Bresaola della Valtellina IGP</h3>
-                        <img src="/img/Carpaccio.png" alt="Antipasto 4">
-                        </div>
-                        <div class="card-back">
-                            <p>Con rucola fresca, scaglie di Grana Padano e olio al limone</p>
-                            <span class="price">€12</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <section class="menu-section" th:if="${!antipasti.isEmpty()}">
+                    <h2>Antipasti</h2>
+                    <ul class="dish-list">
+                        <li th:each="dish : ${antipasti}" class="dish-item">
+                            <div class="dish-info">
+                                <span class="dish-name" th:text="${dish.name}">Nome piatto</span>
+                                <span class="dish-dots"></span>
+                                <span class="dish-price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</span>
+                            </div>
+                            <p class="dish-description" th:text="${dish.description}">Descrizione piatto</p>
+                        </li>
+                    </ul>
+                </section>
 
-        <section class="primi">
-            <h2>Primi Piatti</h2>
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Risotto allo zafferano con burrata</h3>
-                        <img src="/img/risotto.jpeg" alt="Risotto allo zafferano con burrata">
-                        </div>
-                        <div class="card-back">
-                            <p>Riso Carnaroli mantecato allo zafferano, cuore cremoso di burrata e leggera nota di pepe nero</p>
-                            <span class="price">€14</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Tagliatelle al ragù di funghi porcini</h3>
-                        <img src="/img/tagliatelle.png" alt="Tagliatelle al ragù di funghi porcini">
-                        </div>
-                        <div class="card-back">
-                            <p>Pasta fresca all’uovo con ragù bianco di porcini, prezzemolo fresco e filo d’olio extravergine</p>
-                            <span class="price">€15</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Gnocchi al pesto di basilico e pinoli</h3>
-                        <img src="/img/gnocchi.jpeg" alt="Gnocchi al pesto di basilico e pinoli">
-                        </div>
-                        <div class="card-back">
-                            <p>Gnocchi di patate fatti in casa con pesto fresco, pinoli tostati e scaglie di Grana Padano</p>
-                            <span class="price">€13</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Lasagna al forno classica</h3>
-                        <img src="/img/lasagna.jpeg" alt="Lasagna al forno classica">
-                        </div>
-                        <div class="card-back">
-                            <p>Strati di pasta fresca, ragù tradizionale, besciamella vellutata e Parmigiano Reggiano</p>
-                            <span class="price">€12</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <section class="menu-section" th:if="${!primi.isEmpty()}">
+                    <h2>Primi Piatti</h2>
+                    <ul class="dish-list">
+                        <li th:each="dish : ${primi}" class="dish-item">
+                            <div class="dish-info">
+                                <span class="dish-name" th:text="${dish.name}">Nome piatto</span>
+                                <span class="dish-dots"></span>
+                                <span class="dish-price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</span>
+                            </div>
+                            <p class="dish-description" th:text="${dish.description}">Descrizione piatto</p>
+                        </li>
+                    </ul>
+                </section>
 
-        <section class="secondi">
-            <h2>Secondi Piatti</h2>
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Filetto di orata al limone e erbe aromatiche</h3>
-                        <img src="/img/orata.jpeg" alt="Filetto di orata al limone e erbe aromatiche">
-                        </div>
-                        <div class="card-back">
-                            <p>Filetto di orata fresca, profumato al limone e timo, servito con verdure grigliate di stagione</p>
-                            <span class="price">€19</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Pollo alla cacciatora</h3>
-                        <img src="/img/pollo_alla_cacciatora.jpeg" alt="Pollo alla cacciatora">
-                        </div>
-                        <div class="card-back">
-                            <p>Coscia di pollo cotta lentamente con pomodoro, olive, rosmarino e vino bianco</p>
-                            <span class="price">€16</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Scaloppine al vino bianco con funghi</h3>
-                        <img src="/img/scaloppina.jpeg" alt="Scaloppine al vino bianco con funghi">
-                        </div>
-                        <div class="card-back">
-                            <p>Fettine di vitello sfumate al vino bianco con funghi champignon e prezzemolo fresco</p>
-                            <span class="price">€18</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Parmigiana di zucchine</h3>
-                        <img src="/img/parmigiana.jpeg" alt="Parmigiana di zucchine">
-                        </div>
-                        <div class="card-back">
-                            <p>Strati di zucchine grigliate, mozzarella filante, salsa di pomodoro e basilico fresco</p>
-                            <span class="price">€15</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <section class="menu-section" th:if="${!secondi.isEmpty()}">
+                    <h2>Secondi Piatti</h2>
+                    <ul class="dish-list">
+                        <li th:each="dish : ${secondi}" class="dish-item">
+                            <div class="dish-info">
+                                <span class="dish-name" th:text="${dish.name}">Nome piatto</span>
+                                <span class="dish-dots"></span>
+                                <span class="dish-price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</span>
+                            </div>
+                            <p class="dish-description" th:text="${dish.description}">Descrizione piatto</p>
+                        </li>
+                    </ul>
+                </section>
 
-        <section class="dessert">
-            <h2>Dessert</h2>
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Tiramisù classico</h3>
-                        <img src="/img/tiramisu.jpeg" alt="Tiramisù classico">
-                        </div>
-                        <div class="card-back">
-                            <p>Savoiardi al caffè espresso, crema al mascarpone e cacao amaro in polvere</p>
-                            <span class="price">€7</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Cheesecake ai frutti di bosco</h3>
-                        <img src="/img/cheesecake.jpeg" alt="Cheesecake ai frutti di bosco">
-                        </div>
-                        <div class="card-back">
-                            <p>Base croccante al burro, crema al formaggio e coulis di frutti rossi</p>
-                            <span class="price">€8</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Panna cotta alla vaniglia con coulis di fragole</h3>
-                        <img src="/img/pannacotta.jpeg" alt="Panna cotta alla vaniglia con coulis di fragole">
-                        </div>
-                        <div class="card-back">
-                            <p>Delicata panna cotta artigianale con salsa fresca alle fragole</p>
-                            <span class="price">€7</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                        <h3>Mousse al cioccolato fondente</h3>
-                        <img src="/img/mousse.jpeg" alt="Mousse al cioccolato fondente">
-                        </div>
-                        <div class="card-back">
-                            <p>Morbida mousse al 70% di cacao con scaglie di cioccolato fondente</p>
-                            <span class="price">€8</span>
-                        </div>
-                    </div>
-                </div>
+                <section class="menu-section" th:if="${!dolci.isEmpty()}">
+                    <h2>Dolci</h2>
+                    <ul class="dish-list">
+                        <li th:each="dish : ${dolci}" class="dish-item">
+                            <div class="dish-info">
+                                <span class="dish-name" th:text="${dish.name}">Nome piatto</span>
+                                <span class="dish-dots"></span>
+                                <span class="dish-price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</span>
+                            </div>
+                            <p class="dish-description" th:text="${dish.description}">Descrizione piatto</p>
+                        </li>
+                    </ul>
+                </section>
             </div>
-        </section>
         </main>
 
         <footer th:replace="~{fragments/footer :: footer}"></footer>
