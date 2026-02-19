@@ -11,4 +11,10 @@ public interface DishRepo extends JpaRepository<Dish, Long> {
     List<Dish> findByType(DishType type);
 
     List<Dish> findByNameContainingIgnoreCase(String name);
+
+    List<Dish> findByTypeAndActiveTrue(DishType type);
+
+    List<Dish> findByActiveTrue();
+
+    List<Dish> findByActiveFalse();
 }

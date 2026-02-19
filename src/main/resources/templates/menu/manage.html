@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Menu - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <style>
+        .menu-container {
+            background: var(--card);
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .menu-title {
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .menu-subtitle {
+            color: var(--ink);
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .add-form {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+        
+        .add-form h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .form-group.small {
+            flex: 0 0 100px;
+            min-width: 100px;
+        }
+        
+        .form-group.description {
+            flex: 2;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--ink);
+            font-size: 0.9rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 40px;
+        }
+        
+        .btn-add {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .btn-add:hover {
+            background: var(--accent-dark);
+        }
+        
+        .dishes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .dishes-table th,
+        .dishes-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dishes-table th {
+            background: var(--bg);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .dishes-table tr:hover {
+            background: #fafafa;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-activate {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-activate:hover {
+            background: #218838;
+        }
+        
+        .btn-deactivate {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .btn-deactivate:hover {
+            background: #e0a800;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        
+        .btn-back {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+        
+        .btn-back:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: var(--ink);
+            opacity: 0.6;
+            padding: 30px;
+        }
+        
+        .section-title {
+            color: var(--accent);
+            margin: 30px 0 15px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 10px;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .hidden-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid #dc3545;
+        }
+        
+        .hidden-section .section-title {
+            color: #dc3545;
+            border-bottom-color: rgba(220, 53, 69, 0.3);
+        }
+        
+        .dish-type-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--bg);
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 20px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-group,
+            .form-group.small,
+            .form-group.description {
+                flex: 1;
+                min-width: 100%;
+            }
+            
+            .dishes-table {
+                font-size: 0.9rem;
+            }
+            
+            .dishes-table th,
+            .dishes-table td {
+                padding: 8px;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="menu-container">
+            <h1 class="menu-title">Gestione Menu</h1>
+            <p class="menu-subtitle">Aggiungi, modifica o rimuovi i piatti del menu</p>
+
+            <!-- Messaggi -->
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}">Errore</span>
+            </div>
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}">Successo</span>
+            </div>
+
+            <!-- Form Aggiungi Piatto -->
+            <div class="add-form">
+                <h3>Aggiungi Nuovo Piatto</h3>
+                <form th:action="@{/menu/add}" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required placeholder="Nome del piatto">
+                        </div>
+                        <div class="form-group small">
+                            <label for="price">Prezzo (€)</label>
+                            <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="12.00">
+                        </div>
+                        <div class="form-group small">
+                            <label for="type">Tipo</label>
+                            <select id="type" name="type" required>
+                                <option th:each="t : ${dishTypes}" th:value="${t}" th:text="${t}">TIPO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 15px;">
+                        <div class="form-group description">
+                            <label for="description">Descrizione</label>
+                            <input type="text" id="description" name="description" placeholder="Descrizione del piatto">
+                        </div>
+                        <button type="submit" class="btn-add">Aggiungi</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sezione Antipasti -->
+            <h3 class="section-title">Antipasti</h3>
+            <table class="dishes-table" th:if="${!antipasti.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dish : ${antipasti}">
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td class="actions">
+                            <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <input type="hidden" name="active" value="false">
+                                <button type="submit" class="btn-small btn-deactivate">Nascondi</button>
+                            </form>
+                            <form th:action="@{/menu/delete}" method="post" style="display: inline;" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto?');">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${antipasti.isEmpty()}" class="empty-message">
+                <p>Nessun antipasto attivo.</p>
+            </div>
+
+            <!-- Sezione Primi -->
+            <h3 class="section-title">Primi Piatti</h3>
+            <table class="dishes-table" th:if="${!primi.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dish : ${primi}">
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td class="actions">
+                            <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <input type="hidden" name="active" value="false">
+                                <button type="submit" class="btn-small btn-deactivate">Nascondi</button>
+                            </form>
+                            <form th:action="@{/menu/delete}" method="post" style="display: inline;" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto?');">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${primi.isEmpty()}" class="empty-message">
+                <p>Nessun primo piatto attivo.</p>
+            </div>
+
+            <!-- Sezione Secondi -->
+            <h3 class="section-title">Secondi Piatti</h3>
+            <table class="dishes-table" th:if="${!secondi.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dish : ${secondi}">
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td class="actions">
+                            <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <input type="hidden" name="active" value="false">
+                                <button type="submit" class="btn-small btn-deactivate">Nascondi</button>
+                            </form>
+                            <form th:action="@{/menu/delete}" method="post" style="display: inline;" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto?');">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${secondi.isEmpty()}" class="empty-message">
+                <p>Nessun secondo piatto attivo.</p>
+            </div>
+
+            <!-- Sezione Dolci -->
+            <h3 class="section-title">Dolci</h3>
+            <table class="dishes-table" th:if="${!dolci.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dish : ${dolci}">
+                        <td th:text="${dish.name}">Nome piatto</td>
+                        <td th:text="${dish.description}">Descrizione</td>
+                        <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                        <td class="actions">
+                            <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <input type="hidden" name="active" value="false">
+                                <button type="submit" class="btn-small btn-deactivate">Nascondi</button>
+                            </form>
+                            <form th:action="@{/menu/delete}" method="post" style="display: inline;" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto?');">
+                                <input type="hidden" name="id" th:value="${dish.id}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${dolci.isEmpty()}" class="empty-message">
+                <p>Nessun dolce attivo.</p>
+            </div>
+
+            <!-- Sezione Piatti Nascosti -->
+            <div class="hidden-section" th:if="${!hiddenDishes.isEmpty()}">
+                <h3 class="section-title">Piatti Nascosti</h3>
+                <table class="dishes-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Descrizione</th>
+                            <th>Prezzo</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="dish : ${hiddenDishes}">
+                            <td th:text="${dish.name}">Nome piatto</td>
+                            <td><span class="dish-type-badge" th:text="${dish.type}">TIPO</span></td>
+                            <td th:text="${dish.description}">Descrizione</td>
+                            <td class="price" th:text="${#numbers.formatDecimal(dish.price, 1, 2)} + ' €'">0.00 €</td>
+                            <td class="actions">
+                                <form th:action="@{/menu/toggle}" method="post" style="display: inline;">
+                                    <input type="hidden" name="id" th:value="${dish.id}">
+                                    <input type="hidden" name="active" value="true">
+                                    <button type="submit" class="btn-small btn-activate">Mostra</button>
+                                </form>
+                                <form th:action="@{/menu/delete}" method="post" style="display: inline;" 
+                                      onsubmit="return confirm('Sei sicuro di voler eliminare questo piatto?');">
+                                    <input type="hidden" name="id" th:value="${dish.id}">
+                                    <button type="submit" class="btn-small btn-delete">Elimina</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a th:href="@{/dashboard}" class="btn-back">← Torna alla Dashboard</a>
+        </div>
+    </main>
+</body>
+</html>

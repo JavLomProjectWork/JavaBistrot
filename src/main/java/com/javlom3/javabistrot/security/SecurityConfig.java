@@ -30,6 +30,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/users/**").hasRole("MAITRE")
                 .requestMatchers("/staff/**").hasRole("MAITRE")
                 
+                // Gestione menu - solo MAITRE
+                .requestMatchers("/menu/manage", "/menu/add", "/menu/update", "/menu/toggle", "/menu/delete").hasRole("MAITRE")
+                
                 // Gestione prenotazioni - assegnazione camerieri solo MAITRE
                 .requestMatchers("/bookings/assign-waiter", "/bookings/remove-waiter").hasRole("MAITRE")
                 

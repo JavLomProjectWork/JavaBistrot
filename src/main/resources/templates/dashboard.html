@@ -117,6 +117,11 @@
                     Gestione Personale
                 </a>
                 
+                <!-- Solo per MAITRE -->
+                <a th:if="${role == 'MAITRE'}" th:href="@{/menu/manage}" class="btn-staff">
+                    Gestione Menu
+                </a>
+                
                 <form th:action="@{/auth/logout}" method="post">
                     <button type="submit" class="btn btn-logout">Logout</button>
                 </form>

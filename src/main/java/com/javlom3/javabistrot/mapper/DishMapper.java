@@ -14,6 +14,7 @@ public class DishMapper {
         entity.setDescription(dto.description());
         entity.setPrice(dto.price());
         entity.setType(dto.type());
+        entity.setActive(dto.active() != null ? dto.active() : true);
         return entity;
     }
 
@@ -23,7 +24,8 @@ public class DishMapper {
             entity.getName(),
             entity.getDescription(),
             entity.getPrice(),
-            entity.getType()
+            entity.getType(),
+            entity.getActive()
         );
     }
 }

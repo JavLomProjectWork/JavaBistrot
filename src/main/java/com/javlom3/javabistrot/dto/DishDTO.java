@@ -9,5 +9,6 @@ public record DishDTO(
     String name,
     String description,
     BigDecimal price,
-    DishType type
+    DishType type,
+    Boolean active
 ) {}

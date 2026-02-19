@@ -37,4 +37,8 @@ public class Dish {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private DishType type;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean active = true;
 }

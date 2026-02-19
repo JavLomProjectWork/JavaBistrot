@@ -66,6 +66,9 @@ public class DishService {
             if (dto.type() != null) {
                 existing.setType(dto.type());
             }
+            if (dto.active() != null) {
+                existing.setActive(dto.active());
+            }
             Dish updated = dishRepo.save(existing);
             return dishMapper.toDto(updated);
         });
@@ -78,5 +81,47 @@ public class DishService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public List<DishDTO> getActiveDishesByType(DishType type) {
+        return dishRepo.findByTypeAndActiveTrue(type).stream().map(dishMapper::toDto).toList();
+    }
+
+    @Transactional
+    public List<DishDTO> getAllActiveDishes() {
+        return dishRepo.findByActiveTrue().stream().map(dishMapper::toDto).toList();
+    }
+
+    @Transactional
+    public Optional<DishDTO> toggleActive(Long id) {
+        return dishRepo.findById(id).map(dish -> {
+            dish.setActive(!dish.getActive());
+            Dish updated = dishRepo.save(dish);
+            return dishMapper.toDto(updated);
+        });
+    }
+
+    @Transactional
+    public Optional<DishDTO> activateDish(Long id) {
+        return dishRepo.findById(id).map(dish -> {
+            dish.setActive(true);
+            Dish updated = dishRepo.save(dish);
+            return dishMapper.toDto(updated);
+        });
+    }
+
+    @Transactional
+    public Optional<DishDTO> deactivateDish(Long id) {
+        return dishRepo.findById(id).map(dish -> {
+            dish.setActive(false);
+            Dish updated = dishRepo.save(dish);
+            return dishMapper.toDto(updated);
+        });
+    }
+
+    @Transactional
+    public List<DishDTO> getInactiveDishes() {
+        return dishRepo.findByActiveFalse().stream().map(dishMapper::toDto).toList();
     }
 }

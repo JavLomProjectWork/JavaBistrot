@@ -36,10 +36,10 @@ public class PublicController {
     @GetMapping("/menu")
     public String getMenu(Model model) {
         model.addAttribute("activePage", "menu");
-        model.addAttribute("antipasti", dishService.getDishesByType(DishType.ANTIPASTO));
-        model.addAttribute("primi", dishService.getDishesByType(DishType.PRIMO));
-        model.addAttribute("secondi", dishService.getDishesByType(DishType.SECONDO));
-        model.addAttribute("dolci", dishService.getDishesByType(DishType.DOLCE));
+        model.addAttribute("antipasti", dishService.getActiveDishesByType(DishType.ANTIPASTO));
+        model.addAttribute("primi", dishService.getActiveDishesByType(DishType.PRIMO));
+        model.addAttribute("secondi", dishService.getActiveDishesByType(DishType.SECONDO));
+        model.addAttribute("dolci", dishService.getActiveDishesByType(DishType.DOLCE));
         return "menu";
     }
 
