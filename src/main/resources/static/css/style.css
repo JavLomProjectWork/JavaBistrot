@@ -1,243 +1,361 @@
-/*header {
-    background-color: #333 !important;
-    height: 100px;
-}
-.logo {
-    color: #ec1c24; 
-}*/
+/* ===========================================
+   NEBBIA & ZAFFERANO - Main Stylesheet
+   =========================================== */
 
+/* ---------- Reset & Base ---------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fff;
 }
 
-/* STILE HEADER / NAVBAR */
-header {
-    position: fixed; /* Rimane in alto mentre scorri */
-    width: 100%;
-    padding: 20px 50px;
-    background: rgba(0, 0, 0, 0.7); /* Sfondo nero semitrasparente */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ---------- Variables ---------- */
+:root {
+    --gold: #D4AF37;
+    --red: #ec1c24;
+    --dark: #1a1a1a;
+    --dark-overlay: rgba(0, 0, 0, 0.6);
+    --white: #fff;
+    --text-light: rgba(255, 255, 255, 0.8);
+    --text-muted: #666;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --transition: 0.3s ease;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+}
+
+/* ---------- Header / Navbar ---------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5%;
+    height: 80px;
+    background: var(--dark-overlay);
+    backdrop-filter: blur(10px);
     z-index: 1000;
-}
-
-.navbar {
     display: flex;
-    justify-content: space-between; /* Logo a sinistra, menu a destra */
     align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 2px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin-left: 30px;
+    gap: 35px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
+    color: var(--white);
     font-size: 13px;
-    transition: 0.3s;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 0;
+    position: relative;
+    transition: var(--transition);
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: #ec1c24; /* Rosso ispirato al template */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: var(--transition);
 }
 
-/* STILE SEZIONE HOME (HERO) */
-.home {
-    height: 100vh; /* Copre il 100% dell'altezza dello schermo */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('../img/sfondo.webp'); 
-    background-size: cover;
-    background-position: center;
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+/* ---------- Hero Section (Home) ---------- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(var(--dark-overlay), var(--dark-overlay)),
+                url('../img/sfondo.webp') center/cover no-repeat;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 100px 5% 60px;
 }
 
-.home-content h4 {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 25px;
-    margin-bottom: 10px;
+.hero-content {
+    max-width: 700px;
+    color: var(--white);
 }
 
-.home-content h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 70px;
-    letter-spacing: 5px;
+.hero-content h1 {
+    font-size: clamp(36px, 8vw, 64px);
+    letter-spacing: 3px;
     margin-bottom: 20px;
 }
 
-.home-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
-
-/* BOTTONE */
-.btn-main {
-    text-decoration: none;
-    background-color: white;
-    color: #333;
-    padding: 12px 30px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.btn-main:hover {
-    background-color: #ec1c24;
-    color: white;
-}
-
-/* STILE SEZIONE WELCOME */
-.welcome {
-    padding: 100px 10%; /* Tanto spazio sopra e sotto */
-    background-color: #fff;
-    color: #333;
-}
-
-.container-welcome {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.welcome-text {
-    flex: 1; /* Prende metà spazio */
-}
-
-.welcome-text .subtitle {
-    font-family: 'Playfair Display', serif;
+.hero-content p {
+    font-size: clamp(16px, 3vw, 20px);
     font-style: italic;
-    font-size: 24px;
-    color: #D4AF37; /* Oro zafferano */
-    display: block;
-    margin-bottom: 10px;
+    color: var(--text-light);
+    margin-bottom: 35px;
 }
 
-.welcome-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    color: #222;
-}
-
-.welcome-text p {
-    font-size: 30px;
-    line-height: 1.8;
-    color: #666;
-    margin-bottom: 8px;
-}
-
-/* BOTTONE SECONDARIO */
-.btn-secondary {
-    text-decoration: none;
-    color: #222;
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
-    border-bottom: 2px solid #D4AF37; /* Linea dorata sotto */
-    padding-bottom: 5px;
-    transition: 0.3s;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 
-.btn-secondary:hover {
-    color: #D4AF37;
+.btn-primary {
+    background: var(--white);
+    color: var(--dark);
 }
 
-/* STILE IMMAGINE */
-.welcome-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+.btn-primary:hover {
+    background: var(--red);
+    color: var(--white);
+    transform: translateY(-2px);
 }
 
-.img-wrapper {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 177px;
-    overflow: hidden;
-    box-shadow: 20px 0px 0px #f3d3d3; /* Effetto cornice moderna */
+.btn-outline {
+    background: transparent;
+    border-color: var(--white);
+    color: var(--white);
 }
 
-.img-wrapper img {
-    width: 100%;
-    display: block;
-    transition: transform 0.5s;
+.btn-outline:hover {
+    background: var(--white);
+    color: var(--dark);
 }
 
-.img-wrapper:hover img {
-    transform: scale(1.1); /* Zoom leggero quando passi sopra */
-}
-
-/* STILE SEZIONE INTRO */
-.section-intro{
-    height: 100vh; /* Copre il 100% dell'altezza dello schermo */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('../img/place.webp'); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ---------- Intro Section ---------- */
+.intro {
+    padding: 80px 5%;
+    background: var(--white);
     text-align: center;
 }
 
-/* STILE FOOTER */
+.intro h2 {
+    font-size: clamp(24px, 5vw, 36px);
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.intro p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* ---------- Footer ---------- */
 .footer {
-    width: 100%;
-    padding: 20px 50px;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--dark);
+    padding: 30px 5%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer-links {
     display: flex;
-    list-style: none;
-    gap: 30px;
+    flex-wrap: wrap;
+    gap: 25px;
 }
 
 .footer-links a {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
+    color: var(--white);
     font-size: 13px;
-    transition: 0.3s;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
 }
 
 .footer-links a:hover {
-    color: #ec1c24;
+    color: var(--gold);
 }
 
 .footer p {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    color: white;
-    opacity: 0.8;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 768px) {
+    /* Header Mobile */
+    .header {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition);
+        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        font-size: 16px;
+    }
+    
+    /* Hero Mobile */
+    .hero {
+        padding: 80px 20px 50px;
+        min-height: 80vh;
+    }
+    
+    .hero-content h1 {
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content p {
+        margin-bottom: 25px;
+    }
+    
+    .btn {
+        padding: 12px 28px;
+        font-size: 12px;
+    }
+    
+    /* Intro Mobile */
+    .intro {
+        padding: 50px 20px;
+    }
+    
+    /* Footer Mobile */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 20px;
+    }
+    
+    .footer-links {
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 60px;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    .hero {
+        min-height: 70vh;
+    }
+    
+    .intro {
+        padding: 40px 15px;
+    }
+    
+    .intro p {
+        font-size: 14px;
+    }
 }

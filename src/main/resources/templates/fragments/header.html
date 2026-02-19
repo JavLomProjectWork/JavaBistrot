@@ -3,62 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaBistrot</title>
-    
+    <title>Header Fragment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    
-    <link rel="stylesheet" href="../../static/css/style.css">
 </head>
 <body>
-
-    <header th:fragment="header">
-        <nav class="navbar">
-            <div class="logo">Nebbia & Zafferano</div>
-            <ul class="nav-links">
-                <li><a th:href="@{/home}" th:classappend="${activePage == 'home'} ? 'active' : ''">Home</a></li>
-                <li><a th:href="@{/menu}" th:classappend="${activePage == 'menu'} ? 'active' : ''">Menu</a></li>
-                <li><a th:href="@{/prenota}" th:classappend="${activePage == 'prenota'} ? 'active' : ''">Prenotazione</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="home" id="home">
-        <div class="home-content">
-            <h4>Benvenuti al Ristorante</h4>
-            <h1>Nebbia & Zafferano</h1>
-            <p>Un'esperienza culinaria indimenticabile nel cuore della città.</p>
-            <a href="#" class="btn-main">Guarda il Menu</a>
-        </div>
-    </section>
-
-    <section class="welcome">
-    <div class="container-welcome">
+    <header th:fragment="header" class="header">
+        <div class="logo">Nebbia & Zafferano</div>
         
-        <div class="welcome-text">
-            <span class="subtitle">Sapore Italiano</span>
-            <h2>WELCOME</h2>
-            <p>
-                Dal cuore di Milano, Nebbia & Zafferano porta in tavola la tradizione 
-                rivisitata con passione. Ogni piatto è una storia di ingredienti 
-                selezionati e amore per la cucina.
-            </p>
-            <a href="#" class="btn-secondary">La nostra Storia</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-
-        <div class="welcome-image">
-            <div class="img-wrapper">
-                <img src="../../static/img/welcome.webp" alt="Piatto tipico">
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="section-intro" id="section-intro">
-    <div class="header-intro">
-        <span class="title2"> Discover </span>
-        <h3 class="title3"> Nebbia & Zafferano Palace </h3>
-    </div>
-</section>
+        
+        <nav class="nav-links" id="navLinks">
+            <a th:href="@{/home}" th:classappend="${activePage == 'home'} ? 'active' : ''">Home</a>
+            <a th:href="@{/menu}" th:classappend="${activePage == 'menu'} ? 'active' : ''">Menu</a>
+            <a th:href="@{/prenota}" th:classappend="${activePage == 'prenota'} ? 'active' : ''">Prenota</a>
+        </nav>
+        
+        <script>
+            function toggleMenu() {
+                document.getElementById('navLinks').classList.toggle('active');
+            }
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const nav = document.getElementById('navLinks');
+                const toggle = document.querySelector('.menu-toggle');
+                if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                    nav.classList.remove('active');
+                }
+            });
+        </script>
+    </header>
 </body>
 </html>

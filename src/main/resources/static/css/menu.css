@@ -1,7 +1,10 @@
-/* Stili pagina menu */
+/* ===========================================
+   NEBBIA & ZAFFERANO - Menu Page
+   =========================================== */
+
 .menu-page {
-    padding-top: 120px;
-    padding-bottom: 80px;
+    padding-top: 100px;
+    padding-bottom: 60px;
     min-height: 100vh;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
@@ -9,41 +12,44 @@
 .menu-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 5%;
 }
 
+/* Title */
 .menu-page h1 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 52px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 6vw, 52px);
     margin-bottom: 10px;
-    color: white;
-    letter-spacing: 3px;
+    color: #fff;
+    letter-spacing: 2px;
 }
 
 .menu-subtitle {
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
-    font-size: 20px;
+    font-size: clamp(16px, 3vw, 20px);
     color: #D4AF37;
     margin-bottom: 50px;
 }
 
+/* Sections */
 .menu-section {
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 }
 
 .menu-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(20px, 4vw, 28px);
     color: #D4AF37;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
+/* Dish List */
 .dish-list {
     list-style: none;
     padding: 0;
@@ -51,14 +57,15 @@
 }
 
 .dish-item {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dish-item:last-child {
     border-bottom: none;
 }
 
+/* Dish Info Row */
 .dish-info {
     display: flex;
     align-items: baseline;
@@ -66,22 +73,23 @@
 }
 
 .dish-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    color: white;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    color: #fff;
     font-weight: 500;
 }
 
 .dish-dots {
     flex: 1;
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
-    margin: 0 5px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.25);
+    margin: 0 8px;
     min-width: 20px;
+    align-self: center;
 }
 
 .dish-price {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     color: #D4AF37;
     font-weight: 600;
     white-space: nowrap;
@@ -89,38 +97,35 @@
 
 .dish-description {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 6px;
     line-height: 1.5;
 }
 
-/* Responsive Tablet */
+/* Responsive */
 @media (max-width: 768px) {
     .menu-page {
-        padding-top: 100px;
-        padding-bottom: 60px;
-    }
-    
-    .menu-page h1 {
-        font-size: 40px;
-        letter-spacing: 2px;
+        padding-top: 90px;
+        padding-bottom: 50px;
     }
     
     .menu-subtitle {
-        font-size: 18px;
         margin-bottom: 40px;
     }
     
-    .menu-section h2 {
-        font-size: 24px;
+    .menu-section {
+        margin-bottom: 35px;
+    }
+    
+    .dish-item {
+        padding: 15px 0;
     }
 }
 
-/* Responsive Mobile */
 @media (max-width: 480px) {
     .menu-page {
-        padding-top: 80px;
+        padding-top: 75px;
         padding-bottom: 40px;
     }
     
@@ -128,38 +133,29 @@
         padding: 0 15px;
     }
     
-    .menu-page h1 {
-        font-size: 28px;
-        letter-spacing: 1px;
-        margin-bottom: 8px;
-    }
-    
     .menu-subtitle {
-        font-size: 16px;
         margin-bottom: 30px;
     }
     
     .menu-section {
-        margin-bottom: 35px;
+        margin-bottom: 30px;
     }
     
     .menu-section h2 {
-        font-size: 20px;
-        margin-bottom: 18px;
+        margin-bottom: 15px;
     }
     
     .dish-item {
-        padding: 15px 0;
+        padding: 12px 0;
     }
     
     .dish-info {
         flex-wrap: wrap;
-        gap: 5px;
     }
     
     .dish-name {
         font-size: 15px;
-        flex: 1 1 70%;
+        flex: 1 1 75%;
     }
     
     .dish-dots {
@@ -167,11 +163,11 @@
     }
     
     .dish-price {
-        font-size: 15px;
-        flex: 0 0 auto;
+        font-size: 14px;
     }
     
     .dish-description {
-        font-size: 13px;
+        font-size: 12px;
+        margin-top: 4px;
     }
 }
