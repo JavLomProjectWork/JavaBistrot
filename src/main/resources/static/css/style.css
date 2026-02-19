@@ -359,3 +359,675 @@ h1, h2, h3, h4 {
         font-size: 14px;
     }
 }
+
+/* ===========================================
+   AREA PRIVATA - Dashboard & Gestione
+   =========================================== */
+
+/* ---------- Page Layout Privato ---------- */
+.page-private {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 40px 20px;
+    background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%);
+}
+
+/* ---------- Cards ---------- */
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+.card-title {
+    color: var(--dark);
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.card-subtitle {
+    color: var(--gold);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* ---------- Management Container ---------- */
+.manage-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.manage-title {
+    color: var(--dark);
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.manage-subtitle {
+    color: var(--gold);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* ---------- Info Box ---------- */
+.info-box {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.info-value {
+    color: var(--text-muted);
+}
+
+/* ---------- Forms ---------- */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.add-form {
+    background: #f5f5f5;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.add-form h3 {
+    color: var(--dark);
+    margin-bottom: 18px;
+    font-size: 18px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.form-group.small {
+    flex: 0 0 100px;
+    min-width: 100px;
+}
+
+.form-group.description {
+    flex: 2;
+    min-width: 200px;
+}
+
+/* ---------- Alerts ---------- */
+.alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ---------- Login Styles ---------- */
+.login-container {
+    background: var(--white);
+    padding: 45px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: var(--shadow);
+}
+
+.login-title {
+    color: var(--dark);
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    color: var(--gold);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* ---------- Dashboard Actions ---------- */
+.dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-staff {
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: var(--transition);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-staff:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+}
+
+.btn-logout {
+    background: transparent;
+    border: 2px solid var(--dark);
+    color: var(--dark);
+}
+
+.btn-logout:hover {
+    background: var(--dark);
+    color: var(--white);
+}
+
+/* ---------- Tables ---------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    vertical-align: middle;
+}
+
+.data-table th {
+    background: #f5f5f5;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table tr:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.data-table .highlight {
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.price {
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* ---------- Action Buttons ---------- */
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-small {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-add {
+    background: var(--dark);
+    color: var(--white);
+}
+
+.btn-add:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+}
+
+.btn-save {
+    background: #27ae60;
+    color: var(--white);
+}
+
+.btn-save:hover {
+    background: #219a52;
+}
+
+.btn-activate {
+    background: #27ae60;
+    color: var(--white);
+}
+
+.btn-activate:hover {
+    background: #219a52;
+}
+
+.btn-deactivate {
+    background: #f39c12;
+    color: var(--dark);
+}
+
+.btn-deactivate:hover {
+    background: #d68910;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: var(--white);
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+.btn-back {
+    background: transparent;
+    border: 2px solid var(--dark);
+    color: var(--dark);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 25px;
+    transition: var(--transition);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-back:hover {
+    background: var(--dark);
+    color: var(--white);
+}
+
+/* ---------- Status Badges ---------- */
+.status-active {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-gold {
+    background: var(--gold);
+    color: var(--white);
+}
+
+.badge-dark {
+    background: var(--dark);
+    color: var(--white);
+}
+
+/* ---------- Date Selector ---------- */
+.date-selector {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.date-selector label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.date-selector input[type="date"] {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.date-selector input[type="date"]:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.date-nav-btn {
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.date-nav-btn:hover {
+    background: var(--gold);
+    transform: scale(1.1);
+}
+
+/* ---------- Guests Counter ---------- */
+.guests-counter {
+    background: var(--dark);
+    color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.guests-counter h3 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: var(--gold);
+}
+
+.guests-counter p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+}
+
+/* ---------- Empty Message ---------- */
+.empty-message {
+    text-align: center;
+    color: var(--dark);
+    opacity: 0.6;
+    padding: 50px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* ---------- Notes Form ---------- */
+.notes-form {
+    display: flex;
+    gap: 8px;
+}
+
+.notes-form textarea {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 60px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.notes-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+/* ---------- Waiter Tags ---------- */
+.waiter-section {
+    margin-top: 10px;
+}
+
+.waiter-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 3px;
+}
+
+.waiter-tag .remove-btn {
+    background: #e74c3c;
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.waiter-assign {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.waiter-assign select {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.waiter-assign select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.btn-assign {
+    background: var(--dark);
+    color: var(--white);
+}
+
+.btn-assign:hover {
+    background: var(--gold);
+}
+
+/* ---------- Section Titles ---------- */
+.section-title {
+    color: var(--dark);
+    margin: 30px 0 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 10px;
+}
+
+.section-divider {
+    margin: 40px 0;
+    border: none;
+    border-top: 2px solid #f5f5f5;
+}
+
+/* ---------- Hidden Section ---------- */
+.hidden-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 3px solid #e74c3c;
+}
+
+.hidden-section .section-title {
+    color: #e74c3c;
+    border-bottom-color: rgba(231, 76, 60, 0.3);
+}
+
+.dish-type-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #f5f5f5;
+    color: var(--gold);
+}
+
+/* ---------- Responsive Privato ---------- */
+@media (max-width: 768px) {
+    .page-private {
+        padding: 20px 15px;
+    }
+    
+    .card,
+    .login-container {
+        padding: 30px 25px;
+    }
+    
+    .manage-container {
+        padding: 25px 20px;
+    }
+    
+    .card-title,
+    .login-title,
+    .manage-title {
+        font-size: 24px;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-group,
+    .form-group.small,
+    .form-group.description {
+        flex: none;
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .data-table {
+        font-size: 14px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+    
+    .date-selector {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-private {
+        padding: 15px 10px;
+    }
+    
+    .card,
+    .login-container {
+        padding: 25px 20px;
+    }
+    
+    .manage-container {
+        padding: 20px 15px;
+    }
+    
+    .card-title,
+    .login-title,
+    .manage-title {
+        font-size: 22px;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .btn-small {
+        width: 100%;
+        text-align: center;
+    }
+}

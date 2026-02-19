@@ -3,206 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestione Staff - JavaBistrot</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}" />
-    <style>
-        .staff-container {
-            background: var(--card);
-            padding: 40px 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .staff-title {
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        
-        .staff-subtitle {
-            color: var(--ink);
-            opacity: 0.7;
-            margin-bottom: 30px;
-        }
-        
-        .alert {
-            padding: 12px 16px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        
-        .add-form {
-            background: var(--bg);
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-        }
-        
-        .add-form h3 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-        }
-        
-        .form-group {
-            flex: 1;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: var(--ink);
-            font-size: 0.9rem;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .btn-add {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        
-        .btn-add:hover {
-            background: var(--accent-dark);
-        }
-        
-        .waiters-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .waiters-table th,
-        .waiters-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .waiters-table th {
-            background: var(--bg);
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .waiters-table tr:hover {
-            background: #fafafa;
-        }
-        
-        .status-active {
-            color: #28a745;
-            font-weight: 600;
-        }
-        
-        .status-inactive {
-            color: #dc3545;
-            font-weight: 600;
-        }
-        
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .btn-small {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        
-        .btn-activate {
-            background: #28a745;
-            color: white;
-        }
-        
-        .btn-activate:hover {
-            background: #218838;
-        }
-        
-        .btn-deactivate {
-            background: #ffc107;
-            color: #333;
-        }
-        
-        .btn-deactivate:hover {
-            background: #e0a800;
-        }
-        
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-        }
-        
-        .btn-delete:hover {
-            background: #c82333;
-        }
-        
-        .btn-back {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            transition: all 0.2s;
-        }
-        
-        .btn-back:hover {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .empty-message {
-            text-align: center;
-            color: var(--ink);
-            opacity: 0.6;
-            padding: 30px;
-        }
-    </style>
+    <title>Gestione Staff - Nebbia & Zafferano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-    <main class="page">
-        <div class="staff-container">
-            <h1 class="staff-title">Gestione Personale</h1>
-            <p class="staff-subtitle">Aggiungi, modifica o rimuovi camerieri e maître</p>
+    <main class="page-private">
+        <div class="manage-container">
+            <h1 class="manage-title">Gestione Personale</h1>
+            <p class="manage-subtitle">Aggiungi, modifica o rimuovi camerieri e maître</p>
 
             <!-- Messaggi -->
             <div th:if="${error}" class="alert alert-error">
@@ -231,8 +42,8 @@
             </div>
 
             <!-- Lista Camerieri -->
-            <h3 style="color: var(--accent); margin-bottom: 15px;">Lista Camerieri</h3>
-            <table class="waiters-table" th:if="${!waiters.isEmpty()}">
+            <h3 class="section-title">Lista Camerieri</h3>
+            <table class="data-table" th:if="${!waiters.isEmpty()}">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -274,7 +85,7 @@
             </div>
 
             <!-- Sezione Maître -->
-            <hr style="margin: 40px 0; border: none; border-top: 2px solid var(--bg);">
+            <div class="section-divider"></div>
             
             <!-- Form Aggiungi Maître -->
             <div class="add-form">
@@ -295,8 +106,8 @@
             </div>
 
             <!-- Lista Maître -->
-            <h3 style="color: var(--accent); margin-bottom: 15px;">Lista Maître</h3>
-            <table class="waiters-table" th:if="${!maitres.isEmpty()}">
+            <h3 class="section-title">Lista Maître</h3>
+            <table class="data-table" th:if="${!maitres.isEmpty()}">
                 <thead>
                     <tr>
                         <th>ID</th>

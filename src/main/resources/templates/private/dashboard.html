@@ -3,106 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - JavaBistrot</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}" />
-    <style>
-        .dashboard-container {
-            background: var(--card);
-            padding: 40px 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        
-        .dashboard-title {
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        
-        .dashboard-subtitle {
-            color: var(--ink);
-            opacity: 0.7;
-            margin-bottom: 30px;
-        }
-        
-        .user-info {
-            background: var(--bg);
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 24px;
-            text-align: left;
-        }
-        
-        .user-info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .user-info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .user-info-label {
-            font-weight: 600;
-            color: var(--accent);
-        }
-        
-        .user-info-value {
-            color: var(--ink);
-        }
-        
-        .dashboard-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .btn-staff {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: background 0.2s, transform 0.1s;
-        }
-        
-        .btn-staff:hover {
-            background: var(--accent-dark);
-            transform: translateY(-1px);
-        }
-        
-        .btn-logout {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-logout:hover {
-            background: var(--accent);
-            color: #fff;
-        }
-    </style>
+    <title>Dashboard - Nebbia & Zafferano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-    <main class="page">
-        <div class="dashboard-container">
-            <h1 class="dashboard-title">Dashboard</h1>
-            <p class="dashboard-subtitle">Benvenuto nel sistema di gestione</p>
+    <main class="page-private">
+        <div class="card">
+            <h1 class="card-title">Dashboard</h1>
+            <p class="card-subtitle">Benvenuto nel sistema di gestione</p>
 
-            <div class="user-info">
-                <div class="user-info-row">
-                    <span class="user-info-label">Username:</span>
-                    <span class="user-info-value" th:text="${username}">user</span>
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Username:</span>
+                    <span class="info-value" th:text="${username}">user</span>
                 </div>
-                <div class="user-info-row">
-                    <span class="user-info-label">Ruolo:</span>
-                    <span class="user-info-value" th:text="${role}">ROLE</span>
+                <div class="info-row">
+                    <span class="info-label">Ruolo:</span>
+                    <span class="info-value" th:text="${role}">ROLE</span>
                 </div>
             </div>
 
@@ -123,7 +43,7 @@
                 </a>
                 
                 <form th:action="@{/auth/logout}" method="post">
-                    <button type="submit" class="btn btn-logout">Logout</button>
+                    <button type="submit" class="btn-staff btn-logout" style="width: 100%; cursor: pointer;">Logout</button>
                 </form>
             </div>
         </div>

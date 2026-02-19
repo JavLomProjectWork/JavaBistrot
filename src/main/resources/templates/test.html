@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina di test</title>
-    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-    <main class="page">
-        <h1>Test controller OK</h1>
-        <p>Se vedi questa pagina, il controller e Thymeleaf funzionano.</p>
-        <button class="btn" id="ping-btn" type="button">Click me</button>
-        <p class="status" id="status">JS non ancora eseguito.</p>
+    <main class="page-private">
+        <div class="card">
+            <h1 class="card-title">Test controller OK</h1>
+            <p class="card-subtitle">Se vedi questa pagina, il controller e Thymeleaf funzionano.</p>
+            <button class="btn-small btn-activate" id="ping-btn" type="button">Click me</button>
+            <p class="status" id="status">JS non ancora eseguito.</p>
+        </div>
     </main>
 
     <script th:src="@{/js/app.js}"></script>
