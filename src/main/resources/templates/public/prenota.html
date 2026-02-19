@@ -202,40 +202,40 @@
 
             <form th:action="@{/prenota}" method="post">
                 <div class="form-group">
-                    <label for="name">Nome completo</label>
-                    <input type="text" id="name" name="name" required 
-                           th:value="${booking?.name}" placeholder="Mario Rossi">
+                          <label for="customerName">Nome completo</label>
+                          <input type="text" id="customerName" name="customerName" required 
+                              th:value="${booking?.customerName}" placeholder="Mario Rossi">
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required 
-                           th:value="${booking?.email}" placeholder="mario.rossi@email.com">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" name="email" required 
+                              th:value="${booking?.email}" placeholder="mario.rossi@email.com">
                 </div>
                 
                 <div class="form-group">
-                    <label for="phone">Telefono</label>
-                    <input type="tel" id="phone" name="phone" required 
-                           th:value="${booking?.phone}" placeholder="+39 333 1234567">
+                          <label for="phoneNumber">Telefono</label>
+                          <input type="tel" id="phoneNumber" name="phoneNumber" required 
+                              th:value="${booking?.phoneNumber}" placeholder="+39 333 1234567">
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="date">Data</label>
-                        <input type="date" id="date" name="date" required 
-                               th:value="${booking?.date}">
+                           <label for="bookingDate">Data</label>
+                           <input type="date" id="bookingDate" name="bookingDate" required 
+                               th:value="${booking?.bookingDate}">
                     </div>
                     <div class="form-group">
-                        <label for="time">Orario</label>
-                        <input type="time" id="time" name="time" required 
-                               th:value="${booking?.time}">
+                           <label for="bookingTime">Orario</label>
+                           <input type="time" id="bookingTime" name="bookingTime" required 
+                               th:value="${booking?.bookingTime}">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="guests">Numero ospiti</label>
-                    <input type="number" id="guests" name="guests" min="1" max="20" required 
-                           th:value="${booking?.guests}" placeholder="2">
+                          <label for="numberOfGuests">Numero ospiti</label>
+                          <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" max="20" required 
+                              th:value="${booking?.numberOfGuests}" placeholder="2">
                 </div>
                 
                 <div class="form-group">

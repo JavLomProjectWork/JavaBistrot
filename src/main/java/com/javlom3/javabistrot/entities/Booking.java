@@ -55,4 +55,7 @@ public class Booking {
 
     @Column(length = 500)
     private String notes;
+    
+    @Column(nullable = false)
+    private Boolean active;
 }

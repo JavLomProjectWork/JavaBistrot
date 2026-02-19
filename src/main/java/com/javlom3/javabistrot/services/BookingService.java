@@ -21,6 +21,25 @@ import jakarta.transaction.Transactional;
 @Service
 public class BookingService {
 
+	@Transactional
+	public Optional<BookingDTO> toggleActive(Long id) {
+		return bookingRepo.findById(id).map(booking -> {
+			booking.setActive(booking.getActive() == null ? Boolean.TRUE : !booking.getActive());
+			Booking updated = bookingRepo.save(booking);
+			return bookingMapper.toDto(updated);
+		});
+	}
+
+	@Transactional
+	public List<BookingDTO> findActive() {
+		return bookingRepo.findByActiveTrue().stream().map(bookingMapper::toDto).toList();
+	}
+
+	@Transactional
+	public List<BookingDTO> findNotActive() {
+		return bookingRepo.findByActiveFalse().stream().map(bookingMapper::toDto).toList();
+	}
+
 	private final BookingRepo bookingRepo;
 	private final UserRepo userRepo;
 	private final BookingMapper bookingMapper;
@@ -69,6 +88,9 @@ public class BookingService {
 			}
 			if (dto.notes() != null) {
 				existing.setNotes(dto.notes());
+			}
+			if (dto.active() != null) {
+				existing.setActive(dto.active());
 			}
 			if (dto.assignedWaiterIds() != null) {
 				existing.setAssignedWaiters(resolveWaiters(dto.assignedWaiterIds()));

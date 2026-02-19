@@ -93,7 +93,8 @@ public class PublicController {
                 numberOfGuests,
                 dateTime,
                 new HashSet<>(),
-                notes != null ? notes.trim() : null
+                notes != null ? notes.trim() : null,
+                false
             );
             
             bookingService.createBooking(bookingDTO);

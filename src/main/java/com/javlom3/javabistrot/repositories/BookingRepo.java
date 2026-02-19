@@ -15,4 +15,7 @@ public interface BookingRepo extends JpaRepository<Booking, Long>{
     List<Booking> findByPhoneNumber(String phoneNumber);
 
     List<Booking> findByEmail(String email);
+
+    List<Booking> findByActiveTrue();
+    List<Booking> findByActiveFalse();
 }

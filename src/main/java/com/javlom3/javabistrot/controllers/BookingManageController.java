@@ -35,39 +35,49 @@ public class BookingManageController {
             @RequestParam(required = false) String date,
             Model model,
             Authentication authentication) {
-        
-        LocalDate selectedDate = (date != null && !date.isEmpty()) 
-            ? LocalDate.parse(date) 
+        LocalDate selectedDate = (date != null && !date.isEmpty())
+            ? LocalDate.parse(date)
             : LocalDate.now();
-        
-        List<BookingDTO> bookings = bookingService.getByDay(selectedDate);
-        int totalGuests = bookingService.countGuestsByDay(selectedDate);
-        
-        // Controlla se l'utente è MAITRE
+
+        // Recupera tutte le prenotazioni del giorno e separa attive/non attive
+        List<BookingDTO> allBookings = bookingService.getByDay(selectedDate);
+        List<BookingDTO> activeBookings = allBookings.stream().filter(b -> Boolean.TRUE.equals(b.active())).toList();
+        List<BookingDTO> notActiveBookings = allBookings.stream().filter(b -> !Boolean.TRUE.equals(b.active())).toList();
+        int totalGuests = activeBookings.stream().mapToInt(b -> b.numberOfGuests() != null ? b.numberOfGuests() : 0).sum();
+
         boolean isMaitre = authentication.getAuthorities().stream()
             .anyMatch(a -> a.getAuthority().equals("ROLE_MAITRE"));
-        
-        model.addAttribute("bookings", bookings);
+
+        model.addAttribute("activeBookings", activeBookings);
+        model.addAttribute("notActiveBookings", notActiveBookings);
         model.addAttribute("selectedDate", selectedDate);
         model.addAttribute("totalGuests", totalGuests);
         model.addAttribute("isMaitre", isMaitre);
-        
-        // Mappa ID -> Username per tutti gli utenti (camerieri e maitre)
-        // Usiamo String come chiave perché Thymeleaf converte gli ID a String
+
         var allUsers = userService.getAllUsers();
         Map<String, String> waiterNames = new HashMap<>();
         allUsers.forEach(u -> waiterNames.put(String.valueOf(u.id()), u.username()));
         model.addAttribute("waiterNames", waiterNames);
-        
+
         if (isMaitre) {
-            // Passa solo i camerieri attivi per l'assegnazione
             var allWaiters = userService.getWaiters();
             model.addAttribute("activeWaiters", allWaiters.stream()
                 .filter(w -> Boolean.TRUE.equals(w.active()))
                 .toList());
         }
-        
+
         return "private/bookings/manage";
+    }
+
+    @PostMapping("/toggle-active")
+    public String toggleActive(@RequestParam Long id, @RequestParam String date, RedirectAttributes redirectAttributes) {
+        try {
+            bookingService.toggleActive(id);
+            redirectAttributes.addFlashAttribute("success", "Stato prenotazione aggiornato");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/bookings/manage?date=" + date;
     }
 
     @PostMapping("/update-notes")
@@ -77,7 +87,7 @@ public class BookingManageController {
             @RequestParam String date,
             RedirectAttributes redirectAttributes) {
         try {
-            BookingDTO dto = new BookingDTO(null, null, null, null, null, null, null, notes);
+            BookingDTO dto = new BookingDTO(null, null, null, null, null, null, null, notes, false);
             bookingService.updateBooking(id, dto);
             redirectAttributes.addFlashAttribute("success", "Note aggiornate con successo");
         } catch (Exception e) {

@@ -34,7 +34,7 @@ public class BookingRESTController {
         @RequestParam(required = false) String notes
     )
     {
-        BookingDTO dto = new BookingDTO(null,customerName,email,phoneNumber,numberOfGuests,bookingDateTime,null,notes);
+        BookingDTO dto = new BookingDTO(null,customerName,email,phoneNumber,numberOfGuests,bookingDateTime,null,notes,false);
         Optional<BookingDTO> newBooking = bookingService.createBooking(dto);
         log.info("Nuova prenotazione creata {}", newBooking);
         return "redirect:/test";
@@ -58,7 +58,7 @@ public class BookingRESTController {
         @RequestParam(required = false) String notes
     )
     {
-        BookingDTO dto = new BookingDTO(null,customerName,email,phoneNumber,numberOfGuests,bookingDateTime,null,notes);
+        BookingDTO dto = new BookingDTO(null,customerName,email,phoneNumber,numberOfGuests,bookingDateTime,null,notes,false);
         Optional<BookingDTO> newBooking = bookingService.updateBooking(id, dto);
         if(newBooking.isPresent()){
             log.info("Nuova prenotazione creata {}", newBooking);

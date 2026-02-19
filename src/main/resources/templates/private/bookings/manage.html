@@ -69,8 +69,9 @@
                 <p>Coperti prenotati per il <span th:text="${#temporals.format(selectedDate, 'dd/MM/yyyy')}">data</span></p>
             </div>
 
-            <!-- Lista Prenotazioni -->
-            <table class="data-table" th:if="${!bookings.isEmpty()}">
+            <!-- Prenotazioni Attive -->
+            <h2>Prenotazioni Attive</h2>
+            <table class="data-table" th:if="${!activeBookings.isEmpty()}">
                 <thead>
                     <tr>
                         <th>Ora</th>
@@ -83,7 +84,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="booking : ${bookings}">
+                    <tr th:each="booking : ${activeBookings}">
                         <td data-label="Ora" class="booking-time" th:text="${#temporals.format(booking.bookingDateTime, 'HH:mm')}">19:00</td>
                         <td data-label="Cliente" th:text="${booking.customerName}">Mario Rossi</td>
                         <td data-label="Contatti">
@@ -103,7 +104,6 @@
                         </td>
                         <td data-label="Camerieri">
                             <div class="waiter-section">
-                                <!-- Camerieri assegnati -->
                                 <span th:each="waiterId : ${booking.assignedWaiterIds}" class="waiter-tag">
                                     <span th:text="${waiterNames['' + waiterId]}">Cameriere</span>
                                     <form th:if="${isMaitre}" th:action="@{/bookings/remove-waiter}" method="post" style="display: inline;">
@@ -113,8 +113,6 @@
                                         <button type="submit" title="Rimuovi">&times;</button>
                                     </form>
                                 </span>
-                                
-                                <!-- Form aggiungi cameriere (solo MAITRE) -->
                                 <form th:if="${isMaitre}" th:action="@{/bookings/assign-waiter}" method="post" class="waiter-assign">
                                     <input type="hidden" name="bookingId" th:value="${booking.id}">
                                     <input type="hidden" name="date" th:value="${selectedDate}">
@@ -129,8 +127,13 @@
                             </div>
                         </td>
                         <td class="actions-cell">
+                            <form th:action="@{/bookings/toggle-active}" method="post" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <button type="submit" class="btn-small btn-deactivate">Disattiva</button>
+                            </form>
                             <form th:action="@{/bookings/delete}" method="post" 
-                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');">
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
                                 <button type="submit" class="btn-small btn-delete">Elimina</button>
@@ -139,10 +142,85 @@
                     </tr>
                 </tbody>
             </table>
+            <div th:if="${activeBookings.isEmpty()}" class="empty-message">
+                <p>Nessuna prenotazione attiva per questa data.</p>
+            </div>
 
-            <!-- Messaggio lista vuota -->
-            <div th:if="${bookings.isEmpty()}" class="empty-message">
-                <p>Nessuna prenotazione per questa data.</p>
+            <!-- Prenotazioni NON Attive -->
+            <h2>Prenotazioni Non Attive</h2>
+            <table class="data-table" th:if="${!notActiveBookings.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Ora</th>
+                        <th>Cliente</th>
+                        <th>Contatti</th>
+                        <th>Coperti</th>
+                        <th>Note</th>
+                        <th>Camerieri</th>
+                        <th class="actions-cell">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="booking : ${notActiveBookings}">
+                        <td data-label="Ora" class="booking-time" th:text="${#temporals.format(booking.bookingDateTime, 'HH:mm')}">19:00</td>
+                        <td data-label="Cliente" th:text="${booking.customerName}">Mario Rossi</td>
+                        <td data-label="Contatti">
+                            <div th:text="${booking.email}">email@email.com</div>
+                            <div th:text="${booking.phoneNumber}">+39 123 456</div>
+                        </td>
+                        <td data-label="Coperti">
+                            <span class="booking-guests" th:text="${booking.numberOfGuests}">2</span>
+                        </td>
+                        <td data-label="Note">
+                            <form th:action="@{/bookings/update-notes}" method="post" class="notes-form">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <textarea name="notes" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
+                                <button type="submit" class="btn-small btn-save">Salva</button>
+                            </form>
+                        </td>
+                        <td data-label="Camerieri">
+                            <div class="waiter-section">
+                                <span th:each="waiterId : ${booking.assignedWaiterIds}" class="waiter-tag">
+                                    <span th:text="${waiterNames['' + waiterId]}">Cameriere</span>
+                                    <form th:if="${isMaitre}" th:action="@{/bookings/remove-waiter}" method="post" style="display: inline;">
+                                        <input type="hidden" name="bookingId" th:value="${booking.id}">
+                                        <input type="hidden" name="waiterId" th:value="${waiterId}">
+                                        <input type="hidden" name="date" th:value="${selectedDate}">
+                                        <button type="submit" title="Rimuovi">&times;</button>
+                                    </form>
+                                </span>
+                                <form th:if="${isMaitre}" th:action="@{/bookings/assign-waiter}" method="post" class="waiter-assign">
+                                    <input type="hidden" name="bookingId" th:value="${booking.id}">
+                                    <input type="hidden" name="date" th:value="${selectedDate}">
+                                    <select name="waiterId">
+                                        <option value="">-- Seleziona --</option>
+                                        <option th:each="waiter : ${activeWaiters}" 
+                                                th:value="${waiter.id}" 
+                                                th:text="${waiter.username}">Cameriere</option>
+                                    </select>
+                                    <button type="submit" class="btn-small btn-assign">Assegna</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td class="actions-cell">
+                            <form th:action="@{/bookings/toggle-active}" method="post" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <button type="submit" class="btn-small btn-activate">Attiva</button>
+                            </form>
+                            <form th:action="@{/bookings/delete}" method="post" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${notActiveBookings.isEmpty()}" class="empty-message">
+                <p>Nessuna prenotazione non attiva per questa data.</p>
             </div>
         </div>
     </main>

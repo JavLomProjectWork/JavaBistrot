@@ -19,6 +19,7 @@ public class BookingMapper {
         entity.setNumberOfGuests(dto.numberOfGuests());
         entity.setBookingDateTime(dto.bookingDateTime());
         entity.setNotes(dto.notes());
+        entity.setActive(dto.active());
         return entity;
     }
     
@@ -39,7 +40,8 @@ public class BookingMapper {
             entity.getNumberOfGuests(),
             entity.getBookingDateTime(),
             assignedWaiterIds,
-            entity.getNotes()
+            entity.getNotes(),
+            entity.getActive()
         );
     }
 }

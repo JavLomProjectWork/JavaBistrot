@@ -11,5 +11,6 @@ public record BookingDTO(
     Integer numberOfGuests,
     LocalDateTime bookingDateTime,
     Set<Long> assignedWaiterIds,
-    String notes 
+    String notes,
+    Boolean active
 ) {}
