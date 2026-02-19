@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +54,29 @@
             color: var(--ink);
         }
         
+        .dashboard-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .btn-staff {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.2s, transform 0.1s;
+        }
+        
+        .btn-staff:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+        
         .btn-logout {
             background: transparent;
             border: 2px solid var(--accent);
@@ -83,9 +106,26 @@
                 </div>
             </div>
 
-            <form th:action="@{/auth/logout}" method="post">
-                <button type="submit" class="btn btn-logout">Logout</button>
-            </form>
+            <div class="dashboard-actions">
+                <!-- Per MAITRE e WAITER -->
+                <a th:if="${role == 'MAITRE' or role == 'WAITER'}" th:href="@{/bookings/manage}" class="btn-staff">
+                    Gestione Prenotazioni
+                </a>
+                
+                <!-- Solo per MAITRE -->
+                <a th:if="${role == 'MAITRE'}" th:href="@{/staff/manage}" class="btn-staff">
+                    Gestione Personale
+                </a>
+                
+                <!-- Solo per MAITRE -->
+                <a th:if="${role == 'MAITRE'}" th:href="@{/menu/manage}" class="btn-staff">
+                    Gestione Menu
+                </a>
+                
+                <form th:action="@{/auth/logout}" method="post">
+                    <button type="submit" class="btn btn-logout">Logout</button>
+                </form>
+            </div>
         </div>
     </main>
 </body>

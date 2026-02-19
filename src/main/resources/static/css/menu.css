@@ -1,107 +1,177 @@
-body {
-    background-color: #f8f5f0;
+/* Stili pagina menu */
+.menu-page {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
-.card-front,
-.card-back {
-    background-color: #ffffff;
+.menu-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
-.card {
-    width: 300px;
-    height: 420px; 
-    perspective: 1000px;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s ease;
-    transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front img {
-    width: 100%;
-    height: 220px;          
-    object-fit: cover;     
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-.card-front {
-       align-items: center;
-}
-
-.card-front h3 {
+.menu-page h1 {
     text-align: center;
-    font-size: 18px;
-    min-height: 50px; /* stesso spazio titolo */
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: white;
+    letter-spacing: 3px;
 }
 
-.card:hover .card-front img {
-    transform: scale(1.05);
-}
-
-.card-front,
-.card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    backface-visibility: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    background: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-back {
-    transform: rotateY(180deg);
-    justify-content: space-between; /* forza prezzo in basso */
+.menu-subtitle {
     text-align: center;
-}
-
-.card-back p {
-    flex-grow: 1;  /* occupa spazio centrale */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-.price {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: auto;
-}
-
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
-
-}
-
-section {
-    padding: 80px 20px;
-}
-
-section h2 {
-    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #D4AF37;
     margin-bottom: 50px;
-    font-size: 32px;
 }
 
-footer {
-    margin-top: 80px;
-    position: relative;
+.menu-section {
+    margin-bottom: 50px;
 }
 
+.menu-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #D4AF37;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.dish-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dish-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dish-item:last-child {
+    border-bottom: none;
+}
+
+.dish-info {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.dish-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+}
+
+.dish-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+    min-width: 20px;
+}
+
+.dish-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #D4AF37;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.dish-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* Responsive Tablet */
+@media (max-width: 768px) {
+    .menu-page {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    
+    .menu-page h1 {
+        font-size: 40px;
+        letter-spacing: 2px;
+    }
+    
+    .menu-subtitle {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+    
+    .menu-section h2 {
+        font-size: 24px;
+    }
+}
+
+/* Responsive Mobile */
+@media (max-width: 480px) {
+    .menu-page {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .menu-container {
+        padding: 0 15px;
+    }
+    
+    .menu-page h1 {
+        font-size: 28px;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+    
+    .menu-subtitle {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    
+    .menu-section {
+        margin-bottom: 35px;
+    }
+    
+    .menu-section h2 {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+    
+    .dish-item {
+        padding: 15px 0;
+    }
+    
+    .dish-info {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .dish-name {
+        font-size: 15px;
+        flex: 1 1 70%;
+    }
+    
+    .dish-dots {
+        display: none;
+    }
+    
+    .dish-price {
+        font-size: 15px;
+        flex: 0 0 auto;
+    }
+    
+    .dish-description {
+        font-size: 13px;
+    }
+}

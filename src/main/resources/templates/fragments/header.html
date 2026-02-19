@@ -11,15 +11,13 @@
 </head>
 <body>
 
-    <header>
+    <header th:fragment="header">
         <nav class="navbar">
             <div class="logo">Nebbia & Zafferano</div>
             <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Prenotazione</a></li>
-                <li><a href="#">Galleria</a></li>
-                <li><a href="#">About</a></li>
+                <li><a th:href="@{/home}" th:classappend="${activePage == 'home'} ? 'active' : ''">Home</a></li>
+                <li><a th:href="@{/menu}" th:classappend="${activePage == 'menu'} ? 'active' : ''">Menu</a></li>
+                <li><a th:href="@{/prenota}" th:classappend="${activePage == 'prenota'} ? 'active' : ''">Prenotazione</a></li>
             </ul>
         </nav>
     </header>
