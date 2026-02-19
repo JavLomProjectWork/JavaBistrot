@@ -87,7 +87,7 @@ public class BookingManageController {
             @RequestParam String date,
             RedirectAttributes redirectAttributes) {
         try {
-            BookingDTO dto = new BookingDTO(null, null, null, null, null, null, null, notes, false);
+            BookingDTO dto = new BookingDTO(null, null, null, null, null, null, null, notes, null);
             bookingService.updateBooking(id, dto);
             redirectAttributes.addFlashAttribute("success", "Note aggiornate con successo");
         } catch (Exception e) {

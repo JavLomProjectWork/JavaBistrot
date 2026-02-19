@@ -17,6 +17,8 @@ import com.javlom3.javabistrot.entities.DishType;
 import com.javlom3.javabistrot.services.BookingService;
 import com.javlom3.javabistrot.services.DishService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class PublicController {
     
@@ -64,7 +66,14 @@ public class PublicController {
             @RequestParam String bookingTime,
             @RequestParam Integer numberOfGuests,
             @RequestParam(required = false) String notes,
+            HttpSession session,
             RedirectAttributes redirectAttributes) {
+        
+        Long lastBookingTime = (Long) session.getAttribute("lastBookingTime");
+        if (lastBookingTime != null && (System.currentTimeMillis() - lastBookingTime) < 60000) {
+            redirectAttributes.addFlashAttribute("error", "Hai già inviato una prenotazione.");
+            return "redirect:/prenota";
+        }
         
         try {
             LocalDate date = LocalDate.parse(bookingDate);
@@ -98,6 +107,8 @@ public class PublicController {
             );
             
             bookingService.createBooking(bookingDTO);
+            
+            session.setAttribute("lastBookingTime", System.currentTimeMillis());
             
             redirectAttributes.addFlashAttribute("success", "Prenotazione effettuata con successo! Ti aspettiamo.");
             return "redirect:/prenota";
