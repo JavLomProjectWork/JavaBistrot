@@ -165,6 +165,34 @@ h1, h2, h3, h4 {
 }
 
 /* Buttons */
+
+.btn-link{
+     background: var(--white);
+    color: var(--dark);
+}
+
+.btn-link:hover {
+    background: var(--red);
+    color: var(--white);
+    transform: translateY(-2px);
+
+}
+
+.btn2 {
+    display: inline-block;
+    padding: 14px 35px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: var(--transition);
+    cursor: pointer;
+    border:2px solid transparent;
+    margin-top: 60px;
+}
+
+
 .btn {
     display: inline-block;
     padding: 14px 35px;
@@ -1133,3 +1161,237 @@ h1, h2, h3, h4 {
         text-align: center;
     }
 }
+
+/* ===========================================
+           EAT TOGETHER 
+   =========================================== */
+   
+.eat-together {
+    padding: 100px 0 0 0; /* Rimosso il padding sotto per attaccare l'immagine */
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.eat-content {
+    max-width: 650px;
+    margin: 0 auto 80px auto; /* Margine sotto il testo per dare respiro prima dell'immagine */
+    padding: 0 20px;
+}
+
+/* --- LA PARTE DELL'IMMAGINE IN FONDO --- */
+.eat-together {
+    width: 100% !important;
+    height: 600px;
+    min-height: 600px;
+    margin-top:80px; 
+    background: linear-gradient(var(--dark-overlay), var(--dark-overlay)),
+                url('../img/insieme.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; 
+    display: block !important;
+    clear:both;
+     min-height: 400px;
+     margin-top:50px;
+}
+
+.eat-together a.btn-link{
+    color:black;
+}
+
+
+.section-title{
+    color: white;
+    font-size:20px;
+    font-family: monospace;
+    border-bottom: 2px solid #f5f5f5;
+    margin: 44px 199px 25px;
+}
+
+.section-description{
+    color: white;
+    margin-top: 45px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .eat-together {
+        padding-top: 60px;
+    }
+    
+
+    .eat-content {
+        margin-bottom: 50px;
+    }
+}
+
+/* DESCRIZIONE */
+
+.grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 80px auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 23px;
+
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /*REVIEW*/
+
+        .section-title2 {
+             text-align: center;
+            font-size: 2.2rem;
+            color: #020507;
+            margin-bottom: 20px;
+            font-weight: 700;
+            margin-left: 50px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #7f8c8d;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: 550px;
+            margin-right: auto;
+        }
+
+        .main-title {
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            perspective: 1000px;
+            margin: 0 auto;
+        }
+
+        .carousel {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-item:nth-child(1) {
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(150px);
+        }
+
+        .carousel-item:nth-child(2) {
+            transform: translate(-50%, -50%) rotateY(120deg) translateZ(150px);
+        }
+
+        .carousel-item:nth-child(3) {
+            transform: translate(-50%, -50%) rotateY(240deg) translateZ(150px);
+        }
+
+        .messages {
+            height:120px;
+            text-align: center;
+            margin-top: -100px;
+            font-size: 1.2em;
+        }
+
+        .message {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .message.active {
+            display: block;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2em; }
+            .carousel-container { width: 250px; height: 250px; }
+            .carousel-item { width: 100px; height: 100px; }
+        }
