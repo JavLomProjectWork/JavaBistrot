@@ -139,4 +139,54 @@ public class BookingManageController {
         }
         return "redirect:/bookings/manage?date=" + date;
     }
+
+        @GetMapping("/add")
+    public String getAddBooking(Model model, Authentication authentication) {
+        boolean isMaitreOrWaiter = authentication != null && authentication.getAuthorities().stream()
+            .anyMatch(a -> a.getAuthority().equals("ROLE_MAITRE") || a.getAuthority().equals("ROLE_WAITER"));
+        if (!isMaitreOrWaiter) {
+            return "redirect:/dashboard";
+        }
+        return "private/bookings/add";
+    }
+
+    @PostMapping("/add")
+    public String postAddBooking(
+            @RequestParam String customerName,
+            @RequestParam String email,
+            @RequestParam String phoneNumber,
+            @RequestParam String bookingDate,
+            @RequestParam String bookingTime,
+            @RequestParam Integer numberOfGuests,
+            @RequestParam(required = false) String notes,
+            Authentication authentication,
+            RedirectAttributes redirectAttributes) {
+        boolean isMaitreOrWaiter = authentication != null && authentication.getAuthorities().stream()
+            .anyMatch(a -> a.getAuthority().equals("ROLE_MAITRE") || a.getAuthority().equals("ROLE_WAITER"));
+        if (!isMaitreOrWaiter) {
+            redirectAttributes.addFlashAttribute("error", "Non autorizzato");
+            return "redirect:/dashboard";
+        }
+        try {
+            var date = java.time.LocalDate.parse(bookingDate);
+            var time = java.time.LocalTime.parse(bookingTime);
+            var dateTime = java.time.LocalDateTime.of(date, time);
+            var bookingDTO = new com.javlom3.javabistrot.dto.BookingDTO(
+                null,
+                customerName.trim(),
+                email.trim(),
+                phoneNumber.trim(),
+                numberOfGuests,
+                dateTime,
+                new java.util.HashSet<>(),
+                notes != null ? notes.trim() : null,
+                true
+            );
+            bookingService.createBooking(bookingDTO);
+            redirectAttributes.addFlashAttribute("success", "Prenotazione aggiunta con successo");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return "redirect:/bookings/manage";
+    }
 }

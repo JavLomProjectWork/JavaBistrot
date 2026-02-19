@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Prenotazione - Nebbia & Zafferano</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <main class="page-private">
+        <div class="manage-container">
+            <a th:href="@{/bookings/manage}" class="btn-back">← Gestione Prenotazioni</a>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
+                <h1 class="manage-title">Aggiungi Prenotazione</h1>
+            </div>
+            <p class="manage-subtitle">Compila il modulo per aggiungere una nuova prenotazione</p>
+
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}">Errore</span>
+            </div>
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}">Successo</span>
+            </div>
+
+            <div class="add-form" style="max-width: 700px; margin: 0 auto;">
+                <form th:action="@{/bookings/add}" method="post">
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="customerName">Nome completo</label>
+                            <input type="text" id="customerName" name="customerName" required placeholder="Mario Rossi">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="mario.rossi@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="phoneNumber">Telefono</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+39 333 1234567">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="numberOfGuests">Numero ospiti</label>
+                            <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" max="20" required placeholder="2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="bookingDate">Data</label>
+                            <input type="date" id="bookingDate" name="bookingDate" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="bookingTime">Orario</label>
+                            <input type="time" id="bookingTime" name="bookingTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Note (opzionale)</label>
+                        <textarea id="notes" name="notes" placeholder="Allergie, richieste speciali..."></textarea>
+                    </div>
+                    
+                    <div style="text-align: right; margin-top: 25px;">
+                        <button type="submit" class="btn-add">Aggiungi Prenotazione</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
