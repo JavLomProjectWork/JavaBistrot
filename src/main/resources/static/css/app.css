@@ -17,6 +17,10 @@ body {
   background: radial-gradient(circle at top, #fff7ee 0%, var(--bg) 55%, #efe4d4 100%);
 }
 
+div.logo{
+  color: white;
+}
+
 .page {
   min-height: 100vh;
   display: grid;
