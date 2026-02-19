@@ -1,0 +1,42 @@
+graph TD
+    CSSFILES["📄 File CSS"]
+    
+    subgraph APP["app.css"]
+        APP_page["<b>.page</b><br/>div"]
+        APP_btn["<b>.btn</b><br/>a, button"]
+        APP_status["<b>.status</b><br/>span, div"]
+    end
+    
+    subgraph MENU["menu.css"]
+        MENU_page["<b>.menu-page</b><br/>main"]
+        MENU_container["<b>.menu-container</b><br/>div"]
+        MENU_subtitle["<b>.menu-subtitle</b><br/>p"]
+        MENU_section["<b>.menu-section</b><br/>section"]
+        MENU_dishlst["<b>.dish-list</b><br/>ul"]
+        MENU_dishitem["<b>.dish-item</b><br/>li"]
+        MENU_dishinfo["<b>.dish-info</b><br/>div"]
+        MENU_dishname["<b>.dish-name</b><br/>span"]
+        MENU_dishdots["<b>.dish-dots</b><br/>span"]
+        MENU_dishprice["<b>.dish-price</b><br/>span"]
+        MENU_dishdesc["<b>.dish-description</b><br/>p"]
+    end
+    
+    subgraph STYLE["style.css"]
+        STYLE_navbar["<b>.navbar</b><br/>nav"]
+        STYLE_logo["<b>.logo</b><br/>div"]
+        STYLE_navlinks["<b>.nav-links</b><br/>ul"]
+        STYLE_home["<b>.home</b><br/>section"]
+        STYLE_homecontent["<b>.home-content</b><br/>div"]
+        STYLE_btnmain["<b>.btn-main</b><br/>a"]
+        STYLE_welcome["<b>.welcome</b><br/>section"]
+        STYLE_containw["<b>.container-welcome</b><br/>div"]
+        STYLE_welcometxt["<b>.welcome-text</b><br/>div"]
+        STYLE_welcomeimg["<b>.welcome-image</b><br/>div"]
+        STYLE_imgwrapper["<b>.img-wrapper</b><br/>div"]
+        STYLE_btnsec["<b>.btn-secondary</b><br/>a"]
+        STYLE_sectionintro["<b>.section-intro</b><br/>section"]
+    end
+    
+    CSSFILES --> APP
+    CSSFILES --> MENU
+    CSSFILES --> STYLE
