@@ -3,26 +3,86 @@
 <head>
     <title>Nebbia & Zafferano</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
 
 <div th:replace="~{fragments/header :: header}"></div>
 
-<section class="hero">
-    <div class="overlay"></div>
     <div class="hero-content">
-        <h1>Tradizione nella Nebbia</h1>
-        <p>Eleganza, gusto e autenticità lombarda</p>
-        <a th:href="@{/prenota}" class="btn">PRENOTA ORA</a>
-        
+        <span class="sub-title anim-fade-down">Benvenuti al Ristorante</span>
+        <h1 class="main-title anim-fade-up">Nebbia & Zafferano</h1>
+        <div class="anim-zoom-in">
+            <button class="btn-red">Guarda il Menu</button>
+        </div>
     </div>
 </section>
 
-<section class="intro">
-    <h2>Un'esperienza sensoriale unica</h2>
-    <p>
-        Ingredienti selezionati, atmosfera raffinata e servizio impeccabile.
-    </p>
+    <!--<section class="home" id="home">
+        <div class="home-content">
+            <h4>Benvenuti al Ristorante</h4>
+            <h1>Nebbia & Zafferano</h1>
+            <p>Un'esperienza culinaria indimenticabile nel cuore della città.</p>
+            <a href="#" class="btn-main">Guarda il Menu</a>
+        </div>
+    </section>-->
+
+
+ <section class="welcome">
+    <div class="container-welcome">
+        
+        <div class="welcome-text">
+            <span class="subtitle">Sapore Italiano</span>
+            <h2>WELCOME</h2>
+            <p>
+                Dal cuore di Milano, Nebbia & Zafferano porta in tavola la tradizione 
+                rivisitata con passione. Ogni piatto è una storia di ingredienti 
+                selezionati e amore per la cucina.
+            </p>
+            <a href="#" class="btn-secondary">La nostra Storia</a>
+        </div>
+
+        <div class="welcome-image">
+            <div class="img-wrapper">
+                <img src="../static/img/welcome.webp" alt="Piatto tipico">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="discover-parallax">
+    <div class="parallax-content">
+        <span class="sub-title">Discover</span>
+        <h2 class="section-h white-text">PATO PLACE</h2>
+    </div>
+</section>
+
+<section class="categoriessection-padding">
+    <div class="container grid-3">
+        
+        <div class="category-item" style="background-image: url('../static/img/romantic rest.webp');">
+            <div class="category-content">
+                <h3>Romantic Restaurant</h3>
+                <p class="text">LEARN MORE </p>
+            </div>
+        </div>
+
+        <div class="category-item" style="background-image: url('../static/img/delice.webp ');">
+            <div class="category-content">
+                <h3>Delicious Food</h3>
+                <p class="text">LEARN MORE </p>
+            </div>
+        </div>
+
+        <div class="category-item" style="background-image: url('../static/img/wine.webp');">
+            <div class="category-content">
+                <h3>Red Wines</h3>
+                <p class="text">LEARN MORE </p>
+            </div>
+        </div>
+
+    </div>
 </section>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

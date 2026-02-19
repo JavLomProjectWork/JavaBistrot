@@ -1,4 +1,7 @@
-<footer th:fragment="footer" class="footer">
+<footer class="main-footer" th:fragment="footer" class="footer">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style.css">
+    
     <div class="footer-links">
         <a th:href="@{/home}">Home</a>
         <a th:href="@{/menu}">Menu</a>
@@ -6,5 +9,8 @@
         <a th:href="@{/auth/login}">Area Staff</a>
     </div>
 
-    <p>© 2026 Nebbia e Zafferano - Fine Dining Experience</p>
+    <div class="footer-bottom">
+       <p>© 2026 Nebbia & Zafferano - Fine Dining Experience</p>
+    </div>
+   </div>
 </footer>

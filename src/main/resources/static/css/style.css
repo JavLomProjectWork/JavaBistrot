@@ -1,3 +1,104 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Fondamentale per non far vedere l'immagine che esce dai bordi durante lo zoom */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* L'immagine di sfondo con l'animazione */
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/sfondo.webp'); /* CONTROLLA IL NOME DEL FILE QUI */
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    animation: slowZoom 10s infinite alternate; /* L'animazione di movimento lento */
+}
+
+/* L'overlay scuro */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Nero al 50% di trasparenza */
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+}
+
+/* Animazione per lo zoom lento dell'immagine */
+@keyframes slowZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+/* --- DEFINIZIONE DELLE ANIMAZIONI (KEYFRAMES) --- */
+
+/* Entrata dall'alto */
+@keyframes fadeDown {
+    0% { opacity: 0; transform: translateY(-50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Entrata dal basso */
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Apparizione con Zoom */
+@keyframes zoomIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- APPLICAZIONE DELLE CLASSI --- */
+
+    .anim-fade-down {
+    opacity: 0; /* Parte invisibile */
+    animation: fadeDown 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.anim-fade-up {
+    animation: fadeUp 1.2s ease-out forwards;
+    animation-delay: 0.3s; /* Parte leggermente dopo */
+    opacity: 0; /* Parte invisibile */
+}
+
+.anim-zoom-in {
+    animation: zoomIn 1s ease-out forwards;
+    animation-delay: 0.8s; /* Parte per ultima */
+    opacity: 0;
+    display: inline-block;
+}
+
+/* --- STILE HERO (Rifinitura) --- */
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+/* Effetto pulsante che brilla leggermente (come l'originale) */
+.btn-red:hover {
+    background-color: white;
+    color: #ec1d24;
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+}
+
+
 /*header {
     background-color: #333 !important;
     height: 100px;
@@ -146,17 +247,17 @@ header {
 }
 
 .welcome-text p {
-    font-size: 30px;
+    font-size: 20px;
     line-height: 1.8;
     color: #666;
-    margin-bottom: 8px;
+    margin-bottom: 3px;
 }
 
 /* BOTTONE SECONDARIO */
 .btn-secondary {
     text-decoration: none;
     color: #222;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: 2px solid #D4AF37; /* Linea dorata sotto */
@@ -193,51 +294,252 @@ header {
     transform: scale(1.1); /* Zoom leggero quando passi sopra */
 }
 
-/* STILE SEZIONE INTRO */
-.section-intro{
-    height: 100vh; /* Copre il 100% dell'altezza dello schermo */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('../img/place.webp'); 
-    background-size: cover;
+
+/* --- DISCOVER Sezione Parallax Discover --- */
+.discover-parallax {
+    height: 480px; /* Altezza della sezione */
+    background-image: url('../img/place.webp'); /* Assicurati che il nome del file sia corretto */
+    background-attachment: fixed; /* Questo crea l'effetto scorrimento Pato */
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Overlay scuro per far risaltare il testo */
+.discover-parallax::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Oscura leggermente l'immagine */
+    z-index: 1;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2; /* Porta il testo sopra l'overlay */
     text-align: center;
 }
 
-/* STILE FOOTER */
-.footer {
-    width: 100%;
-    padding: 20px 50px;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+.sub-title {
+    font-family: 'Courgette', cursive; 
+    color: #ec1d24;                   
+    font-size: 30px;
+    display: block;                   
+    margin-bottom: 5px;
+    text-transform: none;             
 }
 
-.footer-links {
-    display: flex;
-    list-style: none;
+.white-text {
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* Ottimizzazione per Mobile (il fixed background spesso non va su iPhone/Android) */
+@media (max-width: 1024px) {
+    .discover-parallax {
+        background-attachment: scroll;
+    }
+}
+
+
+/* STILE SEZIONE INTRO */
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
+.categoriessection-padding{
+    margin: 0;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.category-item {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden; /* Importante per l'effetto zoom */
+    display: flex;
+    align-items: flex-end; /* Allinea il testo in basso */
+    padding: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
 
-.footer-links a {
-    text-decoration: none;
+/* Effetto scuro sopra l'immagine per far leggere il testo */
+.category-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+    z-index: 1;
+}
+
+/* Zoom dell'immagine di sfondo all'hover */
+.category-item:hover {
+    transform: translateY(-10px); /* Il box si alza leggermente */
+}
+
+.category-content {
+    position: relative;
+    z-index: 2;
     color: white;
+    width: 100%;
+}
+
+.category-content h3 {
+    font-size: 24px;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.learn-more-white {
+    color: white;
+    text-decoration: none;
     font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.8;
     transition: 0.3s;
 }
 
-.footer-links a:hover {
-    color: #ec1c24;
+.learn-more-white i {
+    margin-left: 5px;
 }
 
-.footer p {
-    font-family: 'Playfair Display', serif;
+.learn-more-white:hover {
+    opacity: 1;
+    color: var(--primary-color); /* Diventa rosso al passaggio */
+}
+
+/* Responsive: su cellulare diventano una sotto l'altra */
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* --- FOOTER STYLE --- */
+.main-footer {
+    background-color: #222;
+    color: #999;
+    padding: 80px 0 20px 0;
     font-size: 14px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Colonne */
+    gap: 40px;
+}
+
+.footer-col h4 {
     color: white;
-    opacity: 0.8;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer-col ul li i {
+    color: #ec1d24; /* Rosso Pato per le icone */
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+/* Gallery nel footer */
+.footer-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.footer-gallery img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.footer-gallery img:hover {
+    opacity: 0.7;
+}
+
+/* Area Riservata (Form) */
+.login-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.login-mini input {
+    background: #333;
+    border: 1px solid #444;
+    padding: 10px;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.btn-login {
+    background: #ec1d24;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.btn-login:hover {
+    background: white;
+    color: #ec1d24;
+}
+
+/* Copyright finale */
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+/* Responsive per tablet e smartphone */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 576px) {
+    .footer-grid { grid-template-columns: 1fr; }
 }
