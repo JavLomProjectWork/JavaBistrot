@@ -50,6 +50,12 @@ public class PublicController {
         model.addAttribute("activePage", "home");
         return "public/home";
     }
+
+    @GetMapping("/contatti")
+    public String getContatti(Model model) {
+        model.addAttribute("activePage", "contatti");
+        return "public/contatti";
+    }
     
     @GetMapping("/prenota")
     public String getPrenota(Model model) {

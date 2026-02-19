@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - Nebbia & Zafferano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .contact-page {
+            min-height: 100vh;
+            padding: 100px 5% 60px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .contact-card {
+            background: rgba(45, 45, 45, 0.95);
+            padding: 45px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact-card h1 {
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 2px;
+        }
+
+        .contact-card .subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 35px;
+            font-size: 16px;
+        }
+
+        .contact-info {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info strong {
+            color: var(--gold);
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .contact-info a {
+            color: #fff;
+            transition: color var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+        
+        .contact-section {
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .contact-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-page {
+                padding: 80px 20px 40px;
+                align-items: flex-start;
+            }
+            .contact-card {
+                padding: 30px 25px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="contact-page">
+        <div class="contact-card">
+            <h1>Contatti</h1>
+            <p class="subtitle">Come raggiungerci e contattarci</p>
+            
+            <div class="contact-info contact-section">
+                <strong>Ristorante Nebbia & Zafferano</strong><br>
+                Via della Cucina 123<br>
+                20100 Milano (MI)<br><br>
+                <strong>Email:</strong> <a href="mailto:info@nebbiazafferano.it">info@nebbiazafferano.it</a><br>
+                <strong>Telefono:</strong> <a href="tel:+390212345678">+39 02 12345678</a><br>
+                <strong>Instagram:</strong> <a href="https://instagram.com/nebbiazafferano" target="_blank">@nebbiazafferano</a>
+            </div>
+            
+            <div class="contact-info contact-section">
+                <strong>Orari di apertura:</strong><br>
+                Lun - Ven: 12:00 - 15:00 / 19:00 - 23:00<br>
+                Sabato: 19:00 - 23:30<br>
+                Domenica: chiuso
+            </div>
+            
+            <div class="contact-info contact-section">
+                <strong>Come arrivare:</strong><br>
+                Metro M1 - Fermata Duomo<br>
+                Parcheggio convenzionato in Via Tavola 45
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html><html lang="it" xmlns:th="http://www.thymeleaf.org">
