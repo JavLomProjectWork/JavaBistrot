@@ -82,16 +82,16 @@
                 </thead>
                 <tbody>
                     <tr th:each="booking : ${bookings}">
-                        <td class="booking-time" th:text="${#temporals.format(booking.bookingDateTime, 'HH:mm')}">19:00</td>
-                        <td th:text="${booking.customerName}">Mario Rossi</td>
-                        <td>
+                        <td data-label="Ora" class="booking-time" th:text="${#temporals.format(booking.bookingDateTime, 'HH:mm')}">19:00</td>
+                        <td data-label="Cliente" th:text="${booking.customerName}">Mario Rossi</td>
+                        <td data-label="Contatti">
                             <div th:text="${booking.email}">email@email.com</div>
                             <div th:text="${booking.phoneNumber}">+39 123 456</div>
                         </td>
-                        <td>
+                        <td data-label="Coperti">
                             <span class="booking-guests" th:text="${booking.numberOfGuests}">2</span>
                         </td>
-                        <td>
+                        <td data-label="Note">
                             <form th:action="@{/bookings/update-notes}" method="post" class="notes-form">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
@@ -99,7 +99,7 @@
                                 <button type="submit" class="btn-small btn-save">Salva</button>
                             </form>
                         </td>
-                        <td>
+                        <td data-label="Camerieri">
                             <div class="waiter-section">
                                 <!-- Camerieri assegnati -->
                                 <span th:each="waiterId : ${booking.assignedWaiterIds}" class="waiter-tag">

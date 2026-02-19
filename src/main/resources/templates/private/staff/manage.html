@@ -54,9 +54,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="waiter : ${waiters}">
-                        <td th:text="${waiter.id}">1</td>
-                        <td th:text="${waiter.username}">cameriere1</td>
-                        <td>
+                        <td data-label="ID" th:text="${waiter.id}">1</td>
+                        <td data-label="Username" th:text="${waiter.username}">cameriere1</td>
+                        <td data-label="Stato">
                             <span th:if="${waiter.active}" class="status-active">Attivo</span>
                             <span th:unless="${waiter.active}" class="status-inactive">Disattivato</span>
                         </td>
@@ -118,9 +118,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="maitre : ${maitres}">
-                        <td th:text="${maitre.id}">1</td>
-                        <td th:text="${maitre.username}">maitre1</td>
-                        <td>
+                        <td data-label="ID" th:text="${maitre.id}">1</td>
+                        <td data-label="Username" th:text="${maitre.username}">maitre1</td>
+                        <td data-label="Stato">
                             <span th:if="${maitre.active}" class="status-active">Attivo</span>
                             <span th:unless="${maitre.active}" class="status-inactive">Disattivato</span>
                         </td>
