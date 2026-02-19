@@ -1,48 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prenota - Nebbia & Zafferano</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <style>
-        .booking-section {
+        .booking-page {
             min-height: 100vh;
-            padding-top: 100px;
-            padding-bottom: 60px;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('/img/sfondo.webp');
-            background-size: cover;
-            background-position: center;
+            padding: 100px 5% 60px;
+            background: linear-gradient(var(--dark-overlay), var(--dark-overlay)),
+                        url('/img/sfondo.webp') center/cover no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        .booking-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        .booking-card {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 45px;
+            border-radius: 12px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: var(--shadow);
         }
         
-        .booking-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            color: #222;
+        .booking-card h1 {
+            font-size: 32px;
+            color: var(--dark);
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
-        .booking-subtitle {
-            font-family: 'Playfair Display', serif;
+        .booking-card .subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
             font-style: italic;
-            color: #D4AF37;
+            color: var(--gold);
             text-align: center;
             margin-bottom: 30px;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .form-group {
@@ -51,29 +48,29 @@
         
         .form-group label {
             display: block;
-            color: #333;
+            color: var(--dark);
             font-weight: 600;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 15px;
             font-family: 'Montserrat', sans-serif;
-            transition: border-color 0.3s;
+            transition: border-color var(--transition);
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #D4AF37;
+            border-color: var(--gold);
         }
         
         .form-group textarea {
@@ -81,101 +78,89 @@
             min-height: 80px;
         }
         
-        .btn-prenota {
-            width: 100%;
-            padding: 15px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
         
-        .btn-prenota:hover {
-            background-color: #ec1c24;
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-submit:hover {
+            background: var(--red);
             transform: translateY(-2px);
         }
         
         .alert {
-            padding: 15px;
-            border-radius: 5px;
+            padding: 14px;
+            border-radius: 6px;
             margin-bottom: 20px;
             text-align: center;
+            font-size: 14px;
         }
         
         .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: #ffeaea;
+            color: #c0392b;
             border: 1px solid #f5c6cb;
         }
         
         .alert-success {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: #eafaf1;
+            color: #27ae60;
             border: 1px solid #c3e6cb;
         }
         
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        /* Responsive Tablet */
+        /* Responsive */
         @media (max-width: 768px) {
-            .booking-section {
-                padding-top: 80px;
-                padding-bottom: 40px;
+            .booking-page {
+                padding: 80px 20px 40px;
+                align-items: flex-start;
             }
             
-            .booking-container {
-                padding: 35px 30px;
+            .booking-card {
+                padding: 30px 25px;
+                margin-top: 10px;
             }
             
-            .booking-title {
-                font-size: 30px;
+            .booking-card h1 {
+                font-size: 26px;
             }
             
-            .booking-subtitle {
-                font-size: 16px;
+            .booking-card .subtitle {
+                font-size: 14px;
                 margin-bottom: 25px;
             }
         }
         
-        /* Responsive Mobile */
         @media (max-width: 480px) {
-            .booking-section {
-                padding-top: 70px;
-                padding-bottom: 30px;
-                align-items: flex-start;
+            .booking-page {
+                padding: 70px 15px 30px;
             }
             
-            .booking-container {
+            .booking-card {
                 padding: 25px 20px;
-                width: 95%;
-                margin-top: 10px;
             }
             
-            .booking-title {
-                font-size: 24px;
-                margin-bottom: 8px;
-            }
-            
-            .booking-subtitle {
-                font-size: 14px;
-                margin-bottom: 20px;
+            .booking-card h1 {
+                font-size: 22px;
             }
             
             .form-row {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 0;
             }
             
@@ -185,7 +170,6 @@
             
             .form-group label {
                 font-size: 12px;
-                margin-bottom: 6px;
             }
             
             .form-group input,
@@ -194,91 +178,77 @@
                 font-size: 14px;
             }
             
-            .btn-prenota {
+            .btn-submit {
                 padding: 12px;
-                font-size: 13px;
-                letter-spacing: 1px;
-            }
-            
-            .alert {
-                padding: 12px;
-                font-size: 14px;
+                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
+    <div th:replace="~{fragments/header :: header}"></div>
 
-<div th:replace="~{fragments/header :: header}"></div>
-
-<section class="booking-section">
-    <div class="booking-container">
-        <h1 class="booking-title">Prenota un Tavolo</h1>
-        <p class="booking-subtitle">Riserva la tua esperienza culinaria</p>
-
-        <!-- Messaggio di errore -->
-        <div th:if="${error}" class="alert alert-error">
-            <span th:text="${error}">Errore</span>
-        </div>
-
-        <!-- Messaggio di successo -->
-        <div th:if="${success}" class="alert alert-success">
-            <span th:text="${success}">Prenotazione effettuata</span>
-        </div>
-
-        <form th:action="@{/prenota}" method="post">
-            <div class="form-group">
-                <label for="customerName">Nome e Cognome</label>
-                <input type="text" id="customerName" name="customerName" required 
-                       placeholder="Mario Rossi" th:value="${customerName}">
+    <main class="booking-page">
+        <div class="booking-card">
+            <h1>Prenota un Tavolo</h1>
+            <p class="subtitle">Ti aspettiamo</p>
+            
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}">Errore</span>
+            </div>
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}">Successo</span>
             </div>
 
-            <div class="form-row">
+            <form th:action="@{/prenota}" method="post">
+                <div class="form-group">
+                    <label for="name">Nome completo</label>
+                    <input type="text" id="name" name="name" required 
+                           th:value="${booking?.name}" placeholder="Mario Rossi">
+                </div>
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required 
-                           placeholder="mario@email.com" th:value="${email}">
+                           th:value="${booking?.email}" placeholder="mario.rossi@email.com">
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="phoneNumber">Telefono</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required 
-                           placeholder="+39 333 1234567" th:value="${phoneNumber}">
+                    <label for="phone">Telefono</label>
+                    <input type="tel" id="phone" name="phone" required 
+                           th:value="${booking?.phone}" placeholder="+39 333 1234567">
                 </div>
-            </div>
-
-            <div class="form-row">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Data</label>
+                        <input type="date" id="date" name="date" required 
+                               th:value="${booking?.date}">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Orario</label>
+                        <input type="time" id="time" name="time" required 
+                               th:value="${booking?.time}">
+                    </div>
+                </div>
+                
                 <div class="form-group">
-                    <label for="bookingDate">Data</label>
-                    <input type="date" id="bookingDate" name="bookingDate" required 
-                           th:value="${bookingDate}">
+                    <label for="guests">Numero ospiti</label>
+                    <input type="number" id="guests" name="guests" min="1" max="20" required 
+                           th:value="${booking?.guests}" placeholder="2">
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="bookingTime">Ora</label>
-                    <input type="time" id="bookingTime" name="bookingTime" required 
-                           th:value="${bookingTime}">
+                    <label for="notes">Note (opzionale)</label>
+                    <textarea id="notes" name="notes" 
+                              th:text="${booking?.notes}" placeholder="Allergie, richieste speciali..."></textarea>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="numberOfGuests">Numero Ospiti</label>
-                <input type="number" id="numberOfGuests" name="numberOfGuests" 
-                       min="1" max="20" required placeholder="2" th:value="${numberOfGuests}">
-            </div>
+                <button type="submit" class="btn-submit">Conferma Prenotazione</button>
+            </form>
+        </div>
+    </main>
 
-            <div class="form-group">
-                <label for="notes">Note (opzionale)</label>
-                <textarea id="notes" name="notes" 
-                          placeholder="Allergie, preferenze, occasioni speciali..." th:text="${notes}"></textarea>
-            </div>
-
-            <button type="submit" class="btn-prenota">Prenota Ora</button>
-        </form>
-    </div>
-</section>
-
-<div th:replace="~{fragments/footer :: footer}"></div>
-
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
