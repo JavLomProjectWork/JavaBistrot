@@ -3,48 +3,10 @@
     <link rel="stylesheet" href="../static/css/style.css">
     
     <div class="footer-links">
-
-    <div class="container footer-grid">
-        
-        <div class="footer-col">
-            <a th:href="@{/contatti}">Contatti</a>
-            <ul>
-                <li><i class="fas fa-map-marker-alt"></i> Milano ,via Brescia , 12 </li>
-                <li><i class="fas fa-phone"></i> (+39) 96 716 687 09</li>
-                <li><i class="fas fa-envelope"></i> contact@Nebbia & Zafferano.com</li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <a th:href="@{/details}">Details</a>
-            <ul>
-                <li>09:30 AM – 11:00 PM</li>
-                <li>Every Day</li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Gallery</h4>
-            <div class="footer-gallery">
-                <img src="../static/img/menu.webp" alt="Gallery 1">
-                <img src="../static/img/menu2.webp" alt="Gallery 2">
-                <img src="../static/img/menu3.webp" alt="Gallery 3">
-                <img src="../static/img/menu4.webp" alt="Gallery 4">
-                <img src="../static/img/menu5.webp" alt="Gallery 5">
-                <img src="../static/img/polenta.jpg" alt="Gallery 6">
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <a th:href="@{/login}">Area Privata</a>
-            <p>Accesso dedicato allo staff e all'amministrazione.</p>
-            <form class="login-mini">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button type="submit" class="btn-login">LOGIN</button>
-            </form>
-        </div>
-
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/menu}">Menu</a>
+        <a th:href="@{/prenota}">Prenotazione</a>
+        <a th:href="@{/auth/login}">Area Staff</a>
     </div>
 
     <div class="footer-bottom">

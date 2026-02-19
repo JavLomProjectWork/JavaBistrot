@@ -3,15 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>Menu</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
     </head>
 
     <body>
-        <header th:replace="fragments/header :: header"></header>
+        <header th:replace="~{fragments/header :: header}"></header>
 
-        <h1> Nebbia e Zafferano </h1>
+        <main class="menu-page">
+            <h1> Nebbia e Zafferano </h1>
 
-        <section class="antipasti">
+            <section class="antipasti">
             <h2>Antipasti</h2>
             <div class="card-container">
                 <div class="card">
@@ -180,11 +182,11 @@
                     <div class="card-inner">
                         <div class="card-front">
                         <h3>Tiramisù classico</h3>
-                        <img src="https://via.placeholder.com/150" alt="Dessert 1">
+                        <img src="/img/tiramisu.jpeg" alt="Tiramisù classico">
                         </div>
                         <div class="card-back">
-                            <p>Descrizione del piatto 1</p>
-                            <span class="price">€12</span>
+                            <p>Savoiardi al caffè espresso, crema al mascarpone e cacao amaro in polvere</p>
+                            <span class="price">€7</span>
                         </div>
                     </div>
                 </div>
@@ -192,11 +194,11 @@
                     <div class="card-inner">
                         <div class="card-front">
                         <h3>Cheesecake ai frutti di bosco</h3>
-                        <img src="https://via.placeholder.com/150" alt="Dessert 2">
+                        <img src="/img/cheesecake.jpeg" alt="Cheesecake ai frutti di bosco">
                         </div>
                         <div class="card-back">
-                            <p>Descrizione del piatto 2</p>
-                            <span class="price">€12</span>
+                            <p>Base croccante al burro, crema al formaggio e coulis di frutti rossi</p>
+                            <span class="price">€8</span>
                         </div>
                     </div>
                 </div>
@@ -204,11 +206,11 @@
                     <div class="card-inner">
                         <div class="card-front">
                         <h3>Panna cotta alla vaniglia con coulis di fragole</h3>
-                        <img src="https://via.placeholder.com/150" alt="Dessert 3">
+                        <img src="/img/pannacotta.jpeg" alt="Panna cotta alla vaniglia con coulis di fragole">
                         </div>
                         <div class="card-back">
-                            <p>Descrizione del piatto 3</p>
-                            <span class="price">€12</span>
+                            <p>Delicata panna cotta artigianale con salsa fresca alle fragole</p>
+                            <span class="price">€7</span>
                         </div>
                     </div>
                 </div>
@@ -216,17 +218,18 @@
                     <div class="card-inner">
                         <div class="card-front">
                         <h3>Mousse al cioccolato fondente</h3>
-                        <img src="https://via.placeholder.com/150" alt="Dessert 4">
+                        <img src="/img/mousse.jpeg" alt="Mousse al cioccolato fondente">
                         </div>
                         <div class="card-back">
-                            <p>Descrizione del piatto 4</p>
-                            <span class="price">€12</span>
+                            <p>Morbida mousse al 70% di cacao con scaglie di cioccolato fondente</p>
+                            <span class="price">€8</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </main>
 
-        <footer th:replace="fragments/footer :: footer"></footer>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
 </html>

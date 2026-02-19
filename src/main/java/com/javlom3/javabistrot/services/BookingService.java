@@ -114,12 +114,11 @@ public class BookingService {
 	}
 
 	@Transactional
-	public boolean deleteBooking(Long id) {
+	public void deleteBooking(Long id) {
 		if (!bookingRepo.existsById(id)) {
-			return false;
-		}
-		bookingRepo.deleteById(id);
-		return true;
+            throw new IllegalArgumentException("Prenotazione con id " + id + " non trovata");
+        }
+        bookingRepo.deleteById(id);
 	}
 
 	private Set<User> resolveWaiters(Set<Long> waiterIds) {
@@ -134,6 +133,13 @@ public class BookingService {
             .stream()
             .map(bookingMapper::toDto)
             .toList();
+    }
+
+    public int countGuestsByDay(LocalDate date) {
+        return bookingRepo.findByBookingDateTimeBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX))
+            .stream()
+            .mapToInt(Booking::getNumberOfGuests)
+            .sum();
     }
     
     public List<BookingDTO> getByCustomerName(String name) {

@@ -7,12 +7,7 @@
 </head>
 <body>
 
-    <div th:replace="~{fragments/header :: header}"></div>
-
-   <section class="hero">
-    <div class="hero-bg-image"></div>
-    
-    <div class="hero-overlay"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 
     <div class="hero-content">
         <span class="sub-title anim-fade-down">Benvenuti al Ristorante</span>
@@ -90,64 +85,7 @@
     </div>
 </section>
 
-
-
-
-<footer class="main-footer" th:fragment="footer" class="footer">
-    
-    <div class="footer-links">
-
-    <div class="container footer-grid">
-        
-        <div class="footer-col">
-            <a th:href="@{/contatti}">Contatti</a>
-            <ul>
-                <li><i class="fas fa-map-marker-alt"></i> Milano ,via Brescia , 12 </li>
-                <li><i class="fas fa-phone"></i> (+39) 96 716 687 09</li>
-                <li><i class="fas fa-envelope"></i> contact@Nebbia & Zafferano.com</li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <a th:href="@{/details}">Details</a>
-            <ul>
-                <li>09:30 AM – 11:00 PM</li>
-                <li>Every Day</li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h4>Gallery</h4>
-            <div class="footer-gallery">
-                <img src="../static/img/menu.webp" alt="Gallery 1">
-                <img src="../static/img/menu2.webp" alt="Gallery 2">
-                <img src="../static/img/menu3.webp" alt="Gallery 3">
-                <img src="../static/img/menu4.webp" alt="Gallery 4">
-                <img src="../static/img/menu5.webp" alt="Gallery 5">
-                <img src="../static/img/gallery5.jpg" alt="Gallery 6">
-            </div>
-        </div>
-
-        <div class="footer-col">
-            <a th:href="@{/login}">Area Privata</a>
-            <p>Accesso dedicato allo staff e all'amministrazione.</p>
-            <form class="login-mini">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button type="submit" class="btn-login">LOGIN</button>
-            </form>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-       <p>© 2026 Nebbia & Zafferano - Fine Dining Experience</p>
-    </div>
-   </div>
-</footer>
-
-
-
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

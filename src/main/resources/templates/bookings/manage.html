@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Prenotazioni - JavaBistrot</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}" />
+    <style>
+        .bookings-container {
+            background: var(--card);
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        
+        .bookings-title {
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        
+        .bookings-subtitle {
+            color: var(--ink);
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .date-selector {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .date-selector label {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .date-selector input[type="date"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .date-nav-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .date-nav-btn:hover {
+            background: var(--accent-dark);
+            transform: scale(1.1);
+        }
+        
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            min-width: 800px;
+        }
+        
+        .bookings-table th,
+        .bookings-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .bookings-table th {
+            background: var(--bg);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .bookings-table tr:hover {
+            background: #fafafa;
+        }
+        
+        .booking-time {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .booking-guests {
+            background: var(--accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        .notes-form {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .notes-form textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-save {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background: #218838;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        
+        .waiter-section {
+            margin-top: 10px;
+        }
+        
+        .waiter-tag {
+            display: inline-flex;
+            align-items: center;
+            background: #e9ecef;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin: 2px;
+            font-size: 0.85rem;
+        }
+        
+        .waiter-tag button {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+        
+        .waiter-assign {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .waiter-assign select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn-assign {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-assign:hover {
+            background: var(--accent-dark);
+        }
+        
+        .guests-counter {
+            background: var(--accent);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .guests-counter h3 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .guests-counter p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+        
+        .btn-back {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .btn-back:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: var(--ink);
+            opacity: 0.6;
+            padding: 40px;
+            background: var(--bg);
+            border-radius: 6px;
+        }
+        
+        .actions-cell {
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="bookings-container">
+            <h1 class="bookings-title">Gestione Prenotazioni</h1>
+            <p class="bookings-subtitle">Visualizza e gestisci le prenotazioni del ristorante</p>
+
+            <!-- Messaggi -->
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}">Errore</span>
+            </div>
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}">Successo</span>
+            </div>
+
+            <!-- Selettore Data -->
+            <div class="date-selector">
+                <button type="button" class="date-nav-btn" id="prevDay" title="Giorno precedente">&#8249;</button>
+                <input type="date" id="date" th:value="${selectedDate}">
+                <button type="button" class="date-nav-btn" id="nextDay" title="Giorno successivo">&#8250;</button>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const dateInput = document.getElementById('date');
+                    const prevBtn = document.getElementById('prevDay');
+                    const nextBtn = document.getElementById('nextDay');
+                    
+                    function navigateToDate(dateStr) {
+                        window.location.href = '/bookings/manage?date=' + dateStr;
+                    }
+                    
+                    function changeDate(days) {
+                        const current = new Date(dateInput.value);
+                        current.setDate(current.getDate() + days);
+                        const newDate = current.toISOString().split('T')[0];
+                        navigateToDate(newDate);
+                    }
+                    
+                    dateInput.addEventListener('change', function() {
+                        navigateToDate(this.value);
+                    });
+                    
+                    prevBtn.addEventListener('click', function() {
+                        changeDate(-1);
+                    });
+                    
+                    nextBtn.addEventListener('click', function() {
+                        changeDate(1);
+                    });
+                });
+            </script>
+
+            <!-- Contatore Coperti -->
+            <div class="guests-counter">
+                <h3 th:text="${totalGuests}">0</h3>
+                <p>Coperti prenotati per il <span th:text="${#temporals.format(selectedDate, 'dd/MM/yyyy')}">data</span></p>
+            </div>
+
+            <!-- Lista Prenotazioni -->
+            <table class="bookings-table" th:if="${!bookings.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Ora</th>
+                        <th>Cliente</th>
+                        <th>Contatti</th>
+                        <th>Coperti</th>
+                        <th>Note</th>
+                        <th>Camerieri</th>
+                        <th class="actions-cell">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="booking : ${bookings}">
+                        <td class="booking-time" th:text="${#temporals.format(booking.bookingDateTime, 'HH:mm')}">19:00</td>
+                        <td th:text="${booking.customerName}">Mario Rossi</td>
+                        <td>
+                            <div th:text="${booking.email}">email@email.com</div>
+                            <div th:text="${booking.phoneNumber}">+39 123 456</div>
+                        </td>
+                        <td>
+                            <span class="booking-guests" th:text="${booking.numberOfGuests}">2</span>
+                        </td>
+                        <td>
+                            <form th:action="@{/bookings/update-notes}" method="post" class="notes-form">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <textarea name="notes" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
+                                <button type="submit" class="btn-small btn-save">Salva</button>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="waiter-section">
+                                <!-- Camerieri assegnati -->
+                                <span th:each="waiterId : ${booking.assignedWaiterIds}" class="waiter-tag">
+                                    <span th:text="${waiterNames['' + waiterId]}">Cameriere</span>
+                                    <form th:if="${isMaitre}" th:action="@{/bookings/remove-waiter}" method="post" style="display: inline;">
+                                        <input type="hidden" name="bookingId" th:value="${booking.id}">
+                                        <input type="hidden" name="waiterId" th:value="${waiterId}">
+                                        <input type="hidden" name="date" th:value="${selectedDate}">
+                                        <button type="submit" title="Rimuovi">&times;</button>
+                                    </form>
+                                </span>
+                                
+                                <!-- Form aggiungi cameriere (solo MAITRE) -->
+                                <form th:if="${isMaitre}" th:action="@{/bookings/assign-waiter}" method="post" class="waiter-assign">
+                                    <input type="hidden" name="bookingId" th:value="${booking.id}">
+                                    <input type="hidden" name="date" th:value="${selectedDate}">
+                                    <select name="waiterId">
+                                        <option value="">-- Seleziona --</option>
+                                        <option th:each="waiter : ${activeWaiters}" 
+                                                th:value="${waiter.id}" 
+                                                th:text="${waiter.username}">Cameriere</option>
+                                    </select>
+                                    <button type="submit" class="btn-small btn-assign">Assegna</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td class="actions-cell">
+                            <form th:action="@{/bookings/delete}" method="post" 
+                                  onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');">
+                                <input type="hidden" name="id" th:value="${booking.id}">
+                                <input type="hidden" name="date" th:value="${selectedDate}">
+                                <button type="submit" class="btn-small btn-delete">Elimina</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Messaggio lista vuota -->
+            <div th:if="${bookings.isEmpty()}" class="empty-message">
+                <p>Nessuna prenotazione per questa data.</p>
+            </div>
+
+            <a th:href="@{/dashboard}" class="btn-back">← Torna alla Dashboard</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenota - Nebbia & Zafferano</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .booking-section {
+            min-height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('/img/sfondo.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .booking-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .booking-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #222;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .booking-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #D4AF37;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .btn-prenota {
+            width: 100%;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .btn-prenota:hover {
+            background-color: #ec1c24;
+            transform: translateY(-2px);
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section class="booking-section">
+    <div class="booking-container">
+        <h1 class="booking-title">Prenota un Tavolo</h1>
+        <p class="booking-subtitle">Riserva la tua esperienza culinaria</p>
+
+        <!-- Messaggio di errore -->
+        <div th:if="${error}" class="alert alert-error">
+            <span th:text="${error}">Errore</span>
+        </div>
+
+        <!-- Messaggio di successo -->
+        <div th:if="${success}" class="alert alert-success">
+            <span th:text="${success}">Prenotazione effettuata</span>
+        </div>
+
+        <form th:action="@{/prenota}" method="post">
+            <div class="form-group">
+                <label for="customerName">Nome e Cognome</label>
+                <input type="text" id="customerName" name="customerName" required 
+                       placeholder="Mario Rossi" th:value="${customerName}">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required 
+                           placeholder="mario@email.com" th:value="${email}">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Telefono</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required 
+                           placeholder="+39 333 1234567" th:value="${phoneNumber}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bookingDate">Data</label>
+                    <input type="date" id="bookingDate" name="bookingDate" required 
+                           th:value="${bookingDate}">
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingTime">Ora</label>
+                    <input type="time" id="bookingTime" name="bookingTime" required 
+                           th:value="${bookingTime}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="numberOfGuests">Numero Ospiti</label>
+                <input type="number" id="numberOfGuests" name="numberOfGuests" 
+                       min="1" max="20" required placeholder="2" th:value="${numberOfGuests}">
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Note (opzionale)</label>
+                <textarea id="notes" name="notes" 
+                          placeholder="Allergie, preferenze, occasioni speciali..." th:text="${notes}"></textarea>
+            </div>
+
+            <button type="submit" class="btn-prenota">Prenota Ora</button>
+        </form>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
