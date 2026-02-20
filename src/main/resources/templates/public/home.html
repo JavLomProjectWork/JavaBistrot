@@ -76,57 +76,6 @@ Curiamo ogni dettaglio, dall'allestimento dei tavoli al menù personalizzato, pe
     </div>
 </section>
 
-<section class="reviews-section">
-        <h2 class="section-title2">Cosa Dicono i Clienti</h2>
-        <p class="section-subtitle">Scopri le testimonianze dei nostri clienti soddisfatti</p>
-        
-        <div class="carousel-container">
-        <div class="carousel">
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 1">
-            </div>
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 2">
-            </div>
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 3">
-            </div>
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 4">
-            </div>
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 5">
-            </div>
-            <div class="carousel-item">
-                <img  th:src="@{/img/cuoco.webp}"  alt="Immagine 6">
-            </div>
-        </div>
-    </div>
-
-    <div class="messages">
-        <div class="message active">Il cadro pulito e conviviale</div>
-        <div class="message">La cucina è eccelente</div>
-        <div class="message">Perfetto ! ogni dettaglio è curato</div>
-        <div class="message">Professionisti rari da trovare</div>
-        <div class="message">Un gioiello nel cuore della città</div>
-        <div class="message">Consigliatissimo!</div>
-    </div>
-
-    <script>
-        const items = document.querySelectorAll('.carousel-item');
-        const messages = document.querySelectorAll('.message');
-        let currentIndex = 0;
-
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % 6;
-            messages.forEach((msg, i) => {
-                msg.classList.toggle('active', i === currentIndex);
-            });
-        }, 10000);  // Cambia messaggio ogni 5s
-    </script>
-
-</section>
-
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
