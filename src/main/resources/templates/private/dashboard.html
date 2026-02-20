@@ -31,6 +31,9 @@
                 <a th:if="${role == 'MAITRE' or role == 'WAITER'}" th:href="@{/bookings/manage}" class="btn-staff">
                     Gestione Prenotazioni
                 </a>
+                <a th:if="${role == 'MAITRE' or role == 'WAITER'}" th:href="@{/bookings/add}" class="btn-staff">
+                    + Aggiungi Prenotazione
+                </a>
                 
                 <!-- Solo per MAITRE -->
                 <a th:if="${role == 'MAITRE'}" th:href="@{/staff/manage}" class="btn-staff">

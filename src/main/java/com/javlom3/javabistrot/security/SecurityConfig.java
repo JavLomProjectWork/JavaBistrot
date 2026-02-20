@@ -18,7 +18,7 @@ public class SecurityConfig {
                 .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 
                 // Pagine pubbliche del ristorante
-                .requestMatchers("/", "/home", "/menu", "/prenota").permitAll()
+                .requestMatchers("/", "/home", "/menu", "/prenota", "/contatti").permitAll()
                 
                 // Pagine di autenticazione - accessibili a tutti
                 .requestMatchers("/auth/login", "/auth/login-error").permitAll()
