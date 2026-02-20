@@ -180,6 +180,9 @@ public class BookingManageController {
             redirectAttributes.addFlashAttribute("success", "Prenotazione aggiunta con successo");
         } catch (Exception e) {
             String errorMessage = e.getMessage();
+            if (customerName == null || customerName.trim().isEmpty()) {
+                errorMessage = "Nome non valido.";
+            }
             if (errorMessage != null && errorMessage.contains("phone")) {
                 errorMessage = "Numero di telefono non valido.";
             }
