@@ -161,12 +161,6 @@ public class BookingManageController {
             @RequestParam(required = false) String notes,
             Authentication authentication,
             RedirectAttributes redirectAttributes) {
-        boolean isMaitreOrWaiter = authentication != null && authentication.getAuthorities().stream()
-            .anyMatch(a -> a.getAuthority().equals("ROLE_MAITRE") || a.getAuthority().equals("ROLE_WAITER"));
-        if (!isMaitreOrWaiter) {
-            redirectAttributes.addFlashAttribute("error", "Non autorizzato");
-            return "redirect:/dashboard";
-        }
         try {
             var date = java.time.LocalDate.parse(bookingDate);
             var time = java.time.LocalTime.parse(bookingTime);
@@ -185,7 +179,15 @@ public class BookingManageController {
             bookingService.createBooking(bookingDTO);
             redirectAttributes.addFlashAttribute("success", "Prenotazione aggiunta con successo");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            String errorMessage = e.getMessage();
+            if (errorMessage != null && errorMessage.contains("phone")) {
+                errorMessage = "Numero di telefono non valido.";
+            }
+            if (errorMessage != null && errorMessage.contains("email")) {
+                errorMessage = "email non valida.";
+            }
+            redirectAttributes.addFlashAttribute("error", errorMessage);
+            return "redirect:/bookings/add";
         }
         return "redirect:/bookings/manage";
     }
