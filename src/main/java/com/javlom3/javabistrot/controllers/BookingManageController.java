@@ -91,7 +91,7 @@ public class BookingManageController {
             bookingService.updateBooking(id, dto);
             redirectAttributes.addFlashAttribute("success", "Note aggiornate con successo");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", "Impossibile modificare prenotazione passata.");
         }
         return "redirect:/bookings/manage?date=" + date;
     }
