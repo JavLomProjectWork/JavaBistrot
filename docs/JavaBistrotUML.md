@@ -233,37 +233,37 @@ classDiagram
     Dish --> DishType: type
     
     %% DTO relationships
-    UserDTO --|> User: maps to
-    BookingDTO --|> Booking: maps to
-    DishDTO --|> Dish: maps to
+    UserDTO --|> UserMapper: maps to
+    BookingDTO --|> BookingMapper: maps to
+    DishDTO --|> DishMapper: maps to
     
     %% Mapper relationships
+    %%UserMapper --> User: converts
     UserMapper --> User: converts
-    UserMapper --> UserDTO: converts
+    %%BookingMapper --> Booking: converts
     BookingMapper --> Booking: converts
-    BookingMapper --> BookingDTO: converts
     DishMapper --> Dish: converts
-    DishMapper --> DishDTO: converts
+    %%DishMapper --> DishDTO: converts
     
     %% Repository relationships
-    UserRepo --> User: manages
-    BookingRepo --> Booking: manages
-    DishRepo --> Dish: manages
+    UserRepo --> UserDTO: manages
+    BookingRepo --> BookingDTO: manages
+    DishRepo --> DishDTO: manages
     
     %% Service relationships
     UserService --> UserRepo: uses
-    UserService --> UserMapper: uses
+    %%UserService --> UserMapper: uses
     BookingService --> BookingRepo: uses
-    BookingService --> BookingMapper: uses
+    %%BookingService --> BookingMapper: uses
     DishService --> DishRepo: uses
-    DishService --> DishMapper: uses
+    %%DishService --> DishMapper: uses
     
     %% Controller relationships
     LoginController --> UserService: uses
+    MenuManageController --> DishService: uses
     PublicController --> DishService: uses
     PublicController --> BookingService: uses
     BookingManageController --> BookingService: uses
-    MenuManageController --> DishService: uses
     StaffController --> UserService: uses
     BookingRESTController --> BookingService: uses
     UserRESTController --> UserService: uses
