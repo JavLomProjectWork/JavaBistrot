@@ -135,6 +135,7 @@
                                 <input type="hidden" name="date" th:value="${selectedDate}">
                                 <button type="submit" class="btn-small btn-deactivate">Disattiva</button>
                             </form>
+                            <a th:href="@{/bookings/edit(id=${booking.id})}" class="btn-small btn-edit" style="display: inline-block; padding: 6px 12px; text-decoration: none; background-color: #4CAF50; color: white; border-radius: 4px; font-size: 0.85rem; cursor: pointer;">Modifica</a>
                             <form th:action="@{/bookings/delete}" method="post" 
                                   onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${booking.id}">
@@ -212,6 +213,7 @@
                                 <input type="hidden" name="date" th:value="${selectedDate}">
                                 <button type="submit" class="btn-small btn-activate">Attiva</button>
                             </form>
+                            <a th:href="@{/bookings/edit(id=${booking.id})}" class="btn-small btn-edit" style="display: inline-block; padding: 6px 12px; text-decoration: none; background-color: #4CAF50; color: white; border-radius: 4px; font-size: 0.85rem; cursor: pointer;">Modifica</a>
                             <form th:action="@{/bookings/delete}" method="post" 
                                   onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${booking.id}">
