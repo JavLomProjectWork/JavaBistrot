@@ -15,8 +15,10 @@ import com.javlom3.javabistrot.mapper.UserMapper;
 import com.javlom3.javabistrot.repositories.UserRepo;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo;
@@ -31,18 +33,21 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepo.findByUsername(username)
-                .filter(user -> Boolean.TRUE.equals(user.getActive()))
-                .orElseThrow(() -> new UsernameNotFoundException("Utente non trovato o non attivo: " + username));
+        var userOpt = userRepo.findByUsername(username).filter(user -> Boolean.TRUE.equals(user.getActive()));
+        if (userOpt.isEmpty()) {
+            throw new UsernameNotFoundException("Utente non trovato o non attivo: " + username);
+        }
+        return userOpt.get();
     }
 
     @Transactional
     public Optional<UserDTO> createUser(UserDTO userDTO, String password) {
         // Verifica se l'username esiste già
+        log.info("createUser username={}", userDTO.username());
         if (userRepo.findByUsername(userDTO.username()).isPresent()) {
             throw new IllegalArgumentException("Username " + userDTO.username() + " già in uso");
         }
-        
+
         User newUser = userMapper.toEntity(userDTO);
         newUser.setActive(userDTO.active());
         newUser.setPassword(passwordEncoder.encode(password));
@@ -55,6 +60,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public Optional<UserDTO> updateUser(Long id, UserDTO userDTO, String password) {
+        log.info("updateUser id={}", id);
         return userRepo.findById(id).map(existing -> {
             if (userDTO.username() != null) {
                 existing.setUsername(userDTO.username());

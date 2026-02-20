@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import com.javlom3.javabistrot.dto.BookingDTO;
 import com.javlom3.javabistrot.entities.Booking;
@@ -19,6 +20,7 @@ import com.javlom3.javabistrot.repositories.UserRepo;
 import jakarta.transaction.Transactional;
 
 @Service
+@Slf4j
 public class BookingService {
 		public static final int MAX_DAYS_IN_FUTURE = 90;
 	// Orari prenotazione facilmente modificabili
@@ -29,6 +31,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> toggleActive(Long id) {
+		log.info("toggleActive id={}", id);
 		return bookingRepo.findById(id).map(booking -> {
 			booking.setActive(booking.getActive() == null ? Boolean.TRUE : !booking.getActive());
 			Booking updated = bookingRepo.save(booking);
@@ -58,6 +61,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> createBooking(BookingDTO dto) {
+		log.info("createBooking dateTime={}", dto.bookingDateTime());
 		// Restrizione orario: solo tra 12-14 e 19-21
 		if (dto.bookingDateTime() != null) {
 			LocalTime time = dto.bookingDateTime().toLocalTime();
@@ -90,6 +94,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> updateBooking(Long id, BookingDTO dto) {
+		log.info("updateBooking id={}", id);
 		return bookingRepo.findById(id).map(existing -> {
 			if (dto.customerName() != null) {
 				existing.setCustomerName(dto.customerName());
@@ -122,6 +127,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> addWaiter(Long bookingId, Long waiterId) {
+		log.info("addWaiter bookingId={} waiterId={}", bookingId, waiterId);
 		if (waiterId == null) {
 			return bookingRepo.findById(bookingId).map(bookingMapper::toDto);
 		}
@@ -139,6 +145,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> removeWaiter(Long bookingId, Long waiterId) {
+		log.info("removeWaiter bookingId={} waiterId={}", bookingId, waiterId);
 		if (waiterId == null) {
 			return bookingRepo.findById(bookingId).map(bookingMapper::toDto);
 		}
@@ -157,6 +164,7 @@ public class BookingService {
 
 	@Transactional
 	public void deleteBooking(Long id) {
+		log.info("deleteBooking id={}", id);
 		if (!bookingRepo.existsById(id)) {
             throw new IllegalArgumentException("Prenotazione con id " + id + " non trovata");
         }
