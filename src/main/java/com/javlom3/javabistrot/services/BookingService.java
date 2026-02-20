@@ -20,6 +20,12 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class BookingService {
+		public static final int MAX_DAYS_IN_FUTURE = 90;
+	// Orari prenotazione facilmente modificabili
+	public static final java.time.LocalTime LUNCH_START = java.time.LocalTime.of(12, 0);
+	public static final java.time.LocalTime LUNCH_END = java.time.LocalTime.of(14, 0);
+	public static final java.time.LocalTime DINNER_START = java.time.LocalTime.of(19, 0);
+	public static final java.time.LocalTime DINNER_END = java.time.LocalTime.of(21, 0);
 
 	@Transactional
 	public Optional<BookingDTO> toggleActive(Long id) {
@@ -52,6 +58,20 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> createBooking(BookingDTO dto) {
+		// Restrizione orario: solo tra 12-14 e 19-21
+		if (dto.bookingDateTime() != null) {
+			LocalTime time = dto.bookingDateTime().toLocalTime();
+			boolean valid = (time.compareTo(LUNCH_START) >= 0 && time.compareTo(LUNCH_END) <= 0) ||
+						   (time.compareTo(DINNER_START) >= 0 && time.compareTo(DINNER_END) <= 0);
+			if (!valid) {
+				throw new IllegalArgumentException("L'orario di prenotazione deve essere tra le " + LUNCH_START + "-" + LUNCH_END + " o tra le " + DINNER_START + "-" + DINNER_END + ".");
+			}
+			LocalDate date = dto.bookingDateTime().toLocalDate();
+			valid = (!date.isBefore(LocalDate.now()) && !date.isAfter(LocalDate.now().plusDays(MAX_DAYS_IN_FUTURE)));
+            
+            if (!valid) {
+                throw new IllegalArgumentException("La data di prenotazione non può essere nel passato e deve essere entro " + MAX_DAYS_IN_FUTURE + " giorni da oggi.");}
+			}
 		Booking entity = bookingMapper.toEntity(dto);
 		entity.setAssignedWaiters(resolveWaiters(dto.assignedWaiterIds()));
 		Booking saved = bookingRepo.save(entity);
