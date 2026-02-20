@@ -32,15 +32,15 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" required placeholder="Nome del piatto">
+                            <input type="text" id="name" class="white-bg" name="name" required placeholder="Nome del piatto">
                         </div>
                         <div class="form-group small">
                             <label for="price">Prezzo (€)</label>
-                            <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="12.00">
+                            <input type="number" id="price" class="white-bg" name="price" step="0.01" min="0" required placeholder="12.00">
                         </div>
                         <div class="form-group small">
                             <label for="type">Tipo</label>
-                            <select id="type" name="type" required>
+                            <select id="type" class="white-bg" name="type" required>
                                 <option th:each="t : ${dishTypes}" th:value="${t}" th:text="${t}">TIPO</option>
                             </select>
                         </div>
@@ -48,7 +48,7 @@
                     <div class="form-row" style="margin-top: 15px;">
                         <div class="form-group description">
                             <label for="description">Descrizione</label>
-                            <input type="text" id="description" name="description" placeholder="Descrizione del piatto">
+                            <input type="text" id="description" class="white-bg" name="description" placeholder="Descrizione del piatto">
                         </div>
                         <button type="submit" class="btn-add">Aggiungi</button>
                     </div>

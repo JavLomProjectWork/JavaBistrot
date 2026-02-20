@@ -101,7 +101,7 @@
                             <form th:action="@{/bookings/update-notes}" method="post" class="notes-form">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
-                                <textarea name="notes" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
+                                <textarea name="notes" class="white-bg" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
                                 <button type="submit" class="btn-small btn-save">Salva</button>
                             </form>
                         </td>
@@ -178,7 +178,7 @@
                             <form th:action="@{/bookings/update-notes}" method="post" class="notes-form">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
-                                <textarea name="notes" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
+                                <textarea name="notes" class="white-bg" placeholder="Aggiungi note..." th:inline="text">[[${booking.notes}]]</textarea>
                                 <button type="submit" class="btn-small btn-save">Salva</button>
                             </form>
                         </td>
