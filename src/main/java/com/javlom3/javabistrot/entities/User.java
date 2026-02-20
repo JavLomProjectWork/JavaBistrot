@@ -7,6 +7,7 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -77,5 +78,15 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled() {
         return Boolean.TRUE.equals(this.active);
+    }
+    
+    @PreRemove
+    private void removeAssociationsWithBookings() {
+        if (this.bookings != null) {
+            // Rimuove questo utente dal set di camerieri di ogni prenotazione ad esso associata
+            for (Booking booking : this.bookings) {
+                booking.getAssignedWaiters().remove(this);
+            }
+        }
     }
 }
