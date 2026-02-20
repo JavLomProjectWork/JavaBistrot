@@ -12,8 +12,10 @@ import com.javlom3.javabistrot.mapper.DishMapper;
 import com.javlom3.javabistrot.repositories.DishRepo;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class DishService {
 
     private final DishRepo dishRepo;
@@ -26,6 +28,7 @@ public class DishService {
 
     @Transactional
     public DishDTO createDish(DishDTO dto) {
+        log.info("createDish name={}", dto.name());
         Dish entity = dishMapper.toEntity(dto);
         Dish saved = dishRepo.save(entity);
         return dishMapper.toDto(saved);
@@ -53,6 +56,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> updateDish(Long id, DishDTO dto) {
+        log.info("updateDish id={}", id);
         return dishRepo.findById(id).map(existing -> {
             if (dto.name() != null) {
                 existing.setName(dto.name());
@@ -76,6 +80,7 @@ public class DishService {
 
     @Transactional
     public boolean deleteDish(Long id) {
+        log.info("deleteDish id={}", id);
         if (dishRepo.existsById(id)) {
             dishRepo.deleteById(id);
             return true;
@@ -95,6 +100,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> toggleActive(Long id) {
+        log.info("toggleActive id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(!dish.getActive());
             Dish updated = dishRepo.save(dish);
@@ -104,6 +110,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> activateDish(Long id) {
+        log.info("activateDish id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(true);
             Dish updated = dishRepo.save(dish);
@@ -113,6 +120,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> deactivateDish(Long id) {
+        log.info("deactivateDish id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(false);
             Dish updated = dishRepo.save(dish);
@@ -122,6 +130,7 @@ public class DishService {
 
     @Transactional
     public List<DishDTO> getInactiveDishes() {
+        log.info("getInactiveDishes");
         return dishRepo.findByActiveFalse().stream().map(dishMapper::toDto).toList();
     }
 }
