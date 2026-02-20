@@ -48,8 +48,8 @@ public class Booking {
     @ManyToMany
     @JoinTable(
         name = "booking_waiters",
-        joinColumns = @JoinColumn(name = "booking_id"),
-        inverseJoinColumns = @JoinColumn(name = "waiter_id")
+        joinColumns = @JoinColumn(name = "booking_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)),
+        inverseJoinColumns = @JoinColumn(name = "waiter_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     )
     private Set<User> assignedWaiters; 
 
