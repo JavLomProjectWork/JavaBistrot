@@ -1,7 +1,6 @@
 ```mermaid
 flowchart TD
     subgraph BookingService
-        BT[toggleActive] -->|log.info| BTlog["toggleActive called for booking id={}"]
         BC[createBooking] -->|log.info| BClog["createBooking called with dto={}"]
         BU[updateBooking] -->|log.info| BUlog["updateBooking called for id={} with dto={}"]
         BW[addWaiter] -->|log.info| BWlog["addWaiter called for bookingId={} waiterId={}"]
@@ -10,8 +9,8 @@ flowchart TD
     end
     subgraph DishService
         DC[createDish] -->|log.info| DClog["createDish called dto={}"]
+        DU[updateDish] -->|log.info| DUlog["updateDish called for id={} with dto={}"]
         DD[deleteDish] -->|log.info| DDlog["deleteDish id={}"]
-        DT[toggleActive] -->|log.info| DTlog["toggleActive dish called id={}"]
     end
     subgraph UserService
         UC[createUser] -->|log.info| UClog["createUser username={}"]
