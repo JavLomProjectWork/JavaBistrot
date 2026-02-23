@@ -4,7 +4,8 @@
 
 ```mermaid
 erDiagram
-    USER ||--o{ BOOKING : "assigns"
+    USER ||--o{ BOOKING_WAITERS : ""
+    BOOKING ||--o{ BOOKING_WAITERS : ""
     
     
     USER {
@@ -16,8 +17,8 @@ erDiagram
     }
     
     BOOKING_WAITERS {
-        booking_id FK
-        user_id FK
+        long booking_id FK
+        long user_id FK
     }
 
     BOOKING {
