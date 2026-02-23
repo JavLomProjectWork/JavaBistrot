@@ -448,7 +448,7 @@ h1, h2, h3, h4 {
 }
 
 .manage-container.wide {
-    max-width: 1200px;
+    max-width: 1300px;
 }
 
 .manage-title {
@@ -1323,15 +1323,4 @@ select:-webkit-autofill */
             .grid-container {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .data-table td[data-label="Note"] {
-            min-width: 200px;
-            max-width: 300px;
-        }
-
-        .notes-form textarea {
-            width: 100%;
-            min-height: 60px;
-            resize: vertical; 
         }
