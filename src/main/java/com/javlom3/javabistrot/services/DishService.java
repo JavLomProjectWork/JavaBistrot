@@ -28,7 +28,7 @@ public class DishService {
 
     @Transactional
     public DishDTO createDish(DishDTO dto) {
-        log.info("createDish name={}", dto.name());
+        log.info("createDish called dto={}", dto);
         Dish entity = dishMapper.toEntity(dto);
         Dish saved = dishRepo.save(entity);
         return dishMapper.toDto(saved);
@@ -100,7 +100,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> toggleActive(Long id) {
-        log.info("toggleActive id={}", id);
+        log.info("toggleActive dish called id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(!dish.getActive());
             Dish updated = dishRepo.save(dish);
@@ -110,7 +110,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> activateDish(Long id) {
-        log.info("activateDish id={}", id);
+        log.info("activateDish called id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(true);
             Dish updated = dishRepo.save(dish);
@@ -120,7 +120,7 @@ public class DishService {
 
     @Transactional
     public Optional<DishDTO> deactivateDish(Long id) {
-        log.info("deactivateDish id={}", id);
+        log.info("deactivateDish called id={}", id);
         return dishRepo.findById(id).map(dish -> {
             dish.setActive(false);
             Dish updated = dishRepo.save(dish);
@@ -130,7 +130,6 @@ public class DishService {
 
     @Transactional
     public List<DishDTO> getInactiveDishes() {
-        log.info("getInactiveDishes");
         return dishRepo.findByActiveFalse().stream().map(dishMapper::toDto).toList();
     }
 }

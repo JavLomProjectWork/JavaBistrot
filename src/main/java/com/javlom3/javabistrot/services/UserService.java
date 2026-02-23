@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var userOpt = userRepo.findByUsername(username).filter(user -> Boolean.TRUE.equals(user.getActive()));
         if (userOpt.isEmpty()) {
+            log.warn("Utente non trovato o non attivo: {}", username);
             throw new UsernameNotFoundException("Utente non trovato o non attivo: " + username);
         }
         return userOpt.get();
@@ -98,7 +99,9 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void deleteUser(Long id) {
+        log.info("deleteUser called for id={}", id);
         if (!userRepo.existsById(id)) {
+            log.warn("Utente con id {} non trovato", id);
             throw new IllegalArgumentException("Utente con id " + id + " non trovato");
         }
         userRepo.deleteById(id);
