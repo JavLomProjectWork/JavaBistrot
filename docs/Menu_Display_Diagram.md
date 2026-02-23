@@ -1,5 +1,41 @@
 # Menu Display Flow - Activity Diagram
 
+## Flusso Visualizzazione Menu
+
+| Fase | Componente | Azione |
+|------|-----------|--------|
+| Request | Browser | Richiesta GET /menu |
+| Controller | PublicController | Riceve richiesta GET |
+| Service | DishService | Recupera piatti attivi |
+| Repository | DishRepo | Query SELECT con filtro active=true |
+| Database | Database | Ritorna lista piatti |
+| Mapping | DishMapper | Converte entities in DTO |
+| View | Thymeleaf | Renderizza template menu.html |
+| Styling | CSS | Applica style.css + menu.css |
+| Output | Browser | Visualizza menu formattato |
+
+## Colori CSS Utilizzati
+
+- **style.css** - Stili globali della pagina
+- **menu.css** - Stili specifici del menu (layout piatti, prezzi, descrizioni)
+
+## Componenti Coinvolti
+
+| Componente | Ruolo |
+|-----------|-------|
+| **PublicController** | Gestisce le richieste pubbliche (home, menu, contatti) |
+| **DishService** | Logica di recupero e filtraggio dei piatti |
+| **DishMapper** | Converte Dish entity in DTO |
+| **DishRepo** | Accesso ai dati dei piatti dal database |
+| **Thymeleaf** | Template engine per renderizzare l'HTML |
+| **CSS Files** | Styling della pagina |
+
+## File Coinvolti
+
+- **menu.html** - Template della pagina menu
+- **style.css** - Foglio di stile principale
+- **menu.css** - Foglio di stile specifico per il menu
+
 ```mermaid
 graph TD
     Start([Utente accede a /menu]) --> RequestGet["GET /menu"]
@@ -42,38 +78,4 @@ graph TD
     style End2 stroke:#27AE60,stroke-width:2px
 ```
 
-## Flusso Visualizzazione Menu
 
-| Fase | Componente | Azione |
-|------|-----------|--------|
-| Request | Browser | Richiesta GET /menu |
-| Controller | PublicController | Riceve richiesta GET |
-| Service | DishService | Recupera piatti attivi |
-| Repository | DishRepo | Query SELECT con filtro active=true |
-| Database | Database | Ritorna lista piatti |
-| Mapping | DishMapper | Converte entities in DTO |
-| View | Thymeleaf | Renderizza template menu.html |
-| Styling | CSS | Applica style.css + menu.css |
-| Output | Browser | Visualizza menu formattato |
-
-## Colori CSS Utilizzati
-
-- **style.css** - Stili globali della pagina
-- **menu.css** - Stili specifici del menu (layout piatti, prezzi, descrizioni)
-
-## Componenti Coinvolti
-
-| Componente | Ruolo |
-|-----------|-------|
-| **PublicController** | Gestisce le richieste pubbliche (home, menu, contatti) |
-| **DishService** | Logica di recupero e filtraggio dei piatti |
-| **DishMapper** | Converte Dish entity in DTO |
-| **DishRepo** | Accesso ai dati dei piatti dal database |
-| **Thymeleaf** | Template engine per renderizzare l'HTML |
-| **CSS Files** | Styling della pagina |
-
-## File Coinvolti
-
-- **menu.html** - Template della pagina menu
-- **style.css** - Foglio di stile principale
-- **menu.css** - Foglio di stile specifico per il menu

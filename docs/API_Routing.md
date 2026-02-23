@@ -1,6 +1,6 @@
-# API Routing - JavaBistrot
+# API Routing - Nebbia&Zafferano
 
-Documentazione delle rotte MVC (Thymeleaf) e API REST dell'applicazione JavaBistrot.
+Documentazione delle rotte MVC (Thymeleaf) e API REST dell'applicazione Nebbia&Zafferano.
 
 ## Pagine Pubbliche (Public Pages)
 

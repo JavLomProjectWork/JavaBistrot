@@ -1,5 +1,57 @@
-# JavaBistrot - UML Class Diagram
+# JavaBistrot - Architettura - UML Class Diagram
 
+## Descrizione dei Componenti
+
+### Entità (Entities) - Blu
+- **User**: Rappresenta un utente del sistema (cameriere o maître). Implementa `UserDetails` per la sicurezza Spring.
+- **Booking**: Rappresenta una prenotazione al ristorante.
+- **Dish**: Rappresenta un piatto del menu.
+
+### Enumerazioni (Enumerations) - Viola
+- **Role**: Enum che definisce i ruoli disponibili (WAITER, MAITRE).
+- **DishType**: Enum che definisce i tipi di piatto (ANTIPASTO, PRIMO, SECONDO, DOLCE).
+
+### DTO (Data Transfer Objects) - Verde
+- **UserDTO**: Record per trasferire dati utente tra client e server.
+- **BookingDTO**: Record per trasferire dati di prenotazione tra client e server.
+- **DishDTO**: Record per trasferire dati di piatto tra client e server.
+
+### Mapper - Arancione
+- **UserMapper**: Converte tra `User` e `UserDTO`.
+- **BookingMapper**: Converte tra `Booking` e `BookingDTO`.
+- **DishMapper**: Converte tra `Dish` e `DishDTO`.
+
+### Repository - Rosso
+- **UserRepo**: Interfaccia JpaRepository per operazioni CRUD su User.
+- **BookingRepo**: Interfaccia JpaRepository per operazioni CRUD su Booking con query personalizzate.
+- **DishRepo**: Interfaccia JpaRepository per operazioni CRUD su Dish.
+
+### Service - Ciano
+- **UserService**: Gestisce la logica di business degli utenti.
+- **BookingService**: Gestisce la logica di business delle prenotazioni.
+- **DishService**: Gestisce la logica di business dei piatti.
+
+### Controller - Giallo
+**Controller MVC:**
+- **LoginController**: Gestisce l'autenticazione e il login.
+- **PublicController**: Gestisce le pagine pubbliche (home, menu, prenotazioni, contatti).
+- **BookingManageController**: Gestisce la gestione delle prenotazioni.
+- **MenuManageController**: Gestisce la gestione del menu (piatti).
+- **StaffController**: Gestisce la gestione dello staff.
+
+**REST Controller:**
+- **BookingRESTController**: API REST per le operazioni CRUD su bookings.
+- **UserRESTController**: API REST per le operazioni CRUD su users.
+
+### Relazioni Principali
+- Una **Booking** è assegnata a **User** (relazione ManyToMany via tabella `booking_waiters`)
+- Un **User** può creare/modificare **Dish** (relazione OneToMany)
+- **User** utilizza **Role** come enum
+- **Dish** utilizza **DishType** come enum
+- I **Mapper** convertono tra Entity e DTO
+- I **Repository** gestiscono l'accesso ai dati
+- I **Service** utilizzano Repository e Mapper per la logica di business
+- I **Controller** utilizzano i Service per processare le richieste
 ```mermaid
 classDiagram
     direction LR
@@ -311,55 +363,4 @@ classDiagram
     style UserRESTController stroke:#F39C12,stroke-width:2px
 ```
 
-## Descrizione dei Componenti
 
-### Entità (Entities) - Blu
-- **User**: Rappresenta un utente del sistema (cameriere o maître). Implementa `UserDetails` per la sicurezza Spring.
-- **Booking**: Rappresenta una prenotazione al ristorante.
-- **Dish**: Rappresenta un piatto del menu.
-
-### Enumerazioni (Enumerations) - Viola
-- **Role**: Enum che definisce i ruoli disponibili (WAITER, MAITRE).
-- **DishType**: Enum che definisce i tipi di piatto (ANTIPASTO, PRIMO, SECONDO, DOLCE).
-
-### DTO (Data Transfer Objects) - Verde
-- **UserDTO**: Record per trasferire dati utente tra client e server.
-- **BookingDTO**: Record per trasferire dati di prenotazione tra client e server.
-- **DishDTO**: Record per trasferire dati di piatto tra client e server.
-
-### Mapper - Arancione
-- **UserMapper**: Converte tra `User` e `UserDTO`.
-- **BookingMapper**: Converte tra `Booking` e `BookingDTO`.
-- **DishMapper**: Converte tra `Dish` e `DishDTO`.
-
-### Repository - Rosso
-- **UserRepo**: Interfaccia JpaRepository per operazioni CRUD su User.
-- **BookingRepo**: Interfaccia JpaRepository per operazioni CRUD su Booking con query personalizzate.
-- **DishRepo**: Interfaccia JpaRepository per operazioni CRUD su Dish.
-
-### Service - Ciano
-- **UserService**: Gestisce la logica di business degli utenti.
-- **BookingService**: Gestisce la logica di business delle prenotazioni.
-- **DishService**: Gestisce la logica di business dei piatti.
-
-### Controller - Giallo
-**Controller MVC:**
-- **LoginController**: Gestisce l'autenticazione e il login.
-- **PublicController**: Gestisce le pagine pubbliche (home, menu, prenotazioni, contatti).
-- **BookingManageController**: Gestisce la gestione delle prenotazioni.
-- **MenuManageController**: Gestisce la gestione del menu (piatti).
-- **StaffController**: Gestisce la gestione dello staff.
-
-**REST Controller:**
-- **BookingRESTController**: API REST per le operazioni CRUD su bookings.
-- **UserRESTController**: API REST per le operazioni CRUD su users.
-
-### Relazioni Principali
-- Una **Booking** è assegnata a **User** (relazione ManyToMany via tabella `booking_waiters`)
-- Un **User** può creare/modificare **Dish** (relazione OneToMany)
-- **User** utilizza **Role** come enum
-- **Dish** utilizza **DishType** come enum
-- I **Mapper** convertono tra Entity e DTO
-- I **Repository** gestiscono l'accesso ai dati
-- I **Service** utilizzano Repository e Mapper per la logica di business
-- I **Controller** utilizzano i Service per processare le richieste

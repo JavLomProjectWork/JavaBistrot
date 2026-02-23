@@ -69,15 +69,15 @@ graph TD
 
 ---
 
-## 🔐 Login Process - Sequence Diagram
+## Login Process - Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-    participant Browser as 🌐 Browser
+    participant Browser as Browser
     participant LoginCtrl as LoginController
     participant UserSvc as UserService
     participant UserRepo as UserRepo
-    participant PSWEnc as PSWEncoder
+    participant PSWEncoder as PSWEncoder
     participant DB as Database
     
     Browser->>LoginCtrl: POST /login<br/>(username, password)
@@ -98,13 +98,16 @@ sequenceDiagram
     deactivate UserRepo
     
     alt User Found
-        UserSvc->>PSWEnc: matches(password, hashedPassword)
-        activate PSWEnc
+        activate UserSvc
+        UserSvc->>PSWEncoder: matches(password, hashedPassword)
+        activate PSWEncoder
         
         alt Password Matches
-            PSWEnc-->>UserSvc: true
-            deactivate PSWEnc
+            activate PSWEncoder
+            PSWEncoder-->>UserSvc: true
+            deactivate PSWEncoder
             
+            activate UserSvc
             UserSvc->>UserSvc: Create SecurityContext
             UserSvc-->>LoginCtrl: Authentication successful
             deactivate UserSvc
@@ -112,8 +115,8 @@ sequenceDiagram
             LoginCtrl->>Browser: Redirect to /dashboard
             
         else Password Incorrect
-            PSWEnc-->>UserSvc: false
-            deactivate PSWEnc
+            PSWEncoder-->>UserSvc: false
+            deactivate PSWEncoder
             
             UserSvc-->>LoginCtrl: AuthenticationException
             deactivate UserSvc

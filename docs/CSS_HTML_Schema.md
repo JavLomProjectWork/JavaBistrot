@@ -162,8 +162,3 @@ graph TB
 - **Classi CSS utilizzate**: `.footer`, `.footer-links`
 - **Incluso da**: Tutte le pagine pubbliche e private
 
-### 🗂️ File di Test
-
-#### test.html
-- **Percorso**: `templates/test.html`
-- **Descrizione**: File di test/prototipo

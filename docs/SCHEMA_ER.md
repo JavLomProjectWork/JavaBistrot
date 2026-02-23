@@ -5,7 +5,7 @@
 ```mermaid
 erDiagram
     USER ||--o{ BOOKING : "assigns"
-    USER ||--o{ DISH : "creates/modifies"
+    
     
     USER {
         long id PK
@@ -15,6 +15,11 @@ erDiagram
         boolean active
     }
     
+    BOOKING_WAITERS {
+        booking_id FK
+        user_id FK
+    }
+
     BOOKING {
         long id PK
         string customerName
@@ -91,11 +96,6 @@ Tabella che rappresenta la relazione molti-a-molti tra camerieri e prenotazioni.
 - Una prenotazione può avere più camerieri assegnati
 - Gestita attraverso la tabella `booking_waiters`
 - Con vincolo di integrità referenziale disabilitato (ConstraintMode.NO_CONSTRAINT)
-
-### USER - DISH (One-To-Many)
-- Un utente può creare/modificare più piatti
-- Ogni piatto è creato/modificato da un singolo utente
-- Relazione gestita dal sistema di autorizzazioni
 
 ## Enumerazioni
 
