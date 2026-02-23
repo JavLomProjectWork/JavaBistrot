@@ -113,14 +113,16 @@ public class BookingManageController {
     @PostMapping("/assign-waiter")
     public String assignWaiter(
             @RequestParam Long bookingId,
-            @RequestParam Long waiterId,
+            @RequestParam(required = false) Long waiterId,
             @RequestParam String date,
             RedirectAttributes redirectAttributes) {
-        try {
-            bookingService.addWaiter(bookingId, waiterId);
-            redirectAttributes.addFlashAttribute("success", "Cameriere assegnato con successo");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        if (waiterId != null) {
+            try {
+                bookingService.addWaiter(bookingId, waiterId);
+                redirectAttributes.addFlashAttribute("success", "Cameriere assegnato con successo");
+            } catch (Exception e) {
+                redirectAttributes.addFlashAttribute("error", e.getMessage());
+            }
         }
         return "redirect:/bookings/manage?date=" + date;
     }

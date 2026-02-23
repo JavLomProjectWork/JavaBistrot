@@ -119,4 +119,9 @@ public class UserService implements UserDetailsService {
             .map(userMapper::toDto)
             .toList();
     }
+    
+    @Transactional
+    public Boolean existById(Long id) {
+        return userRepo.existsById(id);
+    }
 }
