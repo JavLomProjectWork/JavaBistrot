@@ -817,11 +817,6 @@ select:-webkit-autofill */
     letter-spacing: 0.5px;
 }
 
-.actions-cell .btn-small {
-    min-width: 95px; 
-    text-align: center;
-}
-
 .actions .btn-small {
     min-width: 97px; 
     text-align: center;

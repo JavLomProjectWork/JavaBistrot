@@ -83,7 +83,7 @@
                         <th>Coperti</th>
                         <th>Note</th>
                         <th>Camerieri</th>
-                        <th class="actions-cell">Azioni</th>
+                        <th class="actions">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,7 +129,7 @@
                                 </form>
                             </div>
                         </td>
-                        <td class="actions-cell">
+                        <td class="actions">
                             <form th:action="@{/bookings/toggle-active}" method="post" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
@@ -160,7 +160,7 @@
                         <th>Coperti</th>
                         <th>Note</th>
                         <th>Camerieri</th>
-                        <th class="actions-cell">Azioni</th>
+                        <th class="actions">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -206,7 +206,7 @@
                                 </form>
                             </div>
                         </td>
-                        <td class="actions-cell">
+                        <td class="actions">
                             <form th:action="@{/bookings/toggle-active}" method="post" style="display:inline;">
                                 <input type="hidden" name="id" th:value="${booking.id}">
                                 <input type="hidden" name="date" th:value="${selectedDate}">
