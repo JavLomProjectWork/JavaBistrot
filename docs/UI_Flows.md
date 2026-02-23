@@ -68,10 +68,10 @@ sequenceDiagram
 | 5 | **Submit** | Browser | POST request con credenziali verso endpoint /login |
 | 6 | **Verifica** | UserService | Ricerca username nel database |
 | 7 | **Validazione Password** | PSWEncoder | Verifica password con BCrypt |
-| 8a | **✅ Successo** | SecurityContext | Crea sessione autenticata, reindirizza a /dashboard |
-| 8b | **❌ Errore** | LoginController | Torna a login con messaggio di errore |
+| 8a | **Successo** | SecurityContext | Crea sessione autenticata, reindirizza a /dashboard |
+| 8b | **Errore** | LoginController | Torna a login con messaggio di errore |
 
-### ⚙️ Componenti Coinvolti
+### Componenti Coinvolti
 
 | Componente | Ruolo |
 |-----------|-------|
@@ -83,7 +83,7 @@ sequenceDiagram
 
 ---
 
-## 📋 Flusso 2: CRUD Prenotazioni (ADMIN/USER FLOW)
+## Flusso 2: CRUD Prenotazioni (ADMIN/USER FLOW)
 
 **Descrizione**: Utente autenticato visualizza, crea, modifica e elimina prenotazioni.
 
@@ -99,50 +99,50 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    Start([👤 Utente loggato]) --> ListEnd["GET /bookings/manage"]
+    Start([Utente loggato]) --> ListEnd["GET /bookings/manage"]
     
-    ListEnd --> ShowList["📋 Visualizza lista<br/>prenotazioni"]
+    ListEnd --> ShowList["Visualizza lista<br/>prenotazioni"]
     ShowList --> ActionChoice{"Azione?"}
     
-    ActionChoice -->|Crea nuova| CreateForm["GET /bookings/add<br/>📝 Form creazione"]
+    ActionChoice -->|Crea nuova| CreateForm["GET /bookings/add<br/>Form creazione"]
     CreateForm --> FillForm["Compila dati<br/>(cliente, data, ospiti)"]
     FillForm --> CreateSub["POST /bookings/add"]
-    CreateSub --> ValidateC{"✅ Dati validi?"}
+    CreateSub --> ValidateC{"Dati validi?"}
     
-    ValidateC -->|No| ErrorC["⚠️ Errore validazione"]
+    ValidateC -->|No| ErrorC["Errore validazione"]
     ErrorC --> CreateForm
     
-    ValidateC -->|Sì| CheckConflictC{"⚫ Orario<br/>disponibile?"}
-    CheckConflictC -->|No| ConflictC["⚠️ Data occupata"]
+    ValidateC -->|Sì| CheckConflictC{"Orario<br/>disponibile?"}
+    CheckConflictC -->|No| ConflictC["Data occupata"]
     ConflictC --> CreateForm
     
-    CheckConflictC -->|Sì| SaveC["💾 Salva nel DB"]
-    SaveC --> SuccessC["✅ Prenotazione creata!"]
+    CheckConflictC -->|Sì| SaveC["Salva nel DB"]
+    SaveC --> SuccessC["Prenotazione creata!"]
     SuccessC --> ListEnd
     
-    ActionChoice -->|Modifica| EditForm["GET /bookings/edit/:id<br/>📝 Form modifica"]
+    ActionChoice -->|Modifica| EditForm["GET /bookings/edit/:id<br/>Form modifica"]
     EditForm --> FillEdit["Modifica dati"]
     FillEdit --> UpdateSub["POST /bookings/update"]
-    UpdateSub --> ValidateU{"✅ Dati validi?"}
+    UpdateSub --> ValidateU{"Dati validi?"}
     
-    ValidateU -->|No| ErrorU["⚠️ Errore validazione"]
+    ValidateU -->|No| ErrorU["Errore validazione"]
     ErrorU --> EditForm
     
-    ValidateU -->|Sì| CheckConflictU{"⚫ Orario<br/>disponibile?"}
-    CheckConflictU -->|No| ConflictU["⚠️ Data occupata"]
+    ValidateU -->|Sì| CheckConflictU{"Orario<br/>disponibile?"}
+    CheckConflictU -->|No| ConflictU["Data occupata"]
     ConflictU --> EditForm
     
-    CheckConflictU -->|Sì| SaveU["💾 Aggiorna nel DB"]
-    SaveU --> SuccessU["✅ Prenotazione aggiornata!"]
+    CheckConflictU -->|Sì| SaveU["Aggiorna nel DB"]
+    SaveU --> SuccessU["Prenotazione aggiornata!"]
     SuccessU --> ListEnd
     
-    ActionChoice -->|Elimina| DeleteConfirm["🗑️ Conferma eliminazione"]
+    ActionChoice -->|Elimina| DeleteConfirm["Conferma eliminazione"]
     DeleteConfirm --> DeleteSubmit["POST /bookings/delete/:id"]
-    DeleteSubmit --> SaveD["💾 Elimina dal DB"]
-    SaveD --> SuccessD["✅ Prenotazione eliminata!"]
+    DeleteSubmit --> SaveD["Elimina dal DB"]
+    SaveD --> SuccessD["Prenotazione eliminata!"]
     SuccessD --> ListEnd
     
-    ActionChoice -->|Esci| End([✔️ Chiudi])
+    ActionChoice -->|Esci| End([Chiudi])
     
     style Start fill:#27AE60,stroke:#27AE60,stroke-width:2px,color:#fff
     style ListEnd fill:#4A90E2,stroke:#4A90E2,stroke-width:2px,color:#fff
@@ -184,7 +184,7 @@ graph TD
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Utente as 👤 Utente
+    actor Utente as Utente
     participant Browser
     participant BookingCtrl as BookingCtrl
     participant BookingSvc as BookingSvc
@@ -207,20 +207,20 @@ sequenceDiagram
     alt Validazione fallita
         BookingSvc-->>BookingCtrl: ValidationException
         BookingCtrl-->>Browser: Redirect con errore
-        Browser-->>Utente: ❌ Mostra messaggio errore
+        Browser-->>Utente: Mostra messaggio errore
     else Validazione OK
         BookingSvc->>BookingSvc: checkTimeConflict()
         
         alt Conflitto di orario
             BookingSvc-->>BookingCtrl: ConflictException
             BookingCtrl-->>Browser: Redirect con errore
-            Browser-->>Utente: ❌ "Orario non disponibile"
+            Browser-->>Utente: "Orario non disponibile"
         else Orario libero
             BookingSvc->>DB: save(booking)
             DB-->>BookingSvc: Booking persisted
-            BookingSvc-->>BookingCtrl: ✅ Booking created
+            BookingSvc-->>BookingCtrl: Booking created
             BookingCtrl-->>Browser: Redirect a /bookings/manage
-            Browser-->>Utente: ✅ "Prenotazione creata!"
+            Browser-->>Utente: "Prenotazione creata!"
         end
     end
 ```
@@ -236,7 +236,7 @@ sequenceDiagram
 
 ---
 
-## 🍽️ Flusso 3: CRUD Menu (ADMIN ONLY)
+## Flusso 3: CRUD Menu (ADMIN ONLY)
 
 **Descrizione**: Admin visualizza, crea, modifica e elimina piatti del menu.
 
@@ -252,37 +252,37 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    Start([👨‍💼 Admin loggato]) --> List["GET /menu/manage<br/>📋 Lista piatti"]
+    Start([Admin loggato]) --> List["GET /menu/manage<br/>Lista piatti"]
     List --> Show["Visualizza piatti<br/>organizzati per tipo"]
     Show --> Action{"Azione?"}
     
-    Action -->|Crea| AddForm["GET /menu/add<br/>📝 Form nuovo piatto"]
+    Action -->|Crea| AddForm["GET /menu/add<br/>Form nuovo piatto"]
     AddForm --> Fill["Compila:<br/>nome, desc, prezzo, tipo"]
     Fill --> PostAdd["POST /menu/add"]
-    PostAdd --> Validate1{"✅ Valido?"}
-    Validate1 -->|No| Error1["⚠️ Errore"]
+    PostAdd --> Validate1{"Valido?"}
+    Validate1 -->|No| Error1["Errore"]
     Error1 --> AddForm
-    Validate1 -->|Sì| Save1["💾 Salva"]
-    Save1 --> OK1["✅ Piatto aggiunto"]
+    Validate1 -->|Sì| Save1["Salva"]
+    Save1 --> OK1["Piatto aggiunto"]
     OK1 --> List
     
-    Action -->|Modifica| EditForm["GET /menu/edit/:id<br/>📝 Form modifica"]
+    Action -->|Modifica| EditForm["GET /menu/edit/:id<br/>Form modifica"]
     EditForm --> FillEdit["Modifica dati"]
     FillEdit --> PostEdit["POST /menu/update"]
-    PostEdit --> Validate2{"✅ Valido?"}
-    Validate2 -->|No| Error2["⚠️ Errore"]
+    PostEdit --> Validate2{"Valido?"}
+    Validate2 -->|No| Error2["Errore"]
     Error2 --> EditForm
-    Validate2 -->|Sì| Save2["💾 Aggiorna"]
-    Save2 --> OK2["✅ Piatto aggiornato"]
+    Validate2 -->|Sì| Save2["Aggiorna"]
+    Save2 --> OK2["Piatto aggiornato"]
     OK2 --> List
     
-    Action -->|Disabilita| Delete["POST /menu/delete/:id<br/>🗑️"]
+    Action -->|Disabilita| Delete["POST /menu/delete/:id<br/>"]
     Delete --> Confirm["Conferma eliminazione"]
-    Confirm --> Save3["💾 Disabilita"]
-    Save3 --> OK3["✅ Piatto rimosso"]
+    Confirm --> Save3["Disabilita"]
+    Save3 --> OK3["Piatto rimosso"]
     OK3 --> List
     
-    Action -->|Esci| End(["✔️ Fine"])
+    Action -->|Esci| End(["Fine"])
     
     style Start fill:#27AE60,stroke:#27AE60,stroke-width:2px,color:#fff
     style List fill:#4A90E2,stroke:#4A90E2,stroke-width:2px,color:#fff
@@ -300,7 +300,7 @@ graph TD
 
 ---
 
-## 👥 Flusso 4: CRUD Staff (ADMIN ONLY)
+## Flusso 4: CRUD Staff (ADMIN ONLY)
 
 **Descrizione**: Admin gestisce il personale (camerieri, maîtres).
 
@@ -316,20 +316,20 @@ graph TD
 
 ```mermaid
 graph LR
-    Start([👨‍💼 Admin]) --> List["📋 GET /staff/manage"]
+    Start([Admin]) --> List["GET /staff/manage"]
     List --> Show["Visualizza camerieri<br/>e maîtres"]
     Show --> Action{"Azione?"}
     
-    Action -->|Aggiungi| Add["➕ Crea staff<br/>POST /staff/add"]
-    Action -->|Modifica| Edit["✏️ Edita staff<br/>POST /staff/update"]
-    Action -->|Rimuovi| Del["🗑️ Elimina staff<br/>POST /staff/delete"]
+    Action -->|Aggiungi| Add["Crea staff<br/>POST /staff/add"]
+    Action -->|Modifica| Edit["Edita staff<br/>POST /staff/update"]
+    Action -->|Rimuovi| Del["Elimina staff<br/>POST /staff/delete"]
     
-    Add --> OK["✅ Aggiunto"]
+    Add --> OK["Aggiunto"]
     Edit --> OK
     Del --> OK
     
     OK --> List
-    Action -->|Esci| End(["✔️ Fine"])
+    Action -->|Esci| End(["Fine"])
     
     style Start fill:#27AE60,stroke:#27AE60,stroke-width:2px,color:#fff
     style List fill:#4A90E2,stroke:#4A90E2,stroke-width:2px,color:#fff
@@ -343,25 +343,25 @@ graph LR
 
 ---
 
-## 🎯 Riepilogo Flussi
+## Riepilogo Flussi
 
 | Flusso | Tipo | Primary | Utenti | Complessità |
 |--------|------|---------|--------|-------------|
-| **Login** | Authentication | ✅ Sì | Tutti | Alta |
-| **CRUD Prenotazioni** | Business Logic | ✅ Sì | USER, ADMIN | Alta |
+| **Login** | Authentication | Sì | Tutti | Alta |
+| **CRUD Prenotazioni** | Business Logic | Sì | USER, ADMIN | Alta |
 | **CRUD Menu** | Management | Extra | ADMIN | Media |
 | **CRUD Staff** | Management | Extra | ADMIN | Media |
 
 ---
 
-## 🎨 Legenda Colori
+## Legenda Colori
 
 | Colore | Significato | UML |
 |--------|-------------|-----|
-| 🟢 Verde (#27AE60) | Start, Success | DTOs |
-| 🔵 Blu (#4A90E2) | GET Request, Visualizza | Entities |
-| 🟡 Giallo (#F39C12) | Decisioni, Post | Controllers |
-| 🔴 Rosso (#E74C3C) | Errori, Delete | Repositories |
-| 🔷 Ciano (#1ABC9C) | Service, Form | Services |
-| 🟣 Viola (#9B59B6) | Input, Modifica | Enumerazioni |
-| 🟠 Arancione (#E67E22) | Mapper | Mappers |
+| 🟢 Verde | Start, Success | DTOs |
+| 🔵 Blu | GET Request, Visualizza | Entities |
+| 🟡 Giallo | Decisioni, Post | Controllers |
+| 🔴 Rosso | Errori, Delete | Repositories |
+| 🔷 Ciano | Service, Form | Services |
+| 🟣 Viola | Input, Modifica | Enumerazioni |
+| 🟠 Arancione | Mapper | Mappers |
