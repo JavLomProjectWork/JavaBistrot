@@ -817,6 +817,16 @@ select:-webkit-autofill */
     letter-spacing: 0.5px;
 }
 
+.actions-cell .btn-small {
+    min-width: 95px; 
+    text-align: center;
+}
+
+.actions .btn-small {
+    min-width: 97px; 
+    text-align: center;
+}
+
 .btn-add {
     background: var(--dark);
     color: var(--white);
@@ -891,6 +901,7 @@ select:-webkit-autofill */
     background: var(--dark);
     color: var(--white);
 }
+
 
 /* ---------- Status Badges ---------- */
 .status-active {
