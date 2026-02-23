@@ -1325,4 +1325,13 @@ select:-webkit-autofill */
             }
         }
 
-        
+        .data-table td[data-label="Note"] {
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .notes-form textarea {
+            width: 100%;
+            min-height: 60px;
+            resize: vertical; 
+        }

@@ -30,5 +30,5 @@ INSERT INTO bookings
 ('Sara Neri', 'sara.neri@email.com', '+393477889900', 3, '2026-02-25 20:30:00', 'Seggiolone per bambino', TRUE),
 ('Andrea Gallo', 'andrea.gallo@email.com', '+393355667788', 8, '2026-03-10 20:00:00', 'Cena aziendale', TRUE),
 ('Francesca Romano', 'francesca.romano@email.com', '+393366778899', 2, '2026-03-11 21:15:00', NULL, TRUE),
-('Davide Conti', 'davide.conti@email.com', '+393312345678', 5, '2026-03-12 20:45:00', 'Intolleranza al lattosio', TRUE),
+('Davide Conti', 'davide.conti@email.com', '+393312345678', 5, '2026-03-12 20:45:00', 'Intolleranza al lattosio', TRUE);
 
