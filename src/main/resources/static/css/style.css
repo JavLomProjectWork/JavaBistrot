@@ -1108,6 +1108,10 @@ select:-webkit-autofill */
     border-top: 2px solid #f5f5f5;
 }
 
+.dish-type{
+    min-width: 150px;
+}
+
 /* ---------- Hidden Section ---------- */
 .hidden-section {
     margin-top: 50px;
