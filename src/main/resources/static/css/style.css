@@ -1113,6 +1113,10 @@ select:-webkit-autofill */
     line-height: 0;
 }
 
+.dish-type{
+    min-width: 150px;
+}
+
 /* ---------- Hidden Section ---------- */
 .hidden-section {
     margin-top: 50px;
