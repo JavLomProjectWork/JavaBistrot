@@ -1,8 +1,8 @@
 INSERT INTO users (username, password, role, active) VALUES
-('admin', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'MAITRE', true);
-('carlo', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true);
-('francesco', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true);
-('giuseppe', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true);
+('admin', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'MAITRE', true),
+('carlo', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true),
+('francesco', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true),
+('giuseppe', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true),
 ('alda', '$2a$12$U2ea8VhaCVHFopLwcRZOpOXxooX7s8PHejZGdYdM36NAsw5KIuDcq', 'WAITER', true);
 
 INSERT INTO dishes (name, description, price, type, active) VALUES
