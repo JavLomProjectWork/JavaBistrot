@@ -448,7 +448,7 @@ h1, h2, h3, h4 {
 }
 
 .manage-container.wide {
-    max-width: 1200px;
+    max-width: 1300px;
 }
 
 .manage-title {
@@ -1324,5 +1324,3 @@ select:-webkit-autofill */
                 grid-template-columns: 1fr;
             }
         }
-
-        

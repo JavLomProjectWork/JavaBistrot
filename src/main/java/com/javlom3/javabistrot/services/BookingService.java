@@ -22,8 +22,17 @@ import jakarta.transaction.Transactional;
 @Service
 @Slf4j
 public class BookingService {
-		public static final int MAX_DAYS_IN_FUTURE = 90;
-	// Orari prenotazione facilmente modificabili
+	private final BookingRepo bookingRepo;
+	private final UserRepo userRepo;
+	private final BookingMapper bookingMapper;
+
+	public BookingService(BookingRepo bookingRepo, UserRepo userRepo, BookingMapper bookingMapper) {
+		this.bookingRepo = bookingRepo;
+		this.userRepo = userRepo;
+		this.bookingMapper = bookingMapper;
+	}
+
+	public static final int MAX_DAYS_IN_FUTURE = 90;
 	public static final java.time.LocalTime LUNCH_START = java.time.LocalTime.of(12, 0);
 	public static final java.time.LocalTime LUNCH_END = java.time.LocalTime.of(14, 0);
 	public static final java.time.LocalTime DINNER_START = java.time.LocalTime.of(19, 0);
@@ -31,7 +40,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> toggleActive(Long id) {
-		log.info("toggleActive id={}", id);
+		log.info("toggleActive called for booking id={}", id);
 		return bookingRepo.findById(id).map(booking -> {
 			booking.setActive(booking.getActive() == null ? Boolean.TRUE : !booking.getActive());
 			Booking updated = bookingRepo.save(booking);
@@ -49,19 +58,10 @@ public class BookingService {
 		return bookingRepo.findByActiveFalse().stream().map(bookingMapper::toDto).toList();
 	}
 
-	private final BookingRepo bookingRepo;
-	private final UserRepo userRepo;
-	private final BookingMapper bookingMapper;
-
-	public BookingService(BookingRepo bookingRepo, UserRepo userRepo, BookingMapper bookingMapper) {
-		this.bookingRepo = bookingRepo;
-		this.userRepo = userRepo;
-		this.bookingMapper = bookingMapper;
-	}
 
 	@Transactional
 	public Optional<BookingDTO> createBooking(BookingDTO dto) {
-		log.info("createBooking dateTime={}", dto.bookingDateTime());
+		log.info("createBooking called with dto={}", dto);
 		// Restrizione orario: solo tra 12-14 e 19-21
 		if (dto.bookingDateTime() != null) {
 			LocalTime time = dto.bookingDateTime().toLocalTime();
@@ -94,7 +94,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> updateBooking(Long id, BookingDTO dto) {
-		log.info("updateBooking id={}", id);
+		log.info("updateBooking called for id={} with dto={}", id, dto);
 		return bookingRepo.findById(id).map(existing -> {
 			if (dto.customerName() != null) {
 				existing.setCustomerName(dto.customerName());
@@ -127,7 +127,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> addWaiter(Long bookingId, Long waiterId) {
-		log.info("addWaiter bookingId={} waiterId={}", bookingId, waiterId);
+		log.info("addWaiter called for bookingId={} waiterId={}", bookingId, waiterId);
 		if (waiterId == null) {
 			return bookingRepo.findById(bookingId).map(bookingMapper::toDto);
 		}
@@ -145,7 +145,7 @@ public class BookingService {
 
 	@Transactional
 	public Optional<BookingDTO> removeWaiter(Long bookingId, Long waiterId) {
-		log.info("removeWaiter bookingId={} waiterId={}", bookingId, waiterId);
+		log.info("removeWaiter called for bookingId={} waiterId={}", bookingId, waiterId);
 		if (waiterId == null) {
 			return bookingRepo.findById(bookingId).map(bookingMapper::toDto);
 		}
@@ -164,7 +164,7 @@ public class BookingService {
 
 	@Transactional
 	public void deleteBooking(Long id) {
-		log.info("deleteBooking id={}", id);
+		log.info("deleteBooking called for id={}", id);
 		if (!bookingRepo.existsById(id)) {
             throw new IllegalArgumentException("Prenotazione con id " + id + " non trovata");
         }
@@ -212,4 +212,8 @@ public class BookingService {
             .map(bookingMapper::toDto)
             .toList();
     }
+	
+	public Boolean existsById(Long id){
+		return bookingRepo.existsById(id);
+	}
 }

@@ -24,11 +24,11 @@ INSERT INTO dishes (name, description, price, type, active) VALUES
 
 INSERT INTO bookings 
 (customer_name, email, phone_number, number_of_guests, booking_date_time, notes, active) VALUES
-('Marco Rossi', 'marco.rossi@email.com', '+393331112233', 2, '2026-03-05 20:00:00', 'Tavolo vicino alla finestra', TRUE),
-('Giulia Bianchi', 'giulia.bianchi@email.com', '+393401234567', 4, '2026-03-06 21:00:00', 'Compleanno - portare torta', TRUE),
-('Luca Verdi', 'luca.verdi@email.com', '+393298765432', 6, '2026-03-07 19:30:00', NULL, TRUE),
-('Sara Neri', 'sara.neri@email.com', '+393477889900', 3, '2026-03-08 20:30:00', 'Seggiolone per bambino', TRUE),
+('Marco Rossi', 'marco.rossi@email.com', '+393331112233', 2, '2026-02-25 20:00:00', 'Tavolo vicino alla finestra', TRUE),
+('Giulia Bianchi', 'giulia.bianchi@email.com', '+393401234567', 4, '2026-02-25 21:00:00', 'Compleanno - portare torta', TRUE),
+('Luca Verdi', 'luca.verdi@email.com', '+393298765432', 6, '2026-02-26 19:30:00', NULL, TRUE),
+('Sara Neri', 'sara.neri@email.com', '+393477889900', 3, '2026-02-25 20:30:00', 'Seggiolone per bambino', TRUE),
 ('Andrea Gallo', 'andrea.gallo@email.com', '+393355667788', 8, '2026-03-10 20:00:00', 'Cena aziendale', TRUE),
 ('Francesca Romano', 'francesca.romano@email.com', '+393366778899', 2, '2026-03-11 21:15:00', NULL, TRUE),
-('Davide Conti', 'davide.conti@email.com', '+393312345678', 5, '2026-03-12 20:45:00', 'Intolleranza al lattosio', TRUE),
+('Davide Conti', 'davide.conti@email.com', '+393312345678', 5, '2026-03-12 20:45:00', 'Intolleranza al lattosio', TRUE);
 
