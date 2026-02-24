@@ -1,9 +1,6 @@
-# **README.md**
-
-
 # JavaBistrot
 
-JavaBistrot è un sistema è pensato per supportare il personale di sala di un ristorante con strumenti semplici da usare, strutturati migliorare la comunicazione con il cliente e garantire un migliore servizio di prenotazione e gestione del menù. Le funzioni principali permettono di organizzare lo staff di sala, gestire il menu del ristorante, le prenotazioni dei clienti e al contempo fornire delle pagine pubbliche che consentono al ristorante di presentarsi ai clienti e a questi di consultare il menù ed effettuare delle prenotazioni.
+JavaBistrot è un sistema pensato per supportare il personale di sala di un ristorante con strumenti semplici da usare, strutturati migliorare la comunicazione con il cliente e garantire un migliore servizio di prenotazione e gestione del menù. Le funzioni principali permettono di organizzare lo staff di sala, gestire il menu del ristorante, le prenotazioni dei clienti e al contempo fornire delle pagine pubbliche che consentono al ristorante di presentarsi ai clienti e a questi di consultare il menù ed effettuare delle prenotazioni.
 Come esempio, la parte pubblica del sito è stata tematizzata per un ipotetico ristorante milanese dal nome "Nebbia&Zafferano".
 
 ---
