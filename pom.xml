@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.javlom3</groupId>
 	<artifactId>javabistrot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>javabistrot</name>
 	<description>Prototipo sito per ristorante con gestione prenotazioni e menu.</description>
 	<url/>

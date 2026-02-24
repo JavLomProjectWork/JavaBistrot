@@ -3,9 +3,8 @@
 ```markdown
 # JavaBistrot
 
-JavaBistrot è il sistema tematizzato sul ristorante Nebbia&Zafferano, un locale di medio alto livello situato nel cuore di Milano. Il sistema è pensato per supportare maître e camerieri con strumenti semplici da usare, strutturati per ridurre errori, migliorare la comunicazione interna e garantire un servizio coerente. Le funzioni principali permettono di organizzare lo staff di sala, gestire il menu del ristorante, migliorare i flussi operativi e gestire le prenotazioni dei clienti.
-
-Il principale target del sistema è il personale del ristorante. Abbiamo incluso nella parte di front end un form destinato ai clienti del ristorante per poter dimostrare le funzionalità principali riservate allo staff.
+JavaBistrot è un sistema è pensato per supportare il personale di sala di un ristorante con strumenti semplici da usare, strutturati migliorare la comunicazione con il cliente e garantire un migliore servizio di prenotazione e gestione del menù. Le funzioni principali permettono di organizzare lo staff di sala, gestire il menu del ristorante, le prenotazioni dei clienti e al contempo fornire delle pagine pubbliche che consentono al ristorante di presentarsi ai clienti e a questi di consultare il menù ed effettuare delle prenotazioni.
+Come esempio, la parte pubblica del sito è stata tematizzata per un ipotetico ristorante milanese dal nome "Nebbia&Zafferano".
 
 ---
 
@@ -16,10 +15,9 @@ Il principale target del sistema è il personale del ristorante. Abbiamo incluso
   - Spring Web
   - Spring Data JPA
   - Spring Security (con BCrypt)
-- PostgreSQL (ambiente di produzione)
+- MySql/MariaDB
 - Hibernate (ORM)
 - Maven
-- Docker (multi-stage build)
 - Thymeleaf (frontend)
 
 ---
@@ -41,78 +39,37 @@ Il principale target del sistema è il personale del ristorante. Abbiamo incluso
 - Numero ospiti, note, orario
 - Visualizzazione e gestione tramite pannello amministrativo
 
----
+## Guida all'installazione
 
-## Struttura del database
-
-Il database è gestito tramite Hibernate.
-
----
-
-## Configurazione ambiente
-
-### Variabili d'ambiente (Render)
-
-```
-
----
-
-## Docker
-
-Il progetto utilizza un Dockerfile multi-stage ottimizzato per ridurre i tempi di build.
-
-### Build dell'immagine
+### 1. Clonare la repository
 
 ```bash
-mvn clean package -DskipTests
-docker build -t javabistrot .
+git clone https://github.com/JavLomProjectWork/JavaBistrot.git
 ```
 
-### Avvio del container
+### 2. Generare il DataBase
+
+- Individuare un server che esegua MySql/MariaDB
+- Eseguire DDL.sql per creare e strutturare il DB
+- Eseguire DML.sql per popolare il DB
+
+### 3. Configurare `application.properties` locale
+
+Copiare il file src/main/resources/application.properties.example in src/main/resources/application.properties inserendo le coordinate del db e le impostazioni preferite.
+
+### 4. Compilare l'applicazione
 
 ```bash
-docker run -p 8080:8080 javabistrot
+cd javabistrot
+./mvnw clean package
 ```
 
----
-
-## Deploy su Render
-
-1. Collegare la repository GitHub a Render.
-2. Creare un servizio PostgreSQL.
-3. Creare un Web Service basato sul Dockerfile.
-4. Impostare le variabili d'ambiente.
-5. Render eseguirà automaticamente:
-   - build Docker
-   - avvio del container
----
-
-## Esecuzione locale
-
-### 1. Avviare PostgreSQL tramite Docker
+### 5. Avviare l'applicazione
 
 ```bash
-docker run --name pg-local \
-  -e POSTGRES_PASSWORD=postgres \
-  -e POSTGRES_USER=postgres \
-  -e POSTGRES_DB=javabistrot \
-  -p 5432:5432 \
-  -d postgres:16
+java -jar target/javabistrot-1.0.jar
 ```
-
-### 2. Configurare `application.properties` locale
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/javabistrot
-spring.datasource.username=postgres
-spring.datasource.password=postgres
-```
-
-### 3. Avviare l'applicazione
-
-```bash
-mvn spring-boot:run
-```
+L'applicazione sarà ora raggiungibile all'indirizzo configurato (di default http://localhost:8080).
 
 ---
 
@@ -128,7 +85,6 @@ JavaBistrot/
  │   │   │   ├── static/ (CSS, JS)
  │   │   │   ├── application.properties.example
  │   │   │   └── data.sql
- ├── Dockerfile
  ├── pom.xml
  └── README.md
 ```

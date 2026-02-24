@@ -1,5 +1,3 @@
-USE javabistrot;
-
 -- Utente MAITRE admin (password: admin)
 INSERT INTO users (username, password, role, active) VALUES
 ('admin', '$2a$12$Wz8lNt.Rv/HgopBS9IOLquizQEXmKGYkrSTrC4heXB/TXzMTtfQgy', 'MAITRE', true);
