@@ -1,6 +1,6 @@
 # **README.md**
 
-```markdown
+
 # JavaBistrot
 
 JavaBistrot è un sistema è pensato per supportare il personale di sala di un ristorante con strumenti semplici da usare, strutturati migliorare la comunicazione con il cliente e garantire un migliore servizio di prenotazione e gestione del menù. Le funzioni principali permettono di organizzare lo staff di sala, gestire il menu del ristorante, le prenotazioni dei clienti e al contempo fornire delle pagine pubbliche che consentono al ristorante di presentarsi ai clienti e a questi di consultare il menù ed effettuare delle prenotazioni.
@@ -94,20 +94,13 @@ JavaBistrot/
 ## Team
 
 Membri:
-  - Loriana
-  - Ornella
-  - Mauro
-  - Gabriele
-  - Venelin
+  - [Loriana](https://github.com/lorianalodeserto)
+  - [Ornella](https://github.com/ornella098)
+  - [Mauro](https://github.com/Mauro7b5)
+  - [Gabriele](https://github.com/gabrielegaro06)
+  - [Venelin](https://github.com/vendevcode)
 
 Progetto sviluppato dal team di JavaBistrot come esercitazione di sviluppo web full-stack con Java.
 
-
----
-
-## Licenza
-
-Questo progetto è distribuito con licenza MIT.
-```
 
 ---
